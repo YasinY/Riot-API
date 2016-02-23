@@ -19,12 +19,18 @@ public class Request {
 
     private ResponseHandler responseHandler;
 
+    /**
+     * <p>Creates a new {@link Request} instance</p>
+     *
+     * @param url The url to connect to
+     */
     public Request(URL url) {
-            this.url = url;
+        this.url = url;
     }
 
     /**
-     * Connects
+     * Opens the connection of the {@code url} given, and creates instances to manage specifics aspects, in this case,
+     * both the handling of responses and the inputstream of the URL given
      */
     public void connect() {
         try {
