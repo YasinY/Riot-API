@@ -1,6 +1,6 @@
 package com.yasinyazici.riot.request.web;
 
-import com.yasinyazici.riot.request.handler.ResponseHandler;
+import com.yasinyazici.riot.request.handler.ResponseAction;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -9,7 +9,7 @@ import java.net.URL;
 /**
  * Created by Yasin on 09/02/2016.
  * <p>This class is mainly focused on establishing a connection with the Riot servers for further communication
- * lead by the {@link ResponseHandler} and displaying the content through {@link RequestContent}</p>
+ * lead by the {@link ResponseAction} and displaying the content through {@link RequestContent}</p>
  */
 public class Request {
 
@@ -17,7 +17,7 @@ public class Request {
 
     private RequestContent requestContent;
 
-    private ResponseHandler responseHandler;
+    private ResponseAction responseHandler;
 
     /**
      * <p>Creates a new {@link Request} instance</p>
@@ -36,7 +36,7 @@ public class Request {
         try {
             System.out.println("Establishing connection");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            responseHandler = new ResponseHandler(connection.getResponseCode());
+            responseHandler = new ResponseAction(connection.getResponseCode());
             requestContent = new RequestContent(responseHandler.getResponse().getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
             System.out.println("Response message: " + responseHandler.getResponse().getMessage());
             System.out.println("Request content: " + requestContent.readStreamToString());
@@ -54,7 +54,7 @@ public class Request {
         return requestContent;
     }
 
-    public ResponseHandler getResponseHandler() {
+    public ResponseAction getResponseHandler() {
         return responseHandler;
     }
 }

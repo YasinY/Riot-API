@@ -9,13 +9,9 @@ package com.yasinyazici.riot.request.handler;
  * <p>This class is used mainly for handling Responses given by the Web-server, so data can be processed to show
  * either a result for an end-user</p>
  */
-public class ResponseHandler {
+public class ResponseAction {
 
     private Response response;
-
-    public ResponseHandler(Object response) {
-        this.response = verifyResponse(response);
-    }
 
 
     /**
@@ -26,7 +22,7 @@ public class ResponseHandler {
      * @param response The response to identify
      * @return a new {@link Response} corresponding to the response given as parameter, leading back to the answer of web-server if traced back
      */
-    public Response verifyResponse(Object response) {
+    public static Response verifyResponse(Object response) {
         for (Response element : Response.values()) {
             if (response instanceof String) {
                 if (((String) response).equalsIgnoreCase(element.getMessage())) {
