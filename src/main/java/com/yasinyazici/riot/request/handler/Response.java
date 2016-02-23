@@ -32,4 +32,22 @@ public enum Response {
     public String getMessage() {
         return message;
     }
+
+    public static Response verifyResponse(String response) {
+        for(Response value : values()) {
+            if(response.equalsIgnoreCase(value.getMessage())) {
+                return value;
+            }
+        }
+        return NONE;
+    }
+
+    public static Response verifyResponse(int responseCode) {
+        for(Response value : values()) {
+            if(responseCode == value.getResponseCode()) {
+                return value;
+            }
+        }
+        return NONE;
+    }
 }

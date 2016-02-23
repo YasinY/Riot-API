@@ -1,6 +1,6 @@
 package com.yasinyazici.riot.request.web;
 
-import com.yasinyazici.riot.request.handler.ResponseAction;
+import com.yasinyazici.riot.request.handler.Response;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -8,8 +8,8 @@ import java.net.URL;
 
 /**
  * Created by Yasin on 09/02/2016.
- * <p>This class is mainly focused on establishing a connection with the Riot servers for further communication
- * lead by the {@link ResponseAction} and displaying the content through {@link RequestContent}</p>
+ * <p>This class is mainly focused on establishing a connection with the Riot servers,
+ * displaying the content through {@link RequestContent}</p>
  */
 public class Request {
 
@@ -17,7 +17,7 @@ public class Request {
 
     private RequestContent requestContent;
 
-    private ResponseAction responseHandler;
+    private Response response;
 
     /**
      * <p>Creates a new {@link Request} instance</p>
@@ -36,9 +36,9 @@ public class Request {
         try {
             System.out.println("Establishing connection");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            responseHandler = new ResponseAction(connection.getResponseCode());
-            requestContent = new RequestContent(responseHandler.getResponse().getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
-            System.out.println("Response message: " + responseHandler.getResponse().getMessage());
+            response = Response.verifyResponse(connection.getResponseCode());
+            requestContent = new RequestContent(response.getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
+            System.out.println("Response message: " + response.getMessage());
             System.out.println("Request content: " + requestContent.readStreamToString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class Request {
         return requestContent;
     }
 
-    public ResponseAction getResponseHandler() {
-        return responseHandler;
+    public Response getResponse() {
+        return response;
     }
 }
