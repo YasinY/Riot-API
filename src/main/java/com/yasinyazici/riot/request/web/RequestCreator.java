@@ -5,6 +5,7 @@ import com.yasinyazici.riot.utilities.ArrayUtils;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 
 /**
  * Created by Yasin on 18/02/2016.
@@ -24,7 +25,7 @@ public class RequestCreator {
 
     /**
      * This is essential, to create several different requests
-     * @param requestProperty
+     * @param requestProperty the Request property to actually set for further connection establishments
      */
     public void setRequestProperty(RequestProperty requestProperty) {
         this.requestProperty = requestProperty;
@@ -60,12 +61,12 @@ public class RequestCreator {
         String[] parameters = requestProperty.getParameters();
         int variablesLength = variables.length;
         if (parameters.length != variablesLength) {
-            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + ArrayUtils.printArrayToString(variables).replace("%", "") + ", given: " + ArrayUtils.printArrayToString(parameters));
+            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + Arrays.toString(variables).replace("%", "") + ", given: " + Arrays.toString(parameters));
         }
         for (int i = 0; i < variablesLength; i++) {
             fullLink = fullLink.replace(variables[i], parameters[i]);
         }
-        System.out.println("Parameters: " + ArrayUtils.printArrayToString(parameters) + ", Variables: " + ArrayUtils.printArrayToString(variables));
+        System.out.println("Parameters: " + Arrays.toString(parameters) + ", Variables: " + Arrays.toString(variables));
         return fullLink;
     }
 

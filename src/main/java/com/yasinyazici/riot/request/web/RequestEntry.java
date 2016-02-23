@@ -7,7 +7,6 @@ public class RequestEntry {
 
     private String apiKey;
 
-
     public RequestEntry(String apiKey) {
         this.apiKey = apiKey;
     }

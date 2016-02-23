@@ -37,8 +37,8 @@ public class Request {
             System.out.println("Establishing connection");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseHandler = new ResponseHandler(connection.getResponseCode());
-            requestContent = new RequestContent(responseHandler.getResponseEnum().getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
-            System.out.println("Response message: " + responseHandler.getResponseEnum().getMessage());
+            requestContent = new RequestContent(responseHandler.getResponse().getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
+            System.out.println("Response message: " + responseHandler.getResponse().getMessage());
             System.out.println("Request content: " + requestContent.readStreamToString());
         } catch (IOException e) {
             e.printStackTrace();

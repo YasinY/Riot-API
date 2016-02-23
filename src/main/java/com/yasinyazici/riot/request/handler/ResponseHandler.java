@@ -11,10 +11,10 @@ package com.yasinyazici.riot.request.handler;
  */
 public class ResponseHandler {
 
-    private Response responseEnum;
+    private Response response;
 
     public ResponseHandler(Object response) {
-        this.responseEnum = verifyResponse(response);
+        this.response = verifyResponse(response);
     }
 
 
@@ -41,7 +41,7 @@ public class ResponseHandler {
         return Response.NONE;
     }
 
-    public Response getResponseEnum() {
-        return responseEnum;
+    public Response getResponse() {
+        return response;
     }
 }

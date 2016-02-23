@@ -1,6 +1,5 @@
 package com.yasinyazici.riot.utilities;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -8,10 +7,6 @@ import java.util.List;
  * <p>Provides additional methods for simplifying and sparing redundant code, related to arrays.</p>
  */
 public class ArrayUtils {
-
-    public static String printArrayToString(Object[] array) {
-        return Arrays.toString(array);
-    }
 
     public static Object[] transformList(List<?> list, Object[] dataType) {
         return list.toArray(dataType);
