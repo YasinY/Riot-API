@@ -15,9 +15,9 @@ public enum Response {
     OK(200, "OK"),
     NONE(-1, "No connection established");
 
-    private int responseCode;
+    private final int responseCode;
 
-    private String message;
+    private final String message;
 
     Response(int responseCode, String message) {
         this.responseCode = responseCode;

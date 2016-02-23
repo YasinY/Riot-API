@@ -16,7 +16,7 @@ public enum RequestRegion {
     RUSSIA("ru"),
     TURKEY("tr");
 
-    private String shortcut;
+    private final String shortcut;
 
     RequestRegion(String shortcut) {
         this.shortcut = shortcut;
@@ -24,9 +24,5 @@ public enum RequestRegion {
 
     public String getShortcut() {
         return shortcut;
-    }
-
-    public void setShortcut(String shortcut) {
-        this.shortcut = shortcut;
     }
 }
