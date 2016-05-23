@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
  *
  * <p>Identifies the placeholders of the {@link URL} given as parameter</p>
  */
+ 
+ //TODO Use generics on #getVariables !
 public class RequestFormat {
 
     private ArrayList<String> requestFormatArray = new ArrayList<>();
