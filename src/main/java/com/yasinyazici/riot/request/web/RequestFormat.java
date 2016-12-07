@@ -16,12 +16,13 @@ import java.util.regex.Pattern;
  //TODO Use generics on #getVariables !
 public class RequestFormat {
 
-    private ArrayList<String> requestFormatArray = new ArrayList<>();
+    private ArrayList<String> requestFormatArray;
 
     private String url;
 
     public RequestFormat(String url) {
         this.url = url;
+        this.requestFormatArray = new ArrayList<>();
     }
 
     /**

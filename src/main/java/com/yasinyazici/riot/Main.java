@@ -9,8 +9,9 @@ public class Main {
 
     public static void main(String[] args)  {
 
-        RequestCreator requestCreator = new RequestCreator(new RequestEntry("api key here"));
-        requestCreator.setRequestProperty(new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "hiimsh0ck"));
+        RequestCreator requestCreator = new RequestCreator();
+        RequestProperty requestProperty = new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "jungleíslife");
+        requestCreator.setRequestProperty(requestProperty);
         requestCreator.create();
 
 

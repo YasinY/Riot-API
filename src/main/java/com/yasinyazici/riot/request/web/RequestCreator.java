@@ -1,5 +1,6 @@
 package com.yasinyazici.riot.request.web;
 
+import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.WrongRequestFormatException;
 import com.yasinyazici.riot.utilities.ArrayUtils;
 
@@ -9,37 +10,24 @@ import java.util.Arrays;
 
 /**
  * Created by Yasin on 18/02/2016.
+ *
  * @author Yasin
- * @apiNote See {@link RequestFormat} as reference of how the usage of parameters corresponding to {@link RequestType} should be
  * @version 1.0
+ * @apiNote See {@link RequestFormat} as reference of how the usage of parameters corresponding to {@link RequestType} should be
  */
 public class RequestCreator {
 
-    private RequestEntry requestEntry;
     private RequestProperty requestProperty;
-
-
-    public RequestCreator(RequestEntry requestEntry) {
-        this.requestEntry = requestEntry;
-    }
-
-    /**
-     * This is essential, to create several different requests
-     * @param requestProperty the Request property to actually set for further connection establishments
-     */
-    public void setRequestProperty(RequestProperty requestProperty) {
-        this.requestProperty = requestProperty;
-    }
 
     /**
      * Connects to a specific {@code URL} through the {@link Request} class
-     *
-     * @throws IOException
+     * @throws Exception When the URL
      */
     public void create() {
         try {
             String regionShortcut = requestProperty.getRequestRegion().getShortcut();
-            new Request(new URL(returnReplacedData("https://" + regionShortcut + ".api.pvp.net/api/lol/" + regionShortcut + "/" + requestProperty.getRequestType().getLink() + "?api_key=" + requestEntry.getApiKey()))).connect();
+            String url = replaceData("https://" + regionShortcut + ".api.pvp.net/api/lol/" + regionShortcut + "/" + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY);
+            new Request(new URL(url)).connect();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,26 +44,30 @@ public class RequestCreator {
      * @return the modified {@link String} after the procedure
      * @throws WrongRequestFormatException thrown if the {@code parameters#length} do not equal the {@code variablesLength} variable
      */
-    private String returnReplacedData(String fullLink) throws WrongRequestFormatException {
-        String[] variables = new RequestFormat(fullLink).getVariables();
-        String[] parameters = requestProperty.getParameters();
+    private String replaceData(String fullLink) throws WrongRequestFormatException {
+        String[] variables = new RequestFormat(fullLink).getVariables(); // The variables given
+        String[] parameters = requestProperty.getParameters(); // The variables given
         int variablesLength = variables.length;
         if (parameters.length != variablesLength) {
-            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + Arrays.toString(variables).replace("%", "") + ", given: " + Arrays.toString(parameters));
+            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(variables) + ", given: " + Arrays.toString(parameters));
         }
         for (int i = 0; i < variablesLength; i++) {
             fullLink = fullLink.replace(variables[i], parameters[i]);
         }
-        System.out.println("Parameters: " + Arrays.toString(parameters) + ", Variables: " + Arrays.toString(variables));
+        System.out.println("Parameters given: " + formatDisplay(parameters) + ", Variables given: " + formatDisplay(variables));
         return fullLink;
     }
 
-
-    public RequestProperty getRequestProperty() {
-        return requestProperty;
+    private String formatDisplay(String[] prefix) {
+        return Arrays.toString(prefix).replace("%%", "").replace("%", "");
     }
 
-    public RequestEntry getRequestEntry() {
-        return requestEntry;
+    /**
+     * This is essential, to create several different requests
+     *
+     * @param requestProperty the Request property to actually set for further connection establishments
+     */
+    public void setRequestProperty(RequestProperty requestProperty) {
+        this.requestProperty = requestProperty;
     }
 }
