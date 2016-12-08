@@ -1,7 +1,7 @@
 package com.yasinyazici.riot.data.summoner.runes;
 
 /**
- * Created by ht5-yaziya on 08.12.2016.
+ * Created by Yasin on 08.12.2016.
  */
 public class Rune {
 

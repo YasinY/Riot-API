@@ -1,5 +1,7 @@
 package com.yasinyazici.riot;
 
+import com.yasinyazici.riot.config.json.impl.SummonerParser;
+import com.yasinyazici.riot.request.handler.Response;
 import com.yasinyazici.riot.request.web.*;
 
 /**
@@ -11,10 +13,8 @@ public class Main {
         RequestProperty requestProperty = new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "ireliaislife");
         RequestCreator requestCreator = new RequestCreator(requestProperty);
         RequestReply reply = requestCreator.create();
-        System.out.println("REQUEST: " + reply.getResponseMessage());
-        requestProperty.setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);
-        requestProperty.setParameters("31045241");
-        requestCreator.create();
+        new SummonerParser().readJson(reply.getResponseMessage());
+        //System.out.println(Response.verifyResponse(reply.getResponseCode()));
         // Summoner summoner =
     }
 
