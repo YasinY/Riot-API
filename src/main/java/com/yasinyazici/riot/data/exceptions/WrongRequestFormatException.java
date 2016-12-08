@@ -1,4 +1,4 @@
-package com.yasinyazici.riot.data;
+package com.yasinyazici.riot.data.exceptions;
 
 
 /**

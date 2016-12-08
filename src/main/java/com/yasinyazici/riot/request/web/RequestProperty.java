@@ -10,7 +10,6 @@ public class RequestProperty {
     private RequestRegion requestRegion;
 
     private String[] parameters;
-
     /**
      * <p>Creates a new {@link RequestProperty} instance</p>
      *
@@ -19,11 +18,13 @@ public class RequestProperty {
      * @param parameters    Additional parameters which must equal the format of {@link RequestType} given.
      */
     public RequestProperty(RequestType requestType, RequestRegion requestRegion, String ... parameters) {
+        if(requestType == null || requestRegion == null || parameters == null) {
+            return;
+        }
         this.requestType = requestType;
         this.requestRegion = requestRegion;
         this.parameters = parameters;
     }
-
     /**
      * <p>Returning the request type given upon the creation of a new {@link RequestCreator} instance</p>
      *
@@ -52,5 +53,30 @@ public class RequestProperty {
      */
     public String[] getParameters() {
         return parameters;
+    }
+
+    /**
+     * Sets the request type
+     * @param requestType The request type to set
+     */
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
+    }
+
+    /**
+     * Sets the request region
+     *  For dynamic changing of regions
+     * @param requestRegion The request region to set
+     */
+    public void setRequestRegion(RequestRegion requestRegion) {
+        this.requestRegion = requestRegion;
+    }
+
+    /**
+     * Sets the parameters
+     * @param parameters The parameters to set
+     */
+    public void setParameters(String ... parameters) {
+        this.parameters = parameters;
     }
 }

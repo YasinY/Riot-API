@@ -7,15 +7,13 @@ import com.yasinyazici.riot.request.web.*;
  */
 public class Main {
 
-    public static void main(String[] args)  {
-
-        RequestCreator requestCreator = new RequestCreator();
+    public static void main(String[] args) {
         RequestProperty requestProperty = new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "jungleíslife");
-        requestCreator.setRequestProperty(requestProperty);
+        RequestCreator requestCreator = new RequestCreator(requestProperty);
         requestCreator.create();
-
-
-
+        requestProperty.setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);
+        requestProperty.setParameters("82249757");
+        requestCreator.create();
     }
 
 }

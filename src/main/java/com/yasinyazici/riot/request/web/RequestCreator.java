@@ -1,10 +1,8 @@
 package com.yasinyazici.riot.request.web;
 
 import com.yasinyazici.riot.config.Config;
-import com.yasinyazici.riot.data.WrongRequestFormatException;
-import com.yasinyazici.riot.utilities.ArrayUtils;
+import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 
@@ -19,6 +17,9 @@ public class RequestCreator {
 
     private RequestProperty requestProperty;
 
+    public RequestCreator(RequestProperty requestProperty) {
+        this.requestProperty = requestProperty;
+    }
     /**
      * Connects to a specific {@code URL} through the {@link Request} class
      * @throws Exception When the URL
@@ -63,11 +64,11 @@ public class RequestCreator {
     }
 
     /**
-     * This is essential, to create several different requests
-     *
-     * @param requestProperty the Request property to actually set for further connection establishments
+     * Returns an instance of RequestProperty
+     * @link RequestProperty contains properties essential for requests to make
+     * @return requestProperty The instance of RequestProperty to return
      */
-    public void setRequestProperty(RequestProperty requestProperty) {
-        this.requestProperty = requestProperty;
+    public RequestProperty getRequestProperty() {
+        return requestProperty;
     }
 }
