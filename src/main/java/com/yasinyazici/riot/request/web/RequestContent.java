@@ -16,7 +16,6 @@ public class RequestContent {
 
     public RequestContent(InputStream stream) {
         this.stream = stream;
-        System.out.println("Request Content has been created");
     }
 
     /**

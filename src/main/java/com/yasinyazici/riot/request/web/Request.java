@@ -25,7 +25,7 @@ public class Request {
      * @param url The url to connect to
      */
     public Request(URL url) {
-        if(url == null) {
+        if (url == null) {
             return;
         }
         this.url = url;
@@ -37,6 +37,7 @@ public class Request {
      */
     public RequestReply makeRequest() {
         try {
+            System.out.println("Making request..");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             response = Response.verifyResponse(connection.getResponseCode());
             requestContent = new RequestContent(response.getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
@@ -51,7 +52,7 @@ public class Request {
     }
 
     public RequestContent getRequestContent() {
-        if(requestContent == null) {
+        if (requestContent == null) {
             throw new IllegalStateException("RequestContent could not be grabbed");
         }
         return requestContent;

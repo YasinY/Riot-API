@@ -17,6 +17,8 @@ public class RequestCreator {
 
     private RequestProperty requestProperty;
 
+    private RequestReply requestReply;
+
     public RequestCreator(RequestProperty requestProperty) {
         this.requestProperty = requestProperty;
     }
@@ -26,10 +28,11 @@ public class RequestCreator {
      */
     public void create() {
         try {
+            System.out.println("Creating new request..");
             String regionShortcut = requestProperty.getRequestRegion().getShortcut();
             String url = replaceData("https://" + regionShortcut + ".api.pvp.net/api/lol/" + regionShortcut + "/" + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY);
-            RequestReply reply = new Request(new URL(url)).makeRequest();
-            System.out.println("Request Reply: " + reply.getResponseMessage());
+            requestReply = new Request(new URL(url)).makeRequest();
+            System.out.println("Request Reply: " + requestReply.getResponseMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,6 +67,12 @@ public class RequestCreator {
         return Arrays.toString(prefix).replace("%%", "").replace("%", "");
     }
 
+    public RequestReply getRequestReply() {
+        if(requestReply == null) {
+            throw new IllegalStateException("Request reply can't be returned if no requests have been made under this instance");
+        }
+        return requestReply;
+    }
     /**
      * Returns an instance of RequestProperty
      * @link RequestProperty contains properties essential for requests to make
