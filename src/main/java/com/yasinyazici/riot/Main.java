@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) {
         RequestProperty requestProperty = new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "ireliaislife");
         RequestCreator requestCreator = new RequestCreator(requestProperty);
-        requestCreator.create();
-        System.out.println("REQUEST: " + requestCreator.getRequestReply().getResponseMessage());
+        RequestReply reply = requestCreator.create();
+        System.out.println("REQUEST: " + reply.getResponseMessage());
         requestProperty.setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);
         requestProperty.setParameters("31045241");
         requestCreator.create();
