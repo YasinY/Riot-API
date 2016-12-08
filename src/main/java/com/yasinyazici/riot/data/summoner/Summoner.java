@@ -9,10 +9,18 @@ public class Summoner {
 
     private SummonerProperties summonerProperties;
 
-    private Runes runes;
+    private Runes runes; // Get by id
 
-    public Summoner(SummonerProperties summonerProperties) {
+    public Summoner(SummonerProperties summonerProperties, Runes runes) {
         this.summonerProperties = summonerProperties;
+        this.runes = runes;
     }
 
+    public SummonerProperties getSummonerProperties() {
+        return summonerProperties;
+    }
+
+    public Runes getRunes() {
+        return runes;
+    }
 }

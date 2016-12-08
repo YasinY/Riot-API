@@ -28,7 +28,8 @@ public class RequestCreator {
         try {
             String regionShortcut = requestProperty.getRequestRegion().getShortcut();
             String url = replaceData("https://" + regionShortcut + ".api.pvp.net/api/lol/" + regionShortcut + "/" + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY);
-            new Request(new URL(url)).connect();
+            RequestReply reply = new Request(new URL(url)).makeRequest();
+            System.out.println("Request Reply: " + reply.getResponseMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }

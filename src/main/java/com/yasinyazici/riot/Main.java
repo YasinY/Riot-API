@@ -14,6 +14,7 @@ public class Main {
         requestProperty.setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);
         requestProperty.setParameters("82249757");
         requestCreator.create();
+        // Summoner summoner =
     }
 
 }

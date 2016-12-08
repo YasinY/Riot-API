@@ -25,25 +25,25 @@ public class Request {
      * @param url The url to connect to
      */
     public Request(URL url) {
+        if(url == null) {
+            return;
+        }
         this.url = url;
     }
 
     /**
      * Opens the connection of the {@code url} given, and creates instances to manage specifics aspects, in this case,
-     * both the handling of responses and the inputstream of the URL given
+     * both the handling of responses and the inputStream of the URL given
      */
-    public void connect() {
+    public RequestReply makeRequest() {
         try {
-            System.out.println("Establishing connection");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             response = Response.verifyResponse(connection.getResponseCode());
             requestContent = new RequestContent(response.getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
-            System.out.println("Response message: " + response.getMessage());
-            System.out.println("Request content: " + requestContent.readStreamToString());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return new RequestReply(response.getResponseCode(), requestContent.getContent());
     }
 
     public URL getUrl() {
@@ -51,6 +51,9 @@ public class Request {
     }
 
     public RequestContent getRequestContent() {
+        if(requestContent == null) {
+            throw new IllegalStateException("RequestContent could not be grabbed");
+        }
         return requestContent;
     }
 
