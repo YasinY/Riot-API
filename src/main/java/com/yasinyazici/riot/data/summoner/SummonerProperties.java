@@ -5,25 +5,25 @@ package com.yasinyazici.riot.data.summoner;
  */
 public class SummonerProperties {
 
-    private final long id;
+    private final int id;
 
     private final String name;
 
     private final int profileIconId;
 
-    private final int level;
+    private final int summonerLevel;
 
     private final long revisionDate;
 
-    public SummonerProperties(long id, String name, int profileIconId, int level, long revisionDate) {
+    public SummonerProperties(int id, String name, int profileIconId, int summonerLevel, long revisionDate) {
         this.id = id;
         this.name = name;
         this.profileIconId = profileIconId;
-        this.level = level;
+        this.summonerLevel = summonerLevel;
         this.revisionDate = revisionDate;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -35,8 +35,8 @@ public class SummonerProperties {
         return profileIconId;
     }
 
-    public int getLevel() {
-        return level;
+    public int getSummonerLevel() {
+        return summonerLevel;
     }
 
     public long getRevisionDate() {

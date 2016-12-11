@@ -57,7 +57,7 @@ public class RequestCreator {
             throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(variables) + ", given: " + Arrays.toString(parameters));
         }
         for (int i = 0; i < variablesLength; i++) {
-            fullLink = fullLink.replace(variables[i], parameters[i]);
+            fullLink = fullLink.replace(variables[i], parameters[i].replace(" ", ""));
         }
         System.out.println("Parameters given: " + formatDisplay(parameters) + ", Variables given: " + formatDisplay(variables));
         return fullLink;
