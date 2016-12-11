@@ -7,10 +7,10 @@ import com.google.gson.JsonParser;
 /**
  * Created by Yasin on 08.12.2016.
  */
-public abstract class JsonDataParser {
+public abstract class JsonDataParser<T> {
 
     protected Gson gson = new Gson();
 
-    public abstract void readJson(String json);
+    public abstract T readJson(String json);
 
 }

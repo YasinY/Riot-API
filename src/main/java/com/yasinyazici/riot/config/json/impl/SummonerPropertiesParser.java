@@ -14,10 +14,9 @@ import java.util.Set;
 /**
  * Created by Yasin on 08.12.2016.
  */
-public class SummonerPropertiesParser {
+public class SummonerPropertiesParser extends JsonDataParser {
 
     public SummonerProperties readJson(String json) {
-
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, SummonerProperties>>(){}.getType();
         Map<String, SummonerProperties> map = gson.fromJson(json, type);
