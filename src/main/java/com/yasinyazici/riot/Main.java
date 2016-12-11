@@ -14,7 +14,7 @@ public class Main {
         RequestCreator requestCreator = new RequestCreator(new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "jungle ís life"));
         RequestReply reply = requestCreator.create();
         SummonerProperties summonerProperties = new SummonerPropertiesParser(reply.getResponseMessage()).get();
-        System.out.println(summonerProperties.getName());
+        //System.out.println(summonerProperties.getName());
         //System.out.println(Response.verifyResponse(reply.getResponseCode()));
         // Summoner summoner =
     }

@@ -13,18 +13,15 @@ public abstract class JsonDataParser<T> {
 
     protected Gson gson = new Gson();
 
-
     protected String json;
 
     public JsonDataParser(String json) {
         this.json = json;
     }
 
-    protected T transform() {
-        Gson gson = new Gson();
+    protected Map<String, T> transform() {
         Type type = new TypeToken<Map<String, T>>(){}.getType();
-        Map<String, T> map = gson.fromJson(json, type);
-        return map.entrySet().iterator().next().getValue();
+        return gson.fromJson(json, type);
     }
 
     public abstract T get();
