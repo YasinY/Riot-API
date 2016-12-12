@@ -14,7 +14,6 @@ public class SummonerPropertiesParser extends JsonDataParser<SummonerProperties>
 
     @Override
     public SummonerProperties get() {
-        transform().entrySet().forEach(p -> System.out.println("TEST: " + p.getValue().getName())); //DUDE IDFK THIS CODE IS TURNING ITSELF INTO A MESS
         return null;
     }
 }
