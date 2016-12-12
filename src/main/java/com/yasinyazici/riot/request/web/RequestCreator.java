@@ -63,6 +63,11 @@ public class RequestCreator {
         return fullLink;
     }
 
+    /**
+     * TODO document
+     * @param prefix
+     * @return
+     */
     private String formatDisplay(String[] prefix) {
         return Arrays.toString(prefix).replace("%%", "").replace("%", "");
     }

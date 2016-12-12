@@ -9,6 +9,7 @@ import java.util.Set;
 
 /**
  * Created by Yasin on 08.12.2016.
+ * TODO: Support multiple summoners in a row
  */
 public class SummonerPropertiesParser extends JsonDataParser<SummonerProperties> {
 

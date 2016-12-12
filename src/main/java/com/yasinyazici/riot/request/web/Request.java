@@ -40,11 +40,11 @@ public class Request {
             System.out.println("Making request..");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             response = Response.verifyResponse(connection.getResponseCode());
-            requestContent = new RequestContent(response.getResponseCode() <= 400 ? connection.getInputStream() : connection.getErrorStream());
+            requestContent = new RequestContent(connection.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
-        return new RequestReply(response.getResponseCode(), requestContent.getContent());
+        return response.getResponseCode() <= 400 ? new RequestReply(response.getResponseCode(), requestContent.getContent()) : null;
     }
 
     public URL getUrl() {

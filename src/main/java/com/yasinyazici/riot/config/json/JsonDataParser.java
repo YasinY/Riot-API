@@ -6,8 +6,6 @@ import com.google.gson.reflect.TypeToken;
 import com.yasinyazici.riot.data.summoner.SummonerProperties;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 
