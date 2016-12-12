@@ -1,10 +1,13 @@
 package com.yasinyazici.riot.config.json;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.data.summoner.SummonerProperties;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -18,8 +21,8 @@ public abstract class JsonDataParser<T> {
         this.json = json;
     }
 
-    protected Map<String, JsonElement> transform() {
-        Type type = new TypeToken<Map<String, T>>(){}.getType();
+    protected LinkedTreeMap<String, SummonerProperties> transform() {
+        Type type = new TypeToken<Map<String, SummonerProperties>>(){}.getType();
         return gson.fromJson(json, type);
     }
 
