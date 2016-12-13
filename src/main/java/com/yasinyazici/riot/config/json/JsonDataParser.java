@@ -19,7 +19,7 @@ public abstract class JsonDataParser<T> {
         this.json = json;
     }
 
-    protected LinkedTreeMap<String, SummonerProperties> transform() {
+    protected LinkedTreeMap<String, T> transform() {
         Type type = new TypeToken<Map<String, SummonerProperties>>(){}.getType();
         return gson.fromJson(json, type);
     }

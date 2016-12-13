@@ -1,5 +1,6 @@
 package com.yasinyazici.riot;
 
+import com.yasinyazici.riot.config.json.impl.RunesParser;
 import com.yasinyazici.riot.config.json.impl.SummonerPropertiesParser;
 import com.yasinyazici.riot.data.summoner.SummonerProperties;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
@@ -14,6 +15,9 @@ public class Main {
         RequestCreator requestCreator = new RequestCreator(new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "jungleíslife"));
         RequestReply reply = requestCreator.create();
         SummonerProperties summonerProperties = new SummonerPropertiesParser(reply.getResponseMessage()).get();
+        requestCreator.getRequestProperty().setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);
+        requestCreator.getRequestProperty().setParameters(String.valueOf(summonerProperties.getId()));
+        Runes runes = new RunesParser(requestCreator.create().getResponseMessage()).get();
     }
 
 }
