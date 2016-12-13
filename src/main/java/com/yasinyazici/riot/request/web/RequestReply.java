@@ -1,5 +1,7 @@
 package com.yasinyazici.riot.request.web;
 
+import com.yasinyazici.riot.request.handler.Response;
+
 /**
  * Created by Yasin on 08.12.2016.
  */
@@ -12,6 +14,14 @@ public class RequestReply {
     public RequestReply(int responseCode, String responseMessage) {
         this.responseCode = responseCode;
         this.responseMessage = responseMessage;
+    }
+
+    public RequestReply filteredReply() {
+        if(responseCode != 200) {
+            Response response = Response.verifyResponse(responseCode);
+            throw new IllegalStateException(response.getMessage() + " (" + responseCode + ")");
+        }
+        return this;
     }
 
     public int getResponseCode() {

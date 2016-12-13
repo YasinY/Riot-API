@@ -5,5 +5,5 @@ package com.yasinyazici.riot.config;
  */
 public class Config {
 
-    public static APIKey API_KEY = new APIKey("RGAPI-0e1614a7-29ac-401e-80a4-86a93e0f6263");
+    public static APIKey API_KEY = new APIKey("RGAPI-e65187f6-0ef1-46f5-aee0-f8d701571d3a");
 }

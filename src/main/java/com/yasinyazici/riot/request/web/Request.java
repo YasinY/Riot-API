@@ -17,8 +17,6 @@ public class Request {
 
     private RequestContent requestContent;
 
-    private Response response;
-
     /**
      * <p>Creates a new {@link Request} instance</p>
      *
@@ -36,19 +34,16 @@ public class Request {
      * both the handling of responses and the inputStream of the URL given
      */
     public RequestReply makeRequest() {
+        int responseCode = -1;
         try {
             System.out.println("Making request..");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            response = Response.verifyResponse(connection.getResponseCode());
-            requestContent = new RequestContent(connection.getInputStream());
+            responseCode = connection.getResponseCode();
+            requestContent = new RequestContent(responseCode == 200 ? connection.getInputStream() : connection.getErrorStream());
         } catch (IOException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
-        return response.getResponseCode() <= 400 ? new RequestReply(response.getResponseCode(), requestContent.getContent()) : null;
-    }
-
-    public URL getUrl() {
-        return url;
+        return new RequestReply(responseCode, requestContent.getContent()).filteredReply();
     }
 
     public RequestContent getRequestContent() {
@@ -56,9 +51,5 @@ public class Request {
             throw new IllegalStateException("RequestContent could not be grabbed");
         }
         return requestContent;
-    }
-
-    public Response getResponse() {
-        return response;
     }
 }
