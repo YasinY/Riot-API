@@ -5,27 +5,34 @@ package com.yasinyazici.riot.data.summoner.runes;
  */
 public class Runes {
 
-    private RunePage[] runePages; // 0 - 19  (20 pages)
+    private long summonerId;
+    private RunePage[] pages; // 0 - 19  (20 pages)
 
-    public Runes(RunePage[] runePages) {
-        if(runePages == null) {
+    public Runes(long summonerId, RunePage[] pages) {
+        if(summonerId == 0 || pages == null) {
             return;
         }
-        this.runePages = runePages;
+        this.summonerId = summonerId;
+        this.pages = pages;
     }
 
-    public RunePage getRunePage(int index) {
+    public RunePage getPage(int index) {
         if(index > 19 || index < 0) {
             return null;
         }
-        return runePages[index];
+        return pages[index];
     }
 
-    public RunePage[] getRunePages() {
-        return runePages;
+    public long getSummonerId() {
+        return summonerId;
     }
 
-    public void setRunePages(RunePage[] runePages) {
-        this.runePages = runePages;
+    public RunePage[] getPages() {
+        return pages;
     }
+
+    public int getAmountOfPages() {
+        return pages.length;
+    }
+
 }

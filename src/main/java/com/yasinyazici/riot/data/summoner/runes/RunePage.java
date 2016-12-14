@@ -5,40 +5,51 @@ package com.yasinyazici.riot.data.summoner.runes;
  */
 public class RunePage {
 
+    private long id;
+
     private String name; // Name of the runepage
 
-    private Rune[] marks; // Rune slot 1 - 9
+    private boolean current;
 
-    private Rune[] seals; // Rune slot 10 - 18
+    private Rune[] slots;
 
-    private Rune[] glyphs; // Rune slot 19 - 27
+    // Marks: Rune slot 1 - 9
 
-    private Rune[] quintessences; // 28 - 30
+    // Seals: Rune slot 10 - 18
 
-    public RunePage(Rune[] marks, Rune[] seals, Rune[] glyphs, Rune[] quintessences) {
-        this.marks = marks;
-        this.seals = seals;
-        this.glyphs = glyphs;
-        this.quintessences = quintessences;
+    // Glyphs: Rune slot 19 - 27
+
+    // Quints: 28 - 30
+
+    public RunePage(long id, String name, boolean current, Rune ... slots) {
+        this.id = id;
+        this.name = name;
+        this.current = current;
+        this.slots = slots;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Rune[] getMarks() {
-        return marks;
+    public boolean isCurrent() {
+        return current;
     }
 
-    public Rune[] getSeals() {
-        return seals;
+    public Rune getSlot(int index) {
+            if(slots == null) {
+                System.out.println("Slots is null, no runes existing");
+            }
+        return slots[index];
     }
-
-    public Rune[] getGlyphs() {
-        return glyphs;
-    }
-
-    public Rune[] getQuintessences() {
-        return quintessences;
+    public Rune[] getSlots() {
+        if(slots == null) {
+            return new Rune[] {}; //Empty
+        }
+        return slots;
     }
 }

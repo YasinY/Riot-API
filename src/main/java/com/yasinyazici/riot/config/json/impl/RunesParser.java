@@ -1,7 +1,14 @@
 package com.yasinyazici.riot.config.json.impl;
 
+import com.google.gson.reflect.TypeToken;
 import com.yasinyazici.riot.config.json.JsonDataParser;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
+
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Created by Yasin on 13.12.2016
@@ -16,6 +23,12 @@ public class RunesParser extends JsonDataParser<Runes> {
 
     @Override
     public Runes get() {
-        return null;
+        Optional<Runes> runes = transform().values().stream().findFirst();
+        return runes.isPresent() ? runes.get() : null;
+    }
+
+    @Override
+    protected Type getType() {
+        return new TypeToken<Map<String, Runes>>(){}.getType();
     }
 }
