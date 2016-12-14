@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        RequestCreator requestCreator = new RequestCreator(new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "eíleen"));
+        RequestCreator requestCreator = new RequestCreator(new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, RequestRegion.EUROPE_WEST, "Rootzlolz"));
         RequestReply reply = requestCreator.create();
         SummonerProperties summonerProperties = new SummonerPropertiesParser(reply.getResponseMessage()).get();
         requestCreator.getRequestProperty().setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);

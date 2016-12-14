@@ -23,7 +23,7 @@ public class RequestContent {
      * the lines into a {@link String} array, then casting {@link Collectors#joining()} with {@link System#lineSeparator} as parameter
      * concenating each {@link String} in the lines array of {@code stream} resulting into a return of a String displaying the whole
      * lines
-     * @return the raw data of {@link InputStream stream} converted to a String
+     * @return the raw properties of {@link InputStream stream} converted to a String
      */
     public String getContent() {
         return new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining(System.lineSeparator()));
