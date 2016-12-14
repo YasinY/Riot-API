@@ -81,4 +81,8 @@ public class CurrentGameParticipant {
     public long getTeamId() {
         return teamId;
     }
+
+    public String getTeam() {
+        return teamId == 100 ?  "blue" : "red";
+    }
 }

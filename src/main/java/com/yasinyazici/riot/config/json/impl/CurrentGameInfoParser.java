@@ -18,8 +18,7 @@ public class CurrentGameInfoParser extends JsonDataParser<CurrentGameInfo> {
 
     @Override
     public CurrentGameInfo get() {
-        System.out.println(transformNoObject().getParticipants().get(0).getChampionId());
-        return null;
+        return transformNoObject();
     }
 
     @Override
