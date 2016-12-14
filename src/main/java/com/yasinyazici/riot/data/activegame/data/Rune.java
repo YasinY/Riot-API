@@ -1,17 +1,16 @@
-package com.yasinyazici.riot.data.activegame.state.data;
+package com.yasinyazici.riot.data.activegame.data;
 
 /**
  * Created by Yasin on 14.12.2016
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class Runes {
-
+public class Rune {
     private int count;
 
     private int runeId;
 
-    public Runes(int count, int runeId) {
+    public Rune(int count, int runeId) {
         this.count = count;
         this.runeId = runeId;
     }

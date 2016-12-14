@@ -20,6 +20,10 @@ public abstract class JsonDataParser<T> {
         return gson.fromJson(json, getType());
     }
 
+    protected T transformNoObject() {
+        return gson.fromJson(json, getType());
+    }
+
     public abstract T get();
 
     protected abstract Type getType();

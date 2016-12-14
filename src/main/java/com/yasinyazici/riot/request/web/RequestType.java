@@ -16,7 +16,8 @@ public enum RequestType {
     GET_SUMMARY_STATS_BY_SUMMONER_ID("api/lol/%region%/v1.3/stats/by-summoner/%summonerId%/summary"),
     GET_MATCHLIST_BY_SUMMONER_ID("api/lol/%region%/v2.2/matchlist/by-summoner/%summonerId%"),
     GET_MATCH_BY_ID("api/lol/%region%/v2.2/match/%matchId%"),
-    GET_RECENT_GAME_BY_SUMMONER_ID("api/lol/v1.3/game/by-summoner/%summonerId%/recent");
+    GET_RECENT_GAME_BY_SUMMONER_ID("api/lol/v1.3/game/by-summoner/%summonerId%/recent"),
+    GET_CURRENT_GAME("observer-mode/rest/consumer/getSpectatorGameInfo/%platformId%/%summonerId%");
 
     private String link;
 
