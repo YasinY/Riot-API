@@ -28,8 +28,7 @@ public class RequestCreator {
         RequestReply requestReply = null;
         try {
             System.out.println("Creating new request..");
-            String regionShortcut = requestProperty.getRequestRegion().getShortcut();
-            String url = replaceData("https://" + regionShortcut + ".api.pvp.net/api/lol/" + regionShortcut + "/" + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey());
+            String url = replaceData("https://%region%.api.pvp.net/" + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey());
             requestReply = new Request(new URL(url)).makeRequest();
             System.out.println("Request Reply: " + requestReply.getResponseMessage());
         } catch (Exception e) {
@@ -42,7 +41,7 @@ public class RequestCreator {
      * <p>Replaces the variables identified through {@link RequestFormat#getVariables()} with the parameters given upon creating a
      * {@link RequestCreator} instance, by looping {@code variables#length} times, using the in the loop defined variable <i>i</i>as index for each
      * array {@code variables} and {@code parameters}. Hence the {@code variables} and {@code parameters} given must equal the
-     * same context and amount of values, else {@link WrongRequestFormatException} is thrown. For further details about the format, see
+     * same context (order) and amount of values, else a {@link WrongRequestFormatException} is thrown. For further details about the format, see
      * {@link RequestFormat} as reference</p>
      *
      * @param fullLink the {@link String} to undergo the procedure
@@ -50,7 +49,7 @@ public class RequestCreator {
      * @throws WrongRequestFormatException thrown if the {@code parameters#length} do not equal the {@code variablesLength} variable
      */
     private String replaceData(String fullLink) throws WrongRequestFormatException {
-        String[] variables = new RequestFormat(fullLink).getVariables(); // The variables given
+        String[] variables = new RequestFormat(fullLink).getVariables(); // The variables needed
         String[] parameters = requestProperty.getParameters(); // The variables given
         int variablesLength = variables.length;
         if (parameters.length != variablesLength) {
@@ -69,7 +68,7 @@ public class RequestCreator {
      * @return
      */
     private String formatDisplay(String[] prefix) {
-        return Arrays.toString(prefix).replace("%%", "").replace("%", "");
+        return Arrays.toString(prefix).replace("%", "");
     }
 
     /**
