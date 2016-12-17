@@ -7,7 +7,7 @@ public enum Response {
 
     BAD_REQUEST(400, "Bad args"),
     UNAUTHORIZED(401, "Not authorized"),
-    WRONG_API_KEY(403, "Wrong API Key"),
+    WRONG_CALL(403, "Wrong format / Wrong call"),
     NOT_FOUND(404, "Data has not been found"),
     UNSUPPORTED_MEDIA_TYPE(415, "Unsupported param"),
     RATE_LIMIT_EXCEEDED(429, "Rate limit exceeded"),

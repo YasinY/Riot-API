@@ -1,5 +1,6 @@
 package com.yasinyazici.riot.request.web;
 
+import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.request.handler.Response;
 
 import java.io.IOException;
@@ -33,22 +34,18 @@ public class Request {
      * Opens the connection of the {@code url} given, and creates instances to manage specifics aspects, in this case,
      * both the handling of responses and the inputStream of the URL given
      */
-    public RequestReply makeRequest() {
-        int responseCode = -1;
-        try {
-            System.out.println("Making request..");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            responseCode = connection.getResponseCode();
-            requestContent = new RequestContent(responseCode == 200 ? connection.getInputStream() : connection.getErrorStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public RequestReply makeRequest() throws IOException {
+
+        System.out.println("Making request..");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        int responseCode = connection.getResponseCode();
+        requestContent = new RequestContent(responseCode == 200 ? connection.getInputStream() : connection.getErrorStream());
         return new RequestReply(responseCode, requestContent.getContent()).filteredReply();
     }
 
-    public RequestContent getRequestContent() {
+    public RequestContent getRequestContent() throws PropertyNotFound {
         if (requestContent == null) {
-            throw new IllegalStateException("RequestContent could not be grabbed");
+            throw new PropertyNotFound("Requestcontent could not be grabbed");
         }
         return requestContent;
     }

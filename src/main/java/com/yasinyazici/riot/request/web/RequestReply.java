@@ -19,7 +19,7 @@ public class RequestReply {
     public RequestReply filteredReply() {
         if(responseCode != 200) {
             Response response = Response.verifyResponse(responseCode);
-            throw new IllegalStateException(response.getMessage() + " (" + responseCode + ")");
+            System.out.println(response.getMessage() + " (" + responseCode + ")");
         }
         return this;
     }

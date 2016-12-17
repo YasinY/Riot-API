@@ -21,25 +21,12 @@ public class RequestCreator {
     public RequestCreator() {
         this.requestProperty = new RequestProperty(ApiRequestType.NONE, "");
     }
-    public RequestCreator(RequestProperty requestProperty) {
-        this.requestProperty = requestProperty;
-    }
     /**
      * Connects to a specific {@code URL} through the {@link Request} class
      * @throws Exception When the URL
      */
-    public RequestReply create() {
-        RequestReply requestReply = null;
-        try {
-            System.out.println("Creating new request..");
-            String url = replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey());
-            System.out.println("Request: " + url + ", Start: " + requestProperty.getRequestType().getStart());
-            requestReply = new Request(new URL(url)).makeRequest();
-            System.out.println("Request Reply: " + requestReply.getResponseMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return requestReply;
+    public RequestReply create() throws Exception {
+        return new Request(new URL(replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey()))).makeRequest();
     }
 
 

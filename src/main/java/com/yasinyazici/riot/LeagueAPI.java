@@ -4,6 +4,7 @@ import com.yasinyazici.riot.config.json.impl.CurrentGameInfoParser;
 import com.yasinyazici.riot.config.json.impl.RunesParser;
 import com.yasinyazici.riot.config.json.impl.SummonerParser;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
+import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
 import com.yasinyazici.riot.request.types.ApiRequestType;
@@ -24,28 +25,26 @@ public class LeagueAPI {
         requestCreator = new RequestCreator();
     }
 
-    public Summoner getSummoner(String region, String summonerName) {
+    public synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAME);
         requestCreator.getRequestProperty().setParameters(region, summonerName);
         return new Summoner(region, new SummonerParser(requestCreator.create().getResponseMessage()).get());
     }
 
-    public Runes getRunes(String region, String summonerId) {
+    public synchronized Runes getRunes(String region, String summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new RunesParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public CurrentGameInfo getActiveGame(String region, String summonerId) {
+    public synchronized CurrentGameInfo getActiveGame(String region, String summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CURRENT_GAME);
         String platformId = getPlatformId(region);
-        if(platformId != null) {
-            requestCreator.getRequestProperty().setParameters(region, platformId, summonerId);
-        }
+        requestCreator.getRequestProperty().setParameters(region, platformId, summonerId);
         return new CurrentGameInfoParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    private String getPlatformId(String region) {
+    private String getPlatformId(String region) throws PropertyNotFound {
         switch(region) {
             case "na":
                 return "NA1";
@@ -69,7 +68,8 @@ public class LeagueAPI {
                 return "RU";
             case "tr":
                 return "TR1";
-         }
-        return null;
+            default:
+                throw new PropertyNotFound("Property not found");
+        }
     }
 }
