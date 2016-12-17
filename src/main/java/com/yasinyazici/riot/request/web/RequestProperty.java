@@ -11,10 +11,10 @@ public class RequestProperty {
     /**
      * <p>Creates a new {@link RequestProperty} instance</p>
      *
-     * @param requestType   The type of request set by the {@link Enum<RequestType>} to perform
-     * @param parameters    Additional parameters which must equal the format of {@link RequestType} given.
+     * @param requestType   The type of request set by the {@link Enum< ApiRequestType >} to perform
+     * @param parameters    Additional parameters which must equal the format of {@link ApiRequestType} given.
      */
-    public RequestProperty(RequestType requestType, String ... parameters) {
+    public RequestProperty(ApiRequestType requestType, String ... parameters) {
         if(requestType == null || parameters == null) {
             return;
         }
@@ -24,7 +24,7 @@ public class RequestProperty {
     /**
      * <p>Returning the request type given upon the creation of a new {@link RequestCreator} instance</p>
      *
-     * @return requestType The RequestType to return
+     * @return requestType The ApiRequestType to return
      */
     public RequestType getRequestType() {
         return requestType;
@@ -32,8 +32,8 @@ public class RequestProperty {
 
     /**
      * <p>Gets the parameters given upon creating a {@link Request}
-     * In fact, the parameters given follow a specific pattern, so if {@code parameters} size given is over 3 and the RequestType
-     * equals {@code RequestType.SUMMONER_DATA_BY_NAME} then this class assumes that the
+     * In fact, the parameters given follow a specific pattern, so if {@code parameters} size given is over 3 and the ApiRequestType
+     * equals {@code ApiRequestType.SUMMONER_DATA_BY_NAME} then this class assumes that the
      * pattern is {@code summonerId}, {@code season} and {@code featured}</p>
      *
      * @return parameters
@@ -46,7 +46,7 @@ public class RequestProperty {
      * Sets the request type
      * @param requestType The request type to set
      */
-    public void setRequestType(RequestType requestType) {
+    public void setRequestType(ApiRequestType requestType) {
         this.requestType = requestType;
     }
 

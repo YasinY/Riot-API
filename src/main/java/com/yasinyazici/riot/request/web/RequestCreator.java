@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * @author Yasin
  * @version 1.0
- * @apiNote See {@link RequestFormat} as reference of how the usage of parameters corresponding to {@link RequestType} should be
+ * @apiNote See {@link RequestFormat} as reference of how the usage of parameters corresponding to {@link ApiRequestType} should be
  */
 public class RequestCreator {
 
@@ -30,6 +30,9 @@ public class RequestCreator {
     public RequestReply create() {
         RequestReply requestReply = null;
         try {
+            if(!RequestType.class.isAssignableFrom(ApiRequestType.class)) {
+                        requestReply = new RequestReply(-1, "Wrong request call (use createGlobal)");
+            }
             System.out.println("Creating new request..");
             String url = replaceData("https://%region%.api.pvp.net/" + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey());
             requestReply = new Request(new URL(url)).makeRequest();
@@ -38,6 +41,15 @@ public class RequestCreator {
             e.printStackTrace();
         }
         return requestReply;
+    }
+
+    public RequestReply createGlobal() {
+        RequestReply requestReply = null;
+        try {
+            System.out.println("Creating new global request");
+        } catch(Exception e) {
+
+        }
     }
 
     /**
