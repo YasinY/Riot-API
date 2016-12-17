@@ -1,6 +1,7 @@
 package com.yasinyazici.riot.config.json.impl;
 
 import com.yasinyazici.riot.config.json.JsonDataParser;
+import com.yasinyazici.riot.data.summoner.masteries.Masteries;
 
 import java.lang.reflect.Type;
 
@@ -9,14 +10,14 @@ import java.lang.reflect.Type;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class MasteriesParser extends JsonDataParser {
+public class MasteriesParser extends JsonDataParser<Masteries> {
 
     public MasteriesParser(String json) {
         super(json);
     }
 
     @Override
-    public Object get() {
+    public Masteries get() {
         return null;
     }
 

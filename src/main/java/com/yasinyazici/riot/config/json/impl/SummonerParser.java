@@ -13,9 +13,9 @@ import java.util.Set;
  * Created by Yasin on 08.12.2016.
  * TODO: Support multiple summoners in a row
  */
-public class SummonerPropertiesParser extends JsonDataParser<SummonerProperties> {
+public class SummonerParser extends JsonDataParser<SummonerProperties> {
 
-    public SummonerPropertiesParser(String json) {
+    public SummonerParser(String json) {
         super(json);
     }
 

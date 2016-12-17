@@ -2,7 +2,7 @@ package com.yasinyazici.riot;
 
 import com.yasinyazici.riot.config.json.impl.CurrentGameInfoParser;
 import com.yasinyazici.riot.config.json.impl.RunesParser;
-import com.yasinyazici.riot.config.json.impl.SummonerPropertiesParser;
+import com.yasinyazici.riot.config.json.impl.SummonerParser;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
 import com.yasinyazici.riot.data.summoner.SummonerProperties;
 import com.yasinyazici.riot.data.summoner.runes.Rune;
@@ -19,9 +19,9 @@ import com.yasinyazici.riot.request.web.RequestType;
 public class Main {
 
     public static void main(String[] args) {
-        RequestCreator requestCreator = new RequestCreator(new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, "euw", "VitamZ"));
+        RequestCreator requestCreator = new RequestCreator(new RequestProperty(RequestType.GET_SUMMONER_DATA_BY_NAME, "euw", "kaarax"));
         RequestReply reply = requestCreator.create();
-        SummonerProperties summonerProperties = new SummonerPropertiesParser(reply.getResponseMessage()).get();
+        SummonerProperties summonerProperties = new SummonerParser(reply.getResponseMessage()).get();
         requestCreator.getRequestProperty().setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters("euw", String.valueOf(summonerProperties.getId()));
         Runes runes = new RunesParser(requestCreator.create().getResponseMessage()).get();
@@ -36,6 +36,7 @@ public class Main {
         requestCreator.getRequestProperty().setRequestType(RequestType.GET_CURRENT_GAME);
         requestCreator.getRequestProperty().setParameters("euw", "EUW1", String.valueOf(summonerProperties.getId()));
         CurrentGameInfo currentGameInfo = new CurrentGameInfoParser(requestCreator.create().getResponseMessage()).get();
+        currentGameInfo.getParticipants().get(0).getMasteries().forEach(p -> System.out.println(p.getMasteryId()));
     }
 
 }

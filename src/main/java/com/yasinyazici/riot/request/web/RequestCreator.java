@@ -17,6 +17,9 @@ public class RequestCreator {
 
     private RequestProperty requestProperty;
 
+    public RequestCreator() {
+        this.requestProperty = new RequestProperty(RequestType.NONE, "");
+    }
     public RequestCreator(RequestProperty requestProperty) {
         this.requestProperty = requestProperty;
     }
