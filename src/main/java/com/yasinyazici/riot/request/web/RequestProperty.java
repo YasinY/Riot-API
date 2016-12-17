@@ -1,5 +1,7 @@
 package com.yasinyazici.riot.request.web;
 
+import com.yasinyazici.riot.request.types.ApiRequestType;
+
 /**
  * Created by Yasin on 23/02/2016.
  */
@@ -11,10 +13,10 @@ public class RequestProperty {
     /**
      * <p>Creates a new {@link RequestProperty} instance</p>
      *
-     * @param requestType   The type of request set by the {@link Enum< ApiRequestType >} to perform
+     * @param requestType   The type of request set by the {@link Enum<  ApiRequestType  >} to perform
      * @param parameters    Additional parameters which must equal the format of {@link ApiRequestType} given.
      */
-    public RequestProperty(ApiRequestType requestType, String ... parameters) {
+    public RequestProperty(RequestType requestType, String ... parameters) {
         if(requestType == null || parameters == null) {
             return;
         }
@@ -46,7 +48,7 @@ public class RequestProperty {
      * Sets the request type
      * @param requestType The request type to set
      */
-    public void setRequestType(ApiRequestType requestType) {
+    public void setRequestType(RequestType requestType) {
         this.requestType = requestType;
     }
 

@@ -86,4 +86,11 @@ public class CurrentGameInfo {
     public List<CurrentGameParticipant> getParticipants() {
         return participants;
     }
+
+    public BannedChampion getBannedChampion(int index) {
+        if(bannedChampions.size() == 0) {
+            System.out.println("No banned champions available");
+        }
+        return bannedChampions.get(index);
+    }
 }

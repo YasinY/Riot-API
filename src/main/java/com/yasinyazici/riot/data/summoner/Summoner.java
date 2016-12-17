@@ -5,7 +5,7 @@ import com.yasinyazici.riot.config.json.impl.MasteriesParser;
 import com.yasinyazici.riot.config.json.impl.RunesParser;
 import com.yasinyazici.riot.data.summoner.masteries.Masteries;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
-import com.yasinyazici.riot.request.web.RequestType;
+import com.yasinyazici.riot.request.types.ApiRequestType;
 
 /**
  * Created by Yasin on 08.12.2016.
@@ -23,12 +23,12 @@ public class Summoner extends LeagueAPI {
 
 
     public Masteries getMasteries() {
-        requestCreator.getRequestProperty().setRequestType(RequestType.GET_SUMMONER_MASTERIES_BY_ID);
+        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, String.valueOf(summonerProperties.getId()));
         return new MasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
     public Runes getRunes() {
-        requestCreator.getRequestProperty().setRequestType(RequestType.GET_SUMMONER_RUNES_BY_ID);
+        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, String.valueOf(summonerProperties.getId()));
         return new RunesParser(requestCreator.create().getResponseMessage()).get();
     }

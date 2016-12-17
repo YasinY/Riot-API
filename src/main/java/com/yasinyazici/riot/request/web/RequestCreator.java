@@ -2,6 +2,7 @@ package com.yasinyazici.riot.request.web;
 
 import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
+import com.yasinyazici.riot.request.types.ApiRequestType;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -18,7 +19,7 @@ public class RequestCreator {
     private RequestProperty requestProperty;
 
     public RequestCreator() {
-        this.requestProperty = new RequestProperty(RequestType.NONE, "");
+        this.requestProperty = new RequestProperty(ApiRequestType.NONE, "");
     }
     public RequestCreator(RequestProperty requestProperty) {
         this.requestProperty = requestProperty;
@@ -30,11 +31,9 @@ public class RequestCreator {
     public RequestReply create() {
         RequestReply requestReply = null;
         try {
-            if(!RequestType.class.isAssignableFrom(ApiRequestType.class)) {
-                        requestReply = new RequestReply(-1, "Wrong request call (use createGlobal)");
-            }
             System.out.println("Creating new request..");
-            String url = replaceData("https://%region%.api.pvp.net/" + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey());
+            String url = replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey());
+            System.out.println("Request: " + url + ", Start: " + requestProperty.getRequestType().getStart());
             requestReply = new Request(new URL(url)).makeRequest();
             System.out.println("Request Reply: " + requestReply.getResponseMessage());
         } catch (Exception e) {
@@ -43,14 +42,7 @@ public class RequestCreator {
         return requestReply;
     }
 
-    public RequestReply createGlobal() {
-        RequestReply requestReply = null;
-        try {
-            System.out.println("Creating new global request");
-        } catch(Exception e) {
 
-        }
-    }
 
     /**
      * <p>Replaces the variables identified through {@link RequestFormat#getVariables()} with the parameters given upon creating a
