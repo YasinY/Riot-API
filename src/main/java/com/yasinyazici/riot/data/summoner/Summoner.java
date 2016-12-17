@@ -22,12 +22,12 @@ public class Summoner extends LeagueAPI {
     }
 
 
-    public Masteries getMasteries() {
+    public Masteries getMasteries() throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, String.valueOf(summonerProperties.getId()));
         return new MasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
-    public Runes getRunes() {
+    public Runes getRunes() throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, String.valueOf(summonerProperties.getId()));
         return new RunesParser(requestCreator.create().getResponseMessage()).get();
