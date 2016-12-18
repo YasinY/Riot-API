@@ -21,6 +21,10 @@ public enum RegionalRequestType implements RequestType {
         public String getLink() {
             return "observer-mode/rest/consumer/getSpectatorGameInfo/%platformId%/%summonerId%";
         }
+    },
+    GET_CHAMPION_MASTERY() {
+        @Override
+        public String getLink() { return "championmastery/location/%platformId%/player/%summonerId%/champion/%championId%";}
     };
 
     public String getStart() {

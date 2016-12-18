@@ -33,7 +33,6 @@ public class RequestFormat {
     public String[] getVariables() {
         Pattern pattern = Pattern.compile("%.+?%");
         Matcher matcher = pattern.matcher(url);
-        System.out.println("Getting variables of " + url);
         while(matcher.find()) {
             if(!requestFormatArray.contains(matcher.group()))  {
                 requestFormatArray.add(matcher.group());

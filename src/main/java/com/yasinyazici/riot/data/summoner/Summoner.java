@@ -8,7 +8,9 @@ import com.yasinyazici.riot.data.summoner.runes.Runes;
 import com.yasinyazici.riot.request.types.ApiRequestType;
 
 /**
- * Created by Yasin on 08.12.2016.
+ * Created by Yasin on 08.12.2016
+ * E-mail: yasin_programmer@hotmail.com
+ * Github: YasinY
  */
 public class Summoner extends LeagueAPI {
 

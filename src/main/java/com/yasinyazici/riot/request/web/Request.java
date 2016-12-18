@@ -24,7 +24,7 @@ public class Request {
      *
      * @param url The url to connect to
      */
-    public Request(URL url) {
+    Request(URL url) {
         if (url == null) {
             return;
         }
@@ -35,9 +35,7 @@ public class Request {
      * Opens the connection of the {@code url} given, and creates instances to manage specifics aspects, in this case,
      * both the handling of responses and the inputStream of the URL given
      */
-    public RequestReply makeRequest() throws Exception {
-
-        System.out.println("Making request..");
+    RequestReply makeRequest() throws Exception {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         int responseCode = connection.getResponseCode();
         requestContent = new RequestContent(responseCode == 200 ? connection.getInputStream() : connection.getErrorStream());

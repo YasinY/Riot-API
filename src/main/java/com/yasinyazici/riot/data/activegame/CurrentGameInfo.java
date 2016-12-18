@@ -3,8 +3,10 @@ package com.yasinyazici.riot.data.activegame;
 import com.yasinyazici.riot.data.activegame.data.BannedChampion;
 import com.yasinyazici.riot.data.activegame.data.CurrentGameParticipant;
 import com.yasinyazici.riot.data.activegame.data.Observer;
+import com.yasinyazici.riot.data.champion.ChampionInfo;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by Yasin on 14.12.2016
