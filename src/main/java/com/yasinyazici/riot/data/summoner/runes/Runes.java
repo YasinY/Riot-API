@@ -16,6 +16,14 @@ public class Runes {
         this.pages = pages;
     }
 
+    public RunePage getPageByName(String name) {
+        for(RunePage runePage : pages) {
+            if(runePage.getName().equalsIgnoreCase(name)) {
+                return runePage;
+            }
+        }
+        return null;
+    }
     public RunePage getPage(int index) {
         if(index > 19 || index < 0) {
             return null;

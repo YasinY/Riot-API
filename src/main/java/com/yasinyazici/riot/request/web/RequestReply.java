@@ -1,5 +1,6 @@
 package com.yasinyazici.riot.request.web;
 
+import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.request.handler.Response;
 
 /**
@@ -16,10 +17,10 @@ public class RequestReply {
         this.responseMessage = responseMessage;
     }
 
-    public RequestReply filteredReply() {
+    public RequestReply filteredReply() throws ReplyException {
         if(responseCode != 200) {
             Response response = Response.verifyResponse(responseCode);
-            System.out.println(response.getMessage() + " (" + responseCode + ")");
+            throw new ReplyException(response.getMessage() + ", (" + responseCode + ") ");
         }
         return this;
     }

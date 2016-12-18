@@ -37,4 +37,8 @@ public class Summoner extends LeagueAPI {
         return summonerProperties;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
 }

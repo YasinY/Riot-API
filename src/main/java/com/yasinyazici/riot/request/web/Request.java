@@ -1,6 +1,7 @@
 package com.yasinyazici.riot.request.web;
 
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
+import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.request.handler.Response;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class Request {
      * Opens the connection of the {@code url} given, and creates instances to manage specifics aspects, in this case,
      * both the handling of responses and the inputStream of the URL given
      */
-    public RequestReply makeRequest() throws IOException {
+    public RequestReply makeRequest() throws Exception {
 
         System.out.println("Making request..");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

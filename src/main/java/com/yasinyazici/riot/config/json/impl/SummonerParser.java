@@ -21,7 +21,7 @@ public class SummonerParser extends JsonDataParser<SummonerProperties> {
 
     @Override
     public SummonerProperties get() {
-        Set<Map.Entry<String, SummonerProperties>> map = transform().entrySet();
+        Set<Map.Entry<String, SummonerProperties>> map = transformToMap().entrySet();
         Iterator<Map.Entry<String, SummonerProperties>> iterator = map.iterator();
         return iterator.hasNext() ? iterator.next().getValue() : null;
     }

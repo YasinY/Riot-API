@@ -1,13 +1,13 @@
 package com.yasinyazici.riot;
 
-import com.yasinyazici.riot.config.json.impl.CurrentGameInfoParser;
-import com.yasinyazici.riot.config.json.impl.RunesParser;
-import com.yasinyazici.riot.config.json.impl.SummonerParser;
+import com.yasinyazici.riot.config.json.impl.*;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
+import com.yasinyazici.riot.data.champion.ChampionInfo;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
 import com.yasinyazici.riot.request.types.ApiRequestType;
+import com.yasinyazici.riot.request.types.GlobalRequestType;
 import com.yasinyazici.riot.request.types.RegionalRequestType;
 import com.yasinyazici.riot.request.web.RequestCreator;
 
@@ -25,27 +25,32 @@ public class LeagueAPI {
         requestCreator = new RequestCreator();
     }
 
-    public synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
+    synchronized String getLatestGameVersion(String region) throws Exception {
+        requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_GAME_VERSIONS);
+        requestCreator.getRequestProperty().setParameters(region);
+        return new GameVersionParser(requestCreator.create().getResponseMessage()).get()[0];
+    }
+
+    synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAME);
         requestCreator.getRequestProperty().setParameters(region, summonerName);
         return new Summoner(region, new SummonerParser(requestCreator.create().getResponseMessage()).get());
     }
 
-    public synchronized Runes getRunes(String region, String summonerId) throws Exception {
-        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
-        requestCreator.getRequestProperty().setParameters(region, summonerId);
-        return new RunesParser(requestCreator.create().getResponseMessage()).get();
+    synchronized ChampionInfo getChampionInfo(String region, String championId) throws Exception {
+        requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_CHAMPION_DATA_BY_CHAMPION_ID);
+        requestCreator.getRequestProperty().setParameters(region, championId);
+        return new ChampionInfoParser(requestCreator.create().getResponseMessage()).get();
     }
-
-    public synchronized CurrentGameInfo getActiveGame(String region, String summonerId) throws Exception {
+    synchronized CurrentGameInfo getActiveGame(String region, String summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CURRENT_GAME);
-        String platformId = getPlatformId(region);
-        requestCreator.getRequestProperty().setParameters(region, platformId, summonerId);
+        requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
         return new CurrentGameInfoParser(requestCreator.create().getResponseMessage()).get();
     }
 
+
     private String getPlatformId(String region) throws PropertyNotFound {
-        switch(region) {
+        switch (region) {
             case "na":
                 return "NA1";
             case "euw":

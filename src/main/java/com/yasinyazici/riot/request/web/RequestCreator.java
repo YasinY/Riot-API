@@ -52,7 +52,6 @@ public class RequestCreator {
         for (int i = 0; i < variablesLength; i++) {
             fullLink = fullLink.replace(variables[i], parameters[i].replace(" ", ""));
         }
-        System.out.println("Parameters given: " + formatDisplay(parameters) + ", Variables given: " + formatDisplay(variables));
         return fullLink;
     }
 
