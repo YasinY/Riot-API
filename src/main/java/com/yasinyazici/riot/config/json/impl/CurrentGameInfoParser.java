@@ -18,7 +18,7 @@ public class CurrentGameInfoParser extends JsonDataParser<CurrentGameInfo> {
 
     @Override
     public CurrentGameInfo get() {
-        return transformNoObject();
+        return transform();
     }
 
     @Override

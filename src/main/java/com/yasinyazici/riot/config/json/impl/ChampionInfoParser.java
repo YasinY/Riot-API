@@ -18,7 +18,7 @@ public class ChampionInfoParser extends JsonDataParser<ChampionInfo> {
 
     @Override
     public ChampionInfo get() {
-        return transformNoObject();
+        return transform();
     }
 
     @Override

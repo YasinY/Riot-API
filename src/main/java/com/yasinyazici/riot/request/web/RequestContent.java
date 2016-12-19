@@ -29,7 +29,7 @@ public class RequestContent {
      */
     public String getContent() throws DataException {
         if(stream == null) {
-            throw new DataException("Stream is null!");
+            throw new DataException("Stream is null! (Invalid data?)");
         }
         return new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining(System.lineSeparator()));
     }

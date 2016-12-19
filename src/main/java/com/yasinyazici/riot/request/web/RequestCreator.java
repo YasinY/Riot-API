@@ -26,6 +26,8 @@ public class RequestCreator {
      * @throws Exception When the URL
      */
     public RequestReply create() throws Exception {
+        //TODO DEBUG
+        //System.out.println(replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey()));
         return new Request(new URL(replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey()))).makeRequest();
     }
 

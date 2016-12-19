@@ -3,6 +3,7 @@ package com.yasinyazici.riot;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.summoner.Summoner;
+import com.yasinyazici.riot.data.summoner.ranked.LeagueEntry;
 
 import java.util.Objects;
 
@@ -14,20 +15,23 @@ import java.util.Objects;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-            LeagueAPI leagueAPI = new LeagueAPI();
-            Summoner summoner = leagueAPI.getSummoner("euw", "Mélibé");
-            System.out.println(summoner.getSummonerProperties().getId());
-            CurrentGameInfo currentGameInfo = leagueAPI.getActiveGame(summoner.getRegion(), summoner.getSummonerProperties().getId());
-            currentGameInfo.getParticipants().stream().filter(Objects::nonNull).forEachOrdered(p -> {
+        LeagueAPI leagueAPI = new LeagueAPI();
+        Summoner summoner = leagueAPI.getSummoner("euw", "level99shaman");
+        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry("euw", summoner.getSummonerProperties().getId());
+        System.out.println(leagueEntry.getTier() + " " + leagueEntry.getEntries().get(0).getLeaguePoints());
+        CurrentGameInfo currentGameInfo = leagueAPI.getActiveGame(summoner.getRegion(), summoner.getSummonerProperties().getId());
+        currentGameInfo.getParticipants().stream().filter(Objects::nonNull).forEachOrdered(p -> {
+            //TODO handle response code 204
+            try {
                 long championId = p.getChampionId();
-                try {
-                    ChampionMastery championMastery = leagueAPI.getChampionMastery(summoner.getRegion(), summoner.getSummonerProperties().getId(), championId);
-                    System.out.println("Name: " + p.getSummonerName() + ", Champion: " + leagueAPI.getChampionInfo(summoner.getRegion(), championId).getName());
-                    System.out.println("Mastery with champion: " + championMastery.getChampionLevel() + " (" + championMastery.getChampionPoints() + ")");
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
+                System.out.println("Name: " + p.getSummonerName() + ", id: " + p.getSummonerId());
+                System.out.println("Champion(" + championId + "): " + leagueAPI.getChampionInfo(summoner.getRegion(), championId).getName());
+                ChampionMastery championMastery = leagueAPI.getChampionMastery(summoner.getRegion(), p.getSummonerId(), championId);
+                System.out.println("Mastery with champion: " + championMastery.getChampionLevel() + " (" + championMastery.getChampionPoints() + ")");
+                Thread.sleep(1500);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

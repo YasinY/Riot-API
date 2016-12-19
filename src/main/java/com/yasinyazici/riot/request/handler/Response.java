@@ -1,7 +1,9 @@
 package com.yasinyazici.riot.request.handler;
 
 /**
- * Created by Yasin on 13/02/2016.
+ * Created by Yasin on 13/02/2016
+ * E-mail: yasin_programmer@hotmail.com
+ * Github: YasinY
  */
 public enum Response {
 

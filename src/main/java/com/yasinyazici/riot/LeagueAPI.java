@@ -6,7 +6,7 @@ import com.yasinyazici.riot.data.champion.ChampionInfo;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.summoner.Summoner;
-import com.yasinyazici.riot.data.summoner.runes.Runes;
+import com.yasinyazici.riot.data.summoner.ranked.LeagueEntry;
 import com.yasinyazici.riot.request.types.ApiRequestType;
 import com.yasinyazici.riot.request.types.GlobalRequestType;
 import com.yasinyazici.riot.request.types.RegionalRequestType;
@@ -40,7 +40,7 @@ public class LeagueAPI {
     synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAME);
         requestCreator.getRequestProperty().setParameters(region, summonerName);
-        return new Summoner(region, new SummonerParser(requestCreator.create().getResponseMessage()).get());
+        return new Summoner(region, new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).getFirstSummoner());
     }
 
     synchronized ChampionInfo getChampionInfo(String region, long championId) throws Exception {
@@ -52,6 +52,12 @@ public class LeagueAPI {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CURRENT_GAME);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
         return new CurrentGameInfoParser(requestCreator.create().getResponseMessage()).get();
+    }
+
+    synchronized LeagueEntry getLeagueEntry(String region, long summonerId) throws Exception {
+        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
+        requestCreator.getRequestProperty().setParameters(region, summonerId);
+        return new LeagueEntryParser(requestCreator.create().getResponseMessage()).getFirstLeagueEntry();
     }
 
 

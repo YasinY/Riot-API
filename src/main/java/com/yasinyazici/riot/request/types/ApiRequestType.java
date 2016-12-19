@@ -85,6 +85,10 @@ public enum ApiRequestType implements RequestType {
             return "v1.3/game/by-summoner/%summonerId%/recent";
         }
     },
+    GET_LEAGUE_ENTRY_BY_SUMMONER_ID() {
+        @Override
+        public String getLink() { return "%region%/v2.5/league/by-summoner/%summonerId%/entry";}
+    },
     NONE() {
         @Override
         public String getLink() {

@@ -18,7 +18,7 @@ public class GameVersionParser extends JsonDataParser<String[]> {
 
     @Override
     public String[] get() {
-        return transformNoObject();
+        return transform();
     }
 
     @Override

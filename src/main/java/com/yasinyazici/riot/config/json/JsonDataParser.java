@@ -17,15 +17,10 @@ public abstract class JsonDataParser<T> {
         this.json = json;
     }
 
-    protected Map<String, T> transformToMap() {
+
+    protected T transform() {
         return gson.fromJson(json, getType());
     }
-
-    protected T transformNoObject() {
-        return gson.fromJson(json, getType());
-    }
-
-    protected List<T> transformToList() { return gson.fromJson(json, getType()); }
 
 
     public abstract T get();

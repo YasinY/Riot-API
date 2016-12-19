@@ -32,12 +32,9 @@ public class Request {
         this.url = url;
     }
 
-    /**
-     * Opens the connection of the {@code url} given, and creates instances to manage specifics aspects, in this case,
-     * both the handling of responses and the inputStream of the URL given
-     */
     RequestReply makeRequest() throws Exception {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        //System.out.println(connection.getHeaderField(3));
         int responseCode = connection.getResponseCode();
         if(responseCode != 200) {
             Response response = Response.verifyResponse(responseCode);
@@ -50,7 +47,7 @@ public class Request {
 
     public RequestContent getRequestContent() throws PropertyNotFound {
         if (requestContent == null) {
-            throw new PropertyNotFound("Requestcontent could not be grabbed");
+            throw new PropertyNotFound("Request content could not be grabbed");
         }
         return requestContent;
     }

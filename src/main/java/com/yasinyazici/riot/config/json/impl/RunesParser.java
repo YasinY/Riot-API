@@ -21,8 +21,7 @@ public class RunesParser extends JsonDataParser<Runes> {
 
     @Override
     public Runes get() {
-        Optional<Runes> runes = transformToMap().values().stream().findFirst();
-        return runes.isPresent() ? runes.get() : null;
+        return transform();
     }
 
     @Override
