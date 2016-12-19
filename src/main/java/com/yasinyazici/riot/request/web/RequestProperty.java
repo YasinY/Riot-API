@@ -9,7 +9,7 @@ public class RequestProperty {
 
     private RequestType requestType;
 
-    private String[] parameters;
+    private Object[] parameters;
     /**
      * <p>Creates a new {@link RequestProperty} instance</p>
      *
@@ -40,7 +40,7 @@ public class RequestProperty {
      *
      * @return parameters
      */
-    public String[] getParameters() {
+    public Object[] getParameters() {
         return parameters;
     }
 
@@ -56,7 +56,7 @@ public class RequestProperty {
      * Sets the parameters
      * @param parameters The parameters to set
      */
-    public void setParameters(String ... parameters) {
+    public void setParameters(Object ... parameters) {
         this.parameters = parameters;
     }
 }

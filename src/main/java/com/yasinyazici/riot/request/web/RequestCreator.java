@@ -44,13 +44,13 @@ public class RequestCreator {
      */
     private String replaceData(String fullLink) throws WrongRequestFormatException {
         String[] variables = new RequestFormat(fullLink).getVariables(); // The variables needed
-        String[] parameters = requestProperty.getParameters(); // The variables given
+        Object[] parameters = requestProperty.getParameters(); // The variables given
         int variablesLength = variables.length;
         if (parameters.length != variablesLength) {
             throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(variables) + ", given: " + Arrays.toString(parameters));
         }
         for (int i = 0; i < variablesLength; i++) {
-            fullLink = fullLink.replace(variables[i], parameters[i].replace(" ", ""));
+            fullLink = fullLink.replace(variables[i], String.valueOf(parameters[i]).replace(" ", ""));
         }
         return fullLink;
     }

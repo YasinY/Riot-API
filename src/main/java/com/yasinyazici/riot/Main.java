@@ -12,15 +12,15 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
             LeagueAPI leagueAPI = new LeagueAPI();
-            Summoner summoner = leagueAPI.getSummoner("euw", "tcg asuka ninja");
+            Summoner summoner = leagueAPI.getSummoner("euw", "eíleen");
             System.out.println(summoner.getSummonerProperties().getId());
-            CurrentGameInfo currentGameInfo = leagueAPI.getActiveGame(summoner.getRegion(), String.valueOf(summoner.getSummonerProperties().getId()));
+            CurrentGameInfo currentGameInfo = leagueAPI.getActiveGame(summoner.getRegion(), summoner.getSummonerProperties().getId());
             System.out.println("Red team:");
             currentGameInfo.getParticipants().stream().filter(p -> p.getTeam().equalsIgnoreCase("red")).forEach(p -> {
                 long championId = p.getChampionId();
                 try {
-                    System.out.println("Name: " + p.getSummonerName() + ", Champion: " + leagueAPI.getChampionInfo(summoner.getRegion(), String.valueOf(championId)).getName());
-                    System.out.println("Mastery with champion: " + leagueAPI.getChampionMastery(summoner.getRegion(), String.valueOf(p.getSummonerId()), String.valueOf(championId)).getChampionLevel());
+                    System.out.println("Name: " + p.getSummonerName() + ", Champion: " + leagueAPI.getChampionInfo(summoner.getRegion(), championId).getName());
+                    System.out.println("Mastery with champion: " + p);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

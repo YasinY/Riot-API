@@ -15,21 +15,21 @@ import java.util.stream.Stream;
  */
 public class CurrentGameInfo {
 
-    private List<BannedChampion> bannedChampions;
+    private final List<BannedChampion> bannedChampions;
 
-    private long gameId;
+    private final long gameId;
 
     private long gameLength;
 
-    private String gameMode;
+    private final String gameMode;
 
-    private long gameQueueConfigId;
+    private final long gameQueueConfigId;
 
-    private long gameStartTime;
+    private final long gameStartTime;
 
-    private String gameType;
+    private final String gameType;
 
-    private long mapId;
+    private final long mapId;
 
     private Observer observers;
 
