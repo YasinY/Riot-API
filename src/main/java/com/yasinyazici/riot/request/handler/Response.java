@@ -14,6 +14,7 @@ public enum Response {
     INTERNAL_SERVER_ERROR(500, "Internal server errors"),
     SERVICE_UNAVAILABLE(503, "Service unavailable"),
     OK(200, "OK"),
+    CHAMPION_NOT_FOUND(204, "Champ mastery not found"),
     NONE(-1, "No connection established");
 
     private final int responseCode;

@@ -29,7 +29,7 @@ public class Summoner extends LeagueAPI {
 
     public ChampionMastery getChampionMastery(String championId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CHAMPION_MASTERY);
-        requestCreator.getRequestProperty().setParameters(region, Config.getPlatformId(region), summonerProperties.getId(), championId);
+        requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerProperties.getId(), championId);
         return new ChampionMasteryParser(requestCreator.create().getResponseMessage()).get();
     }
 
