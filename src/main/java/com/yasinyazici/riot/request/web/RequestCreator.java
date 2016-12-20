@@ -2,7 +2,7 @@ package com.yasinyazici.riot.request.web;
 
 import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
-import com.yasinyazici.riot.request.types.ApiRequestType;
+import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 
 import java.net.URL;
 import java.util.Arrays;

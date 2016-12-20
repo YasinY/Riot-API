@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         LeagueAPI leagueAPI = new LeagueAPI();
-        Summoner summoner = leagueAPI.getSummoner("euw", "level99shaman");
+        Summoner summoner = leagueAPI.getSummoner("euw", "Farmir65");
         LeagueEntry leagueEntry = leagueAPI.getLeagueEntry("euw", summoner.getSummonerProperties().getId());
         System.out.println(leagueEntry.getTier() + " " + leagueEntry.getEntries().get(0).getLeaguePoints());
         CurrentGameInfo currentGameInfo = leagueAPI.getActiveGame(summoner.getRegion(), summoner.getSummonerProperties().getId());

@@ -1,15 +1,14 @@
 package com.yasinyazici.riot.data.summoner;
 
 import com.yasinyazici.riot.LeagueAPI;
-import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.config.json.impl.ChampionMasteryParser;
 import com.yasinyazici.riot.config.json.impl.MasteriesParser;
 import com.yasinyazici.riot.config.json.impl.RunesParser;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.summoner.masteries.Masteries;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
-import com.yasinyazici.riot.request.types.ApiRequestType;
-import com.yasinyazici.riot.request.types.RegionalRequestType;
+import com.yasinyazici.riot.request.types.impl.ApiRequestType;
+import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
 
 /**
  * Created by Yasin on 08.12.2016

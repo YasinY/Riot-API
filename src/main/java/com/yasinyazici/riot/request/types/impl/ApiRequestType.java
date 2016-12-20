@@ -1,6 +1,6 @@
-package com.yasinyazici.riot.request.types;
+package com.yasinyazici.riot.request.types.impl;
 
-import com.yasinyazici.riot.request.web.RequestType;
+import com.yasinyazici.riot.request.types.RequestType;
 import com.yasinyazici.riot.request.web.Type;
 
 /**
@@ -25,34 +25,34 @@ public enum ApiRequestType implements RequestType {
             return "%region%/v1.2/champion/%id%\"";
         }
     },
-    GET_SUMMONER_DATA_BY_NAME() {
+    GET_SUMMONER_DATA_BY_NAMES() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/by-name/%name%";
+            return "%region%/v1.4/summoner/by-name/%%summonerNames%%";
         }
     },
-    GET_SUMMONER_STATS_BY_ID() {
+    GET_SUMMONER_DATA_BY_IDS() {
         @Override
         public String getLink() {
-            return "%region%/v1.3/stats/by-summoner/%summonerId%/summary";
+            return "%region%/v1.4/stats/by-summoner/%%summonerId%%";
         }
     },
-    GET_SUMMONER_MASTERIES_BY_ID() {
+    GET_SUMMONER_MASTERIES_BY_IDS() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/%summonerId%/masteries";
+            return "%region%/v1.4/summoner/%%summonerIds%%/masteries";
         }
     },
     GET_SUMMONER_RUNES_BY_ID() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/%summonerId%/runes";
+            return "%region%/v1.4/summoner/%%summonerIds%%/runes";
         }
     },
     GET_SUMMONER_NAMES_BY_ID() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/%summonerId%/name";
+            return "%region%/v1.4/summoner/%%summonerIds%%/name";
         }
     },
     GET_RANKED_STATS_BY_SUMMONER_ID() {

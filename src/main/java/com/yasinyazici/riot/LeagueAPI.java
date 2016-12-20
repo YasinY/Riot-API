@@ -7,9 +7,9 @@ import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.data.summoner.ranked.LeagueEntry;
-import com.yasinyazici.riot.request.types.ApiRequestType;
-import com.yasinyazici.riot.request.types.GlobalRequestType;
-import com.yasinyazici.riot.request.types.RegionalRequestType;
+import com.yasinyazici.riot.request.types.impl.ApiRequestType;
+import com.yasinyazici.riot.request.types.impl.GlobalRequestType;
+import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
 import com.yasinyazici.riot.request.web.RequestCreator;
 
 /**

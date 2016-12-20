@@ -18,7 +18,6 @@ public class LeagueEntryParser extends JsonDataParser<Map<String,List<LeagueEntr
 
     public LeagueEntryParser(String json) {
         super(json);
-        System.out.println(json);
     }
 
     @Override
