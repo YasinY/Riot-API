@@ -6,11 +6,16 @@ import com.yasinyazici.riot.data.champion.ChampionInfo;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.summoner.Summoner;
+import com.yasinyazici.riot.data.summoner.SummonerProperties;
 import com.yasinyazici.riot.data.summoner.ranked.LeagueEntry;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 import com.yasinyazici.riot.request.types.impl.GlobalRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
 import com.yasinyazici.riot.request.web.RequestCreator;
+import com.yasinyazici.riot.utilities.ArrayUtils;
+
+import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Created by Yasin on 17.12.2016
@@ -38,9 +43,15 @@ public class LeagueAPI {
         return new ChampionMasteryParser(requestCreator.create().getResponseMessage()).get();
     }
     synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
-        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAME);
+        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerName);
         return new Summoner(region, new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).getFirstSummoner());
+    }
+
+    synchronized Stream<SummonerProperties> getSummoners(String region, String[] summonerNames) throws Exception {
+        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
+        requestCreator.getRequestProperty().setParameters(region, summonerNames);
+        return new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get().values().stream();
     }
 
     synchronized ChampionInfo getChampionInfo(String region, long championId) throws Exception {

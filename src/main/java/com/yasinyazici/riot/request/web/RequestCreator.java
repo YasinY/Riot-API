@@ -6,6 +6,8 @@ import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by Yasin on 18/02/2016.
@@ -47,12 +49,21 @@ public class RequestCreator {
     private String replaceData(String fullLink) throws WrongRequestFormatException {
         String[] variables = new RequestFormat(fullLink).getVariables(); // The variables needed
         Object[] parameters = requestProperty.getParameters(); // The variables given
+        System.out.println(Arrays.toString(variables) + " and given: " + Arrays.toString(parameters));
         int variablesLength = variables.length;
         if (parameters.length != variablesLength) {
             throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(variables) + ", given: " + Arrays.toString(parameters));
         }
-        for (int i = 0; i < variablesLength; i++) {
-            fullLink = fullLink.replace(variables[i], String.valueOf(parameters[i]).replace(" ", ""));
+        for (int variablesIndex = 0; variablesIndex < variablesLength; variablesIndex++) {
+            Object value = parameters[variablesIndex];
+            if(value instanceof String[]) {
+                String[] values = ((String[]) value);
+                for(int arrayIndex = 0; arrayIndex < values.length; arrayIndex++) {
+                    String arrayElement = values[arrayIndex];
+                    System.out.println(arrayElement);
+                }
+            }
+            fullLink = fullLink.replace(variables[variablesIndex], String.valueOf(value).replace(" ", ""));
         }
         return fullLink;
     }
@@ -63,7 +74,7 @@ public class RequestCreator {
      * @return
      */
     private String formatDisplay(String[] prefix) {
-        return Arrays.toString(prefix).replace("%", "");
+        return Arrays.toString(prefix).replace("%", "").replace("%%", "");
     }
 
     /**

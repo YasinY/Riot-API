@@ -22,37 +22,37 @@ public enum ApiRequestType implements RequestType {
     GET_CHAMPION_BY_ID() {
         @Override
         public String getLink() {
-            return "%region%/v1.2/champion/%id%\"";
+            return "%region%/v1.2/champion/%id%";
         }
     },
     GET_SUMMONER_DATA_BY_NAMES() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/by-name/%%summonerNames%%";
+            return "%region%/v1.4/summoner/by-name/%%summonerNames%";
         }
     },
     GET_SUMMONER_DATA_BY_IDS() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/stats/by-summoner/%%summonerId%%";
+            return "%region%/v1.4/stats/by-summoner/%%summonerIds%";
         }
     },
     GET_SUMMONER_MASTERIES_BY_IDS() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/%%summonerIds%%/masteries";
+            return "%region%/v1.4/summoner/%%summonerIds%/masteries";
         }
     },
     GET_SUMMONER_RUNES_BY_ID() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/%%summonerIds%%/runes";
+            return "%region%/v1.4/summoner/%%summonerIds%/runes";
         }
     },
     GET_SUMMONER_NAMES_BY_ID() {
         @Override
         public String getLink() {
-            return "%region%/v1.4/summoner/%%summonerIds%%/name";
+            return "%region%/v1.4/summoner/%%summonerIds%/name";
         }
     },
     GET_RANKED_STATS_BY_SUMMONER_ID() {

@@ -33,7 +33,7 @@ public class Summoner extends LeagueAPI {
     }
 
     public Masteries getMasteries() throws Exception {
-        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_ID);
+        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS);
         requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId());
         return new MasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
