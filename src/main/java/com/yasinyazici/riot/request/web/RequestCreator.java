@@ -50,7 +50,6 @@ public class RequestCreator {
     private String replaceData(String fullLink) throws WrongRequestFormatException {
         String[] neededVariables = new RequestFormat(fullLink).getVariables(); // The variables needed
         Object[] givenVariables = requestProperty.getParameters(); // The variables given
-        System.out.println(Arrays.toString(neededVariables) + " and given: " + Arrays.toString(givenVariables));
         int variablesLength = neededVariables.length;
         if (givenVariables.length != variablesLength) {
             throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(neededVariables) + ", given: " + Arrays.toString(givenVariables));
@@ -60,7 +59,6 @@ public class RequestCreator {
             Object givenVariable = givenVariables[i];
             fullLink = fullLink.replace(neededVariable, givenVariable instanceof String[] ? String.join(",", Arrays.asList((String[]) givenVariable)) : String.valueOf(givenVariables[i])).replace(" ", "");
         }
-        System.out.println("Returning full link " + fullLink.replace(" ", ""));
         return fullLink;
     }
 
