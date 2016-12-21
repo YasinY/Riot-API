@@ -48,10 +48,11 @@ public class LeagueAPI {
         return new Summoner(region, new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).getFirstSummoner());
     }
 
-    synchronized Stream<SummonerProperties> getSummoners(String region, String ... summonerNames) throws Exception {
+    synchronized Map<String, SummonerProperties> getSummoners(String region, String ... summonerNames) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerNames);
-        return new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get().values().stream();
+        Map<String, SummonerProperties> map = new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get();
+        return new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get();
     }
 
     synchronized ChampionInfo getChampionInfo(String region, long championId) throws Exception {

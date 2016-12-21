@@ -2,7 +2,7 @@ package com.yasinyazici.riot;
 
 import com.yasinyazici.riot.data.summoner.SummonerProperties;
 
-import java.util.stream.Stream;
+import java.util.Map;
 
 /**
  * Created by Yasin on 09/02/2016
@@ -13,8 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         LeagueAPI leagueAPI = new LeagueAPI();
-        Stream<SummonerProperties> summonerPropertiesStream = leagueAPI.getSummoners("euw", "kha sec", "jungleíslife", "hughan", "eíleen");
-        summonerPropertiesStream.forEach(p -> System.out.println(p.getName()));
+       Map<String, SummonerProperties> summonerPropertiesStream = leagueAPI.getSummoners("euw", "kha sec", "jungleíslife", "hughan", "eíleen");
+        summonerPropertiesStream.forEach((x,y) -> System.out.println(x));
 //        Summoner summoner = leagueAPI.getSummoner("euw", "Kha Sec");
 //        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry("euw", summoner.getSummonerProperties().getId());
 //        System.out.println(leagueEntry.getTier() + " " + leagueEntry.getEntries().get(0).getLeaguePoints());

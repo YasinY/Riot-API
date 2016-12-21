@@ -58,16 +58,10 @@ public class RequestCreator {
         for (int i = 0; i < variablesLength; i++) {
             String neededVariable = neededVariables[i];
             Object givenVariable = givenVariables[i];
-            if (givenVariable instanceof String[]) {
-                String[] givenVariablesArray = ((String[]) givenVariable);
-                String link = String.join(",", Arrays.asList(givenVariablesArray));
-                fullLink = fullLink.replace(neededVariable, link);
-                continue;
-            }
-            fullLink = fullLink.replace(neededVariable, String.valueOf(givenVariables[i]));
+            fullLink = fullLink.replace(neededVariable, givenVariable instanceof String[] ? String.join(",", Arrays.asList((String[]) givenVariable)) : String.valueOf(givenVariables[i])).replace(" ", "");
         }
         System.out.println("Returning full link " + fullLink.replace(" ", ""));
-        return fullLink.replace(" ", "");
+        return fullLink;
     }
 
     /**
