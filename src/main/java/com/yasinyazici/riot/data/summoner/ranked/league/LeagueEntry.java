@@ -1,4 +1,4 @@
-package com.yasinyazici.riot.data.summoner.ranked;
+package com.yasinyazici.riot.data.summoner.ranked.league;
 
 import java.util.List;
 

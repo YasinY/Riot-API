@@ -2,7 +2,7 @@ package com.yasinyazici.riot.config.json.impl;
 
 import com.google.gson.reflect.TypeToken;
 import com.yasinyazici.riot.config.json.JsonDataParser;
-import com.yasinyazici.riot.data.summoner.ranked.LeagueEntry;
+import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 
 import java.lang.reflect.Type;
 import java.util.List;

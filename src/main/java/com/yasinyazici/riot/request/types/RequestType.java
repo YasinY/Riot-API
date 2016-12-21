@@ -17,6 +17,9 @@ public interface RequestType {
     default Type getType() {
         return ApiRequestType.class.isAssignableFrom(this.getClass()) ? Type.API_CALL : Type.GLOBAL;
     }
+    default boolean optionalParameters() {
+        return false;
+    }
 
     String getStart();
 }

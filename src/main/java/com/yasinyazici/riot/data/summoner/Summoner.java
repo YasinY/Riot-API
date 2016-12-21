@@ -2,10 +2,12 @@ package com.yasinyazici.riot.data.summoner;
 
 import com.yasinyazici.riot.LeagueAPI;
 import com.yasinyazici.riot.config.json.impl.ChampionMasteryParser;
+import com.yasinyazici.riot.config.json.impl.LeagueEntryParser;
 import com.yasinyazici.riot.config.json.impl.MasteriesParser;
 import com.yasinyazici.riot.config.json.impl.RunesParser;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.summoner.masteries.Masteries;
+import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
@@ -41,6 +43,12 @@ public class Summoner extends LeagueAPI {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId());
         return new RunesParser(requestCreator.create().getResponseMessage()).get();
+    }
+
+    public LeagueEntry getLeagueEntry() throws Exception {
+        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
+        requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId());
+        return new LeagueEntryParser(requestCreator.create().getResponseMessage()).getFirstLeagueEntry();
     }
 
     public SummonerProperties getSummonerProperties() {

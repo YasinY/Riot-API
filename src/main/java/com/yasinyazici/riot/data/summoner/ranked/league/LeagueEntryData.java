@@ -1,4 +1,4 @@
-package com.yasinyazici.riot.data.summoner.ranked;
+package com.yasinyazici.riot.data.summoner.ranked.league;
 
 /**
  * Created by Yasin on 19.12.2016

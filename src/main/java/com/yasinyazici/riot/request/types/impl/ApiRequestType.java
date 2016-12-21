@@ -11,7 +11,9 @@ import com.yasinyazici.riot.request.web.Type;
 public enum ApiRequestType implements RequestType {
     START() {
         @Override
-        public String getLink() { return "https://%region%.api.pvp.net/api/lol/"; }
+        public String getLink() {
+            return "https://%region%.api.pvp.net/api/lol/";
+        }
     },
     GET_CHAMPION_LIST() {
         @Override
@@ -55,11 +57,14 @@ public enum ApiRequestType implements RequestType {
             return "%region%/v1.4/summoner/%%summonerIds%/name";
         }
     },
-    GET_RANKED_STATS_BY_SUMMONER_ID() {
+    GET_CHAMPION_STATS_BY_SUMMONER_ID() {
         @Override
         public String getLink() {
-            return "%region%/v1.3/stats/by-summoner/%summonerId%/ranked";
+            return "%region%/v1.3/stats/by-summoner/%summonerId%/ranked?season=%season%";
         }
+
+        @Override
+        public boolean optionalParameters() {return true;}
     },
     GET_SUMMARY_STATS_BY_SUMMONER_ID() {
         @Override
@@ -87,7 +92,9 @@ public enum ApiRequestType implements RequestType {
     },
     GET_LEAGUE_ENTRY_BY_SUMMONER_ID() {
         @Override
-        public String getLink() { return "%region%/v2.5/league/by-summoner/%summonerId%/entry";}
+        public String getLink() {
+            return "%region%/v2.5/league/by-summoner/%summonerId%/entry";
+        }
     },
     NONE() {
         @Override
