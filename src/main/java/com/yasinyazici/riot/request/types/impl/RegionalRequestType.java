@@ -15,7 +15,6 @@ public enum RegionalRequestType implements RequestType {
             return "https://%region%.api.pvp.net/";
         }
     },
-
     GET_CURRENT_GAME() {
         @Override
         public String getLink() {
@@ -25,6 +24,10 @@ public enum RegionalRequestType implements RequestType {
     GET_CHAMPION_MASTERY() {
         @Override
         public String getLink() { return "championmastery/location/%platformId%/player/%summonerId%/champion/%championId%";}
+    },
+    GET_ALL_CHAMPION_MASTERIES() {
+        @Override
+        public String getLink() { return "championmastery/location/%platformId%/player/%summonerId%/champions"; }
     };
 
     public String getStart() {

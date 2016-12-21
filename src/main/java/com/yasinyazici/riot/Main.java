@@ -1,10 +1,9 @@
 package com.yasinyazici.riot;
 
+import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.summoner.Summoner;
-import com.yasinyazici.riot.data.summoner.SummonerProperties;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Yasin on 09/02/2016
@@ -15,8 +14,9 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         LeagueAPI leagueAPI = new LeagueAPI();
-        List<Summoner> summonerList = leagueAPI.getSummoners("euw", "kha sec", "jungleíslife", "hughan", "eíleen");
-        summonerList.forEach(System.out::println);
+        Summoner summoner = leagueAPI.getSummoner("euw", "tcg asuka ninja");
+        List<ChampionMastery> championMasteries = leagueAPI.getChampionMasteries("euw", summoner.getSummonerProperties().getId());
+        championMasteries.stream().forEach(p -> System.out.println(p.getChampionPoints()));
 //        Summoner summoner = leagueAPI.getSummoner("euw", "Kha Sec");
 //        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry("euw", summoner.getSummonerProperties().getId());
 //        System.out.println(leagueEntry.getTier() + " " + leagueEntry.getEntries().get(0).getLeaguePoints());

@@ -40,13 +40,19 @@ public class LeagueAPI {
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId, championId);
         return new ChampionMasteryParser(requestCreator.create().getResponseMessage()).get();
     }
+
+    synchronized List<ChampionMastery> getChampionMasteries(String region, long summonerId) throws Exception {
+        requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_ALL_CHAMPION_MASTERIES);
+        requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
+        return new ChampionMasteriesParser(requestCreator.create().getResponseMessage()).get();
+    }
     synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerName);
         return new Summoner(region, new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).getFirstSummoner());
     }
 
-    synchronized List<Summoner> getSummoners(String region, String ... summonerNames) throws Exception {
+    synchronized List<Summoner> getSummoners(String region, String... summonerNames) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerNames);
         return new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get().entrySet().stream().map(p -> new Summoner(region, p.getValue())).collect(Collectors.toList());
@@ -57,6 +63,7 @@ public class LeagueAPI {
         requestCreator.getRequestProperty().setParameters(region, championId);
         return new ChampionInfoParser(requestCreator.create().getResponseMessage()).get();
     }
+
     synchronized CurrentGameInfo getActiveGame(String region, long summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CURRENT_GAME);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
