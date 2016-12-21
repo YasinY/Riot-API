@@ -4,6 +4,7 @@ import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
+import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsSummary;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class Main {
         Map<String, List<LeagueEntry>> leagueEntry = leagueAPI.getLeagueEntries("euw", summoner.getSummonerProperties().getId());
         System.out.println(summoner.getSummonerProperties().getId());
         ChampionStatsRanked championStatsRanked = leagueAPI.getChampionStatsRanked("euw", summoner.getSummonerProperties().getId(), Season.SEASON_6);
-        championStatsRanked.getChampions().stream().forEach(System.out::println);
+        championStatsRanked.getChampions().stream().forEach(p -> System.out.println(p.getChampionStatsList()));
         for (List<LeagueEntry> leagueEntries : leagueEntry.values()) {
             for(LeagueEntry leagueEntryElement : leagueEntries) {
                 System.out.println("Queue: " + leagueEntryElement.getQueue());

@@ -5,7 +5,7 @@ package com.yasinyazici.riot.data.summoner.ranked;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-class ChampionStats {
+public class ChampionStats {
 
     private int totalDeathsPerSession;
 
