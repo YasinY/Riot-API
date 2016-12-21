@@ -1,12 +1,7 @@
 package com.yasinyazici.riot;
 
-import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
-import com.yasinyazici.riot.data.championmastery.ChampionMastery;
-import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.data.summoner.SummonerProperties;
-import com.yasinyazici.riot.data.summoner.ranked.LeagueEntry;
 
-import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
@@ -18,7 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         LeagueAPI leagueAPI = new LeagueAPI();
-        Stream<SummonerProperties> summonerPropertiesStream = leagueAPI.getSummoners("euw", new String[] {"kha sec", "jungleíslife", "hughan", "eíleen"});
+        Stream<SummonerProperties> summonerPropertiesStream = leagueAPI.getSummoners("euw", "kha sec", "jungleíslife", "hughan", "eíleen");
+        summonerPropertiesStream.forEach(p -> System.out.println(p.getName()));
 //        Summoner summoner = leagueAPI.getSummoner("euw", "Kha Sec");
 //        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry("euw", summoner.getSummonerProperties().getId());
 //        System.out.println(leagueEntry.getTier() + " " + leagueEntry.getEntries().get(0).getLeaguePoints());

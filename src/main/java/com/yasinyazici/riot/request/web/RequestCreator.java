@@ -23,8 +23,10 @@ public class RequestCreator {
     public RequestCreator() {
         this.requestProperty = new RequestProperty(ApiRequestType.NONE, "");
     }
+
     /**
      * Connects to a specific {@code URL} through the {@link Request} class
+     *
      * @throws Exception When the URL
      */
     public RequestReply create() throws Exception {
@@ -32,7 +34,6 @@ public class RequestCreator {
         //System.out.println(replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey()));
         return new Request(new URL(replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + "?api_key=" + Config.API_KEY.getApiKey()))).makeRequest();
     }
-
 
 
     /**
@@ -47,29 +48,31 @@ public class RequestCreator {
      * @throws WrongRequestFormatException thrown if the {@code parameters#length} do not equal the {@code variablesLength} variable
      */
     private String replaceData(String fullLink) throws WrongRequestFormatException {
-        String[] variables = new RequestFormat(fullLink).getVariables(); // The variables needed
-        Object[] parameters = requestProperty.getParameters(); // The variables given
-        System.out.println(Arrays.toString(variables) + " and given: " + Arrays.toString(parameters));
-        int variablesLength = variables.length;
-        if (parameters.length != variablesLength) {
-            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(variables) + ", given: " + Arrays.toString(parameters));
+        String[] neededVariables = new RequestFormat(fullLink).getVariables(); // The variables needed
+        Object[] givenVariables = requestProperty.getParameters(); // The variables given
+        System.out.println(Arrays.toString(neededVariables) + " and given: " + Arrays.toString(givenVariables));
+        int variablesLength = neededVariables.length;
+        if (givenVariables.length != variablesLength) {
+            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(neededVariables) + ", given: " + Arrays.toString(givenVariables));
         }
-        for (int variablesIndex = 0; variablesIndex < variablesLength; variablesIndex++) {
-            Object value = parameters[variablesIndex];
-            if(value instanceof String[]) {
-                String[] values = ((String[]) value);
-                for(int arrayIndex = 0; arrayIndex < values.length; arrayIndex++) {
-                    String arrayElement = values[arrayIndex];
-                    System.out.println(arrayElement);
-                }
+        for (int i = 0; i < variablesLength; i++) {
+            String neededVariable = neededVariables[i];
+            Object givenVariable = givenVariables[i];
+            if (givenVariable instanceof String[]) {
+                String[] givenVariablesArray = ((String[]) givenVariable);
+                String link = String.join(",", Arrays.asList(givenVariablesArray));
+                fullLink = fullLink.replace(neededVariable, link);
+                continue;
             }
-            fullLink = fullLink.replace(variables[variablesIndex], String.valueOf(value).replace(" ", ""));
+            fullLink = fullLink.replace(neededVariable, String.valueOf(givenVariables[i]));
         }
-        return fullLink;
+        System.out.println("Returning full link " + fullLink.replace(" ", ""));
+        return fullLink.replace(" ", "");
     }
 
     /**
      * TODO document
+     *
      * @param prefix
      * @return
      */
@@ -79,8 +82,9 @@ public class RequestCreator {
 
     /**
      * Returns an instance of RequestProperty
-     * @link RequestProperty contains properties essential for requests to make
+     *
      * @return requestProperty The instance of RequestProperty to return
+     * @link RequestProperty contains properties essential for requests to make
      */
     public RequestProperty getRequestProperty() {
         return requestProperty;
