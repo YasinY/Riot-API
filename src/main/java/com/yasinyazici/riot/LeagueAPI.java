@@ -1,6 +1,6 @@
 package com.yasinyazici.riot;
 
-import com.yasinyazici.riot.config.json.impl.*;
+import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
 import com.yasinyazici.riot.data.champion.ChampionInfo;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
@@ -85,7 +85,7 @@ public class LeagueAPI {
         requestCreator.getRequestProperty().setParameters(region, summonerId, season.getSeasonName());
         return new ChampionStatsRankedParser(requestCreator.create().getResponseMessage()).get();
     }
-    synchronized Map<String, List<LeagueEntry>> getLeagueEntries(String region, long summonerId) throws Exception {
+    synchronized Map<String, List<LeagueEntry>> getLeagueEntries(String region, long  summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).get();

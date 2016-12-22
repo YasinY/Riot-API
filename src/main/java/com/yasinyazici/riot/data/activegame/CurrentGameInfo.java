@@ -15,6 +15,7 @@ import java.util.stream.Stream;
  */
 public class CurrentGameInfo {
 
+
     private final List<BannedChampion> bannedChampions;
 
     private final long gameId;

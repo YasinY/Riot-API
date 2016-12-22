@@ -1,11 +1,9 @@
 package com.yasinyazici.riot.request.web;
 
-import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.request.handler.Response;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -38,7 +36,7 @@ public class Request {
         int responseCode = connection.getResponseCode();
         if(responseCode != 200) {
             Response response = Response.verifyResponse(responseCode);
-            throw new ReplyException(response.getMessage() + ", (" + responseCode + ") ");
+            throw new ReplyException(response.getMessage(), responseCode);
         }
         requestContent = new RequestContent(connection.getInputStream());
         String content = requestContent.getContent();

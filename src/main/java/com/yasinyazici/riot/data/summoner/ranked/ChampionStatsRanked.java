@@ -1,5 +1,7 @@
 package com.yasinyazici.riot.data.summoner.ranked;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -11,13 +13,14 @@ public class ChampionStatsRanked {
 
     private long modifyDate;
 
-    private List<ChampionStatsSummary> champions;
+    @SerializedName("champions")
+    private List<ChampionStatsSummary> championStatsSummaries;
 
     private long summonerId;
 
-    public ChampionStatsRanked(long modifyDate, List<ChampionStatsSummary> champions, long summonerId) {
+    public ChampionStatsRanked(long modifyDate, List<ChampionStatsSummary> championStatsSummaries, long summonerId) {
         this.modifyDate = modifyDate;
-        this.champions = champions;
+        this.championStatsSummaries = championStatsSummaries;
         this.summonerId = summonerId;
     }
 
@@ -26,8 +29,8 @@ public class ChampionStatsRanked {
     }
 
 
-    public List<ChampionStatsSummary> getChampions() {
-        return champions;
+    public List<ChampionStatsSummary> getChampionStatsSummary() {
+        return championStatsSummaries;
     }
 
     public long getSummonerId() {

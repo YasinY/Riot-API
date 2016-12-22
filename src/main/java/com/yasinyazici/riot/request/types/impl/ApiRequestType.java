@@ -1,7 +1,7 @@
 package com.yasinyazici.riot.request.types.impl;
 
 import com.yasinyazici.riot.request.types.RequestType;
-import com.yasinyazici.riot.request.web.Type;
+import com.yasinyazici.riot.request.types.Type;
 
 /**
  * Created by Yasin on 10/02/2016.

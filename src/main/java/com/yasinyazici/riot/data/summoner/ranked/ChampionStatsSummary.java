@@ -1,5 +1,7 @@
 package com.yasinyazici.riot.data.summoner.ranked;
 
+import java.util.List;
+
 /**
  * Created by Yasin on 21.12.2016
  * E-mail: yasin_programmer@hotmail.com
@@ -9,11 +11,11 @@ public class ChampionStatsSummary {
 
     private int id;
 
-    private ChampionStats championStatsList;
+    private ChampionStats stats;
 
-    public ChampionStatsSummary(int id, ChampionStats championStatsList) {
+    public ChampionStatsSummary(int id, ChampionStats stats) {
         this.id = id;
-        this.championStatsList = championStatsList;
+        this.stats = stats;
     }
 
     public int getId() {
@@ -21,6 +23,6 @@ public class ChampionStatsSummary {
     }
 
     public ChampionStats getChampionStatsList() {
-        return championStatsList;
+        return stats;
     }
 }

@@ -8,4 +8,12 @@ package com.yasinyazici.riot.data.activegame.data;
 public class Observer {
 
     private String encryptionKey;
+
+    public Observer(String encryptionKey) {
+        this.encryptionKey = encryptionKey;
+    }
+
+    public String getEncryptionKey() {
+        return encryptionKey;
+    }
 }

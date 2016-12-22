@@ -1,10 +1,10 @@
 package com.yasinyazici.riot;
 
-import com.yasinyazici.riot.data.championmastery.ChampionMastery;
+import com.yasinyazici.riot.data.champion.ChampionInfo;
+import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
-import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsSummary;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 
 import java.util.List;
@@ -19,42 +19,27 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         LeagueAPI leagueAPI = new LeagueAPI();
-        Summoner summoner = leagueAPI.getSummoner("euw", "dämonjho");
-        List<ChampionMastery> championMasteries = leagueAPI.getChampionMasteries("euw", summoner.getSummonerProperties().getId());
-        //championMasteries.stream().forEach(p -> System.out.println(p.getChampionPoints()));
-        Map<String, List<LeagueEntry>> leagueEntry = leagueAPI.getLeagueEntries("euw", summoner.getSummonerProperties().getId());
-        System.out.println(summoner.getSummonerProperties().getId());
-        ChampionStatsRanked championStatsRanked = leagueAPI.getChampionStatsRanked("euw", summoner.getSummonerProperties().getId(), Season.SEASON_6);
-        championStatsRanked.getChampions().stream().forEach(p -> System.out.println(p.getChampionStatsList()));
-        for (List<LeagueEntry> leagueEntries : leagueEntry.values()) {
-            for(LeagueEntry leagueEntryElement : leagueEntries) {
-                System.out.println("Queue: " + leagueEntryElement.getQueue());
-                System.out.println("Name: " + leagueEntryElement.getName());
-                System.out.println("Tier: " + leagueEntryElement.getTier());
-                leagueEntryElement.getEntries().stream().forEach(p -> {
-                    System.out.println("League points: " + p.getLeaguePoints());
-                    System.out.println("Division: " + p.getDivision());
-                    System.out.println("Name: " + p.getPlayerOrTeamId());
-                });
+        String region = "euw";
+        Summoner summoner = leagueAPI.getSummoner(region, "tcgasukaninja");
+        long summonerId = summoner.getSummonerProperties().getId();
+        System.out.println("SummonerId: " + summonerId);
+        Map<String, List<LeagueEntry>> leagueEntry = leagueAPI.getLeagueEntries(region, summonerId);
+        ChampionStatsRanked championStatsRanked = summoner.getChampionStatsRanked(Season.SEASON_6);
+        championStatsRanked.getChampionStatsSummary().forEach(p -> {
+            try {
+                Thread.sleep(1500);
+                ChampionInfo championInfo = leagueAPI.getChampionInfo(region, p.getId());
+                System.out.println("---------------------------------------");
+                System.out.println("Champion: " + championInfo.getName());
+                System.out.println("KDA: " + p.getChampionStatsList().displayAverageKDA());
+                System.out.println("Average CS:" + p.getChampionStatsList().displayAverageCreepScore());
+                System.out.println("Mastery: " + leagueAPI.getChampionMastery(region, summonerId, p.getId()).getChampionPoints());
+            } catch (Exception e) {
+                e.printStackTrace();
+                if(e instanceof ReplyException) {
+                    System.out.println(((ReplyException) e).getResponse().getMessage() + ",FEAFAEFAA Code: " + ((ReplyException) e).getResponseCode());
+                }
             }
-        }
-
-//        Summoner summoner = leagueAPI.getSummoner("euw", "Kha Sec");
-//        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry("euw", summoner.getSummonerProperties().getId());
-//        System.out.println(leagueEntry.getTier() + " " + leagueEntry.getEntries().get(0).getLeaguePoints());
-//        CurrentGameInfo currentGameInfo = leagueAPI.getActiveGame(summoner.getRegion(), summoner.getSummonerProperties().getId());
-//        currentGameInfo.getParticipants().stream().filter(Objects::nonNull).forEachOrdered(p -> {
-//            //TODO handle response code 204
-//            try {
-//                long championId = p.getChampionId();
-//                System.out.println("Name: " + p.getSummonerName() + ", id: " + p.getSummonerId());
-//                System.out.println("Champion(" + championId + "): " + leagueAPI.getChampionInfo(summoner.getRegion(), championId).getName());
-//                ChampionMastery championMastery = leagueAPI.getChampionMastery(summoner.getRegion(), p.getSummonerId(), championId);
-//                System.out.println("Mastery with champion: " + championMastery.getChampionLevel() + " (" + championMastery.getChampionPoints() + ")");
-//                Thread.sleep(1500);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
+        });
     }
 }

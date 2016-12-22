@@ -31,7 +31,7 @@ public class RequestCreator {
      */
     public RequestReply create() throws Exception {
         //TODO DEBUG
-        //System.out.println("Create link; " + replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + (requestProperty.getRequestType().optionalParameters() ? "&" : "?") +"api_key=" + Config.API_KEY.getApiKey()));
+        System.out.println("Create link; " + replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + (requestProperty.getRequestType().optionalParameters() ? "&" : "?") +"api_key=" + Config.API_KEY.getApiKey()));
         return new Request(new URL(replaceData(requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + (requestProperty.getRequestType().optionalParameters() ? "&" : "?") +"api_key=" + Config.API_KEY.getApiKey()))).makeRequest();
     }
 
@@ -54,13 +54,13 @@ public class RequestCreator {
         if (givenVariables.length != variablesLength) {
             throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(neededVariables) + ", given: " + Arrays.toString(givenVariables));
         }
-        System.out.println("To be replaced : " + fullLink);
+        //System.out.println("To be replaced : " + fullLink);
         for (int i = 0; i < variablesLength; i++) {
             String neededVariable = neededVariables[i];
             Object givenVariable = givenVariables[i];
             fullLink = fullLink.replace(neededVariable, givenVariable instanceof String[] ? String.join(",", Arrays.asList((String[]) givenVariable)) : String.valueOf(givenVariables[i])).replace(" ", "");
         }
-        System.out.println("Replace data: " + fullLink);
+        //System.out.println("Replace data: " + fullLink);
         return fullLink;
     }
 
