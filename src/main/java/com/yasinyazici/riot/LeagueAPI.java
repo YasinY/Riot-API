@@ -1,8 +1,9 @@
 package com.yasinyazici.riot;
 
+import com.yasinyazici.riot.data.champion.impl.ChampionImage;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
-import com.yasinyazici.riot.data.champion.ChampionInfo;
+import com.yasinyazici.riot.data.champion.ChampionStats;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.game.Season;
@@ -68,10 +69,16 @@ public class LeagueAPI {
         return new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get().entrySet().stream().map(p -> new Summoner(region, p.getValue())).collect(Collectors.toList());
     }
 
-    public synchronized ChampionInfo getChampionInfo(String region, long championId) throws Exception {
-        requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_CHAMPION_DATA_BY_CHAMPION_ID);
+    public synchronized ChampionStats getChampionInfo(String region, long championId) throws Exception {
+        requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_CHAMPION_INFO_BY_CHAMPION_ID);
         requestCreator.getRequestProperty().setParameters(region, championId);
         return new ChampionInfoParser(requestCreator.create().getResponseMessage()).get();
+    }
+
+    public synchronized ChampionImage getChampionImage(String region, long championId) throws Exception {
+        requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_CHAMPION_IMAGE_BY_CHAMPION_ID);
+        requestCreator.getRequestProperty().setParameters(region, championId);
+        return new ChampionImageParser(requestCreator.create().getResponseMessage()).get();
     }
 
     public synchronized CurrentGameInfo getActiveGame(String region, long summonerId) throws Exception {

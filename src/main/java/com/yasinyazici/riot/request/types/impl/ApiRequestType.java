@@ -32,32 +32,24 @@ public enum ApiRequestType implements RequestType {
         public String getLink() {
             return "%region%/v1.4/summoner/by-name/%%summonerNames%";
         }
-        @Override
-        public boolean optionalParameters() {return true;}
     },
     GET_SUMMONER_DATA_BY_IDS() {
         @Override
         public String getLink() {
             return "%region%/v1.4/stats/by-summoner/%%summonerIds%";
         }
-        @Override
-        public boolean optionalParameters() {return true;}
     },
     GET_SUMMONER_MASTERIES_BY_IDS() {
         @Override
         public String getLink() {
             return "%region%/v1.4/summoner/%%summonerIds%/masteries";
         }
-        @Override
-        public boolean optionalParameters() {return true;}
     },
     GET_SUMMONER_RUNES_BY_ID() {
         @Override
         public String getLink() {
             return "%region%/v1.4/summoner/%%summonerIds%/runes";
         }
-        @Override
-        public boolean optionalParameters() {return true;}
     },
     GET_SUMMONER_NAMES_BY_ID() {
         @Override
@@ -68,11 +60,11 @@ public enum ApiRequestType implements RequestType {
     GET_CHAMPION_STATS_BY_SUMMONER_ID() {
         @Override
         public String getLink() {
-            return "%region%/v1.3/stats/by-summoner/%summonerId%/ranked?season=%season%";
+            return "%region%/v1.3/stats/by-summoner/%summonerId%/ranked";
         }
 
         @Override
-        public boolean optionalParameters() {return true;}
+        public String getCriteria() {return "&season=%season%";}
     },
     GET_SUMMARY_STATS_BY_SUMMONER_ID() {
         @Override

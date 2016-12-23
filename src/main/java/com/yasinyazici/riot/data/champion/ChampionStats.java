@@ -5,7 +5,7 @@ package com.yasinyazici.riot.data.champion;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class ChampionInfo {
+public class ChampionStats<T> {
 
     private int id;
 
@@ -15,11 +15,14 @@ public class ChampionInfo {
 
     private String key;
 
-    public ChampionInfo(int id, String title, String name, String key) {
+    private T info; // TODO: MAKE GENERICS SO YOU CAN USE THIS AS PLACEHOLDER FOR (CHAMPIONIMAGE, CHAMPIONSTATSINFO etc) 
+
+    public ChampionStats(int id, String title, String name, String key, T info) {
         this.id = id;
         this.title = title;
         this.name = name;
         this.key = key;
+        this.info = info;
     }
 
     public int getId() {
@@ -36,5 +39,9 @@ public class ChampionInfo {
 
     public String getKey() {
         return key;
+    }
+
+    public T getInfo() {
+        return info;
     }
 }

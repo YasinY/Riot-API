@@ -13,11 +13,12 @@ public interface RequestType {
     default String getMultipleVariableSupport() {
         return "";
     }
+
     default Type getType() {
         return ApiRequestType.class.isAssignableFrom(this.getClass()) ? Type.API_CALL : Type.GLOBAL;
     }
-    default boolean optionalParameters() {
-        return false;
+    default String getCriteria() {
+        return "";
     }
 
     String getStart();

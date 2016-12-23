@@ -2,6 +2,7 @@ package com.yasinyazici.riot.request.web;
 
 import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
+import com.yasinyazici.riot.request.types.RequestType;
 import com.yasinyazici.riot.request.web.RequestCreator;
 import com.yasinyazici.riot.request.web.RequestFormat;
 import com.yasinyazici.riot.request.web.RequestProperty;
@@ -30,7 +31,9 @@ public class RequestLink {
     }
 
     private String generateLink() {
-        return requestProperty.getRequestType().getStart() + requestProperty.getRequestType().getLink() + (requestProperty.getRequestType().optionalParameters() ? "&" : "?") +"api_key=" + Config.API_KEY.getApiKey();
+        RequestType requestType = requestProperty.getRequestType();
+        System.out.println(requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getCriteria());
+        return requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getCriteria();
     }
 
     private String replaceData() throws WrongRequestFormatException {
