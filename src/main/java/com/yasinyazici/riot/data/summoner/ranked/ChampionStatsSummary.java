@@ -1,7 +1,5 @@
 package com.yasinyazici.riot.data.summoner.ranked;
 
-import java.util.List;
-
 /**
  * Created by Yasin on 21.12.2016
  * E-mail: yasin_programmer@hotmail.com

@@ -15,24 +15,34 @@ public class ChampionStats {
 
     private int totalSessionsPlayed;
 
+    private int totalSessionsLost;
+
     private int totalAssists;
 
     private int totalMinionKills;
 
     private int totalDamageDealt;
 
-    public ChampionStats(int totalChampionKills, int totalDeathsPerSession, int totalSessionsPlayed, int totalAssists, int totalMinionKills, int totalDamageDealt) {
+    public ChampionStats(int totalChampionKills, int totalDeathsPerSession, int totalSessionsLost, int totalSessionsPlayed, int totalAssists, int totalMinionKills, int totalDamageDealt) {
         this.totalChampionKills = totalChampionKills;
         this.totalDeathsPerSession = totalDeathsPerSession;
+        this.totalSessionsLost = totalSessionsLost;
         this.totalSessionsPlayed = totalSessionsPlayed;
         this.totalAssists = totalAssists;
         this.totalMinionKills = totalMinionKills;
         this.totalDamageDealt = totalDamageDealt;
     }
 
-    public int getTotalChampionKills() { return totalChampionKills; }
+    public int getTotalChampionKills() {
+        return totalChampionKills;
+    }
+
     public int getTotalDeathsPerSession() {
         return totalDeathsPerSession;
+    }
+
+    public int getTotalSessionsLost() {
+        return totalSessionsLost;
     }
 
     public int getTotalSessionsPlayed() {
@@ -51,8 +61,11 @@ public class ChampionStats {
         return totalDamageDealt;
     }
 
-    public Double getAverageKDA(){
-        return Math.floor(totalChampionKills + totalAssists) / totalDeathsPerSession;
+    public double getWinrate() {
+        return Math.floor(100.0 * (totalSessionsPlayed - totalSessionsLost) / totalSessionsPlayed);
+    }
+    public Double getAverageKDA() {
+        return Math.floor(totalChampionKills + totalAssists) / (totalDeathsPerSession == 0 ? 1 : totalDeathsPerSession);
     }
 
     public String displayAverageKDA() {

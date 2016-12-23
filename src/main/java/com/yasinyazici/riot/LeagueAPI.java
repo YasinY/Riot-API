@@ -34,73 +34,73 @@ public class LeagueAPI {
         requestCreator = new RequestCreator();
     }
 
-    synchronized String[] getGameVersions(String region) throws Exception {
+    public synchronized String[] getGameVersions(String region) throws Exception {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_GAME_VERSIONS);
         requestCreator.getRequestProperty().setParameters(region);
         return new GameVersionParser(requestCreator.create().getResponseMessage()).get();
     }
-    synchronized String getLatestGameVersion(String region) throws Exception {
+    public synchronized String getLatestGameVersion(String region) throws Exception {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_GAME_VERSIONS);
         requestCreator.getRequestProperty().setParameters(region);
         return new GameVersionParser(requestCreator.create().getResponseMessage()).get()[0];
     }
 
-    synchronized ChampionMastery getChampionMastery(String region, long summonerId, long championId) throws Exception {
+    public synchronized ChampionMastery getChampionMastery(String region, long summonerId, long championId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CHAMPION_MASTERY);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId, championId);
         return new ChampionMasteryParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    synchronized List<ChampionMastery> getChampionMasteries(String region, long summonerId) throws Exception {
+    public synchronized List<ChampionMastery> getChampionMasteries(String region, long summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_ALL_CHAMPION_MASTERIES);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
         return new ChampionMasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
-    synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
+    public synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerName);
         return new Summoner(region, new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).getFirstSummoner());
     }
 
-    synchronized List<Summoner> getSummoners(String region, String... summonerNames) throws Exception {
+    public synchronized List<Summoner> getSummoners(String region, String... summonerNames) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerNames);
         return new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get().entrySet().stream().map(p -> new Summoner(region, p.getValue())).collect(Collectors.toList());
     }
 
-    synchronized ChampionInfo getChampionInfo(String region, long championId) throws Exception {
+    public synchronized ChampionInfo getChampionInfo(String region, long championId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_CHAMPION_DATA_BY_CHAMPION_ID);
         requestCreator.getRequestProperty().setParameters(region, championId);
         return new ChampionInfoParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    synchronized CurrentGameInfo getActiveGame(String region, long summonerId) throws Exception {
+    public synchronized CurrentGameInfo getActiveGame(String region, long summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CURRENT_GAME);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
         return new CurrentGameInfoParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    synchronized ChampionStatsRanked getChampionStatsRanked(String region, long summonerId, Season season) throws Exception {
+    public synchronized ChampionStatsRanked getChampionStatsRanked(String region, long summonerId, Season season) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId, season.getSeasonName());
         return new ChampionStatsRankedParser(requestCreator.create().getResponseMessage()).get();
     }
-    synchronized Map<String, List<LeagueEntry>> getLeagueEntries(String region, long  summonerId) throws Exception {
+    public synchronized Map<String, List<LeagueEntry>> getLeagueEntries(String region, long  summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).get();
     }
-    synchronized LeagueEntry getLeagueEntry(String region, long summonerId) throws Exception {
+    public synchronized LeagueEntry getLeagueEntry(String region, long summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).getFirstLeagueEntry();
     }
-    synchronized Masteries getMasteries(String region, long summonerId) throws Exception {
+    public synchronized Masteries getMasteries(String region, long summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new MasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
-    synchronized Runes getRunes(String region, long summonerId) throws Exception {
+    public synchronized Runes getRunes(String region, long summonerId) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new RunesParser(requestCreator.create().getResponseMessage()).get();

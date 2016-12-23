@@ -1,10 +1,13 @@
 package com.yasinyazici.riot.request.web;
 
+import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.request.handler.Response;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -14,24 +17,24 @@ import java.net.URL;
  */
 public class Request {
 
-    private URL url;
+    private String requestLink;
 
     private RequestContent requestContent;
 
     /**
      * <p>Creates a new {@link Request} instance</p>
      *
-     * @param url The url to connect to
+     * @param requestLink The url to connect to
      */
-    Request(URL url) {
-        if (url == null) {
+    Request(RequestLink requestLink) throws MalformedURLException {
+        if (requestLink == null) {
             return;
         }
-        this.url = url;
+        this.requestLink = requestLink.getLink();
     }
 
-    RequestReply makeRequest() throws Exception {
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    RequestReply makeRequest() throws IOException, ReplyException, DataException {
+        HttpURLConnection connection = (HttpURLConnection) new URL(requestLink).openConnection();
         //System.out.println(connection.getHeaderField(3));
         int responseCode = connection.getResponseCode();
         if(responseCode != 200) {
