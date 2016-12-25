@@ -22,11 +22,7 @@ public class RequestCreator {
         this.requestProperty = new RequestProperty(ApiRequestType.NONE, "");
     }
 
-    /**
-     * Connects to a specific {@code URL} through the {@link Request} class
-     *
-     * @throws Exception When the URL
-     */
+
     public RequestReply create() throws IOException, WrongRequestFormatException, DataException, ReplyException {
         return new Request(new RequestLink(requestProperty)).makeRequest();
     }

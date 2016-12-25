@@ -32,8 +32,8 @@ public class RequestLink {
 
     private String generateLink() {
         RequestType requestType = requestProperty.getRequestType();
-        System.out.println(requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getCriteria());
-        return requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getCriteria();
+        //System.out.println(requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getQueryParameter());
+        return requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getQueryParameter();
     }
 
     private String replaceData() throws WrongRequestFormatException {
@@ -42,7 +42,7 @@ public class RequestLink {
         Object[] givenVariables = requestProperty.getParameters();
         int variablesLength = neededVariables.length;
         if (givenVariables.length != variablesLength) {
-            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed, needed: " + formatDisplay(neededVariables) + ", given: " + Arrays.toString(givenVariables));
+            throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed.", neededVariables);
         }
         //System.out.println("To be replaced : " + fullLink);
         for (int i = 0; i < variablesLength; i++) {

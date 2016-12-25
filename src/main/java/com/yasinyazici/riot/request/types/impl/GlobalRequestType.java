@@ -21,14 +21,14 @@ public enum GlobalRequestType implements RequestType {
         @Override
         public String getLink() { return "static-data/%region%/v1.2/champion/%champId%";}
         @Override
-        public String getCriteria() {return "champData=info";}
+        public String getQueryParameter() {return "champData=info";}
     },
     GET_CHAMPION_IMAGE_BY_CHAMPION_ID() {
         @Override
         public String getLink() { return "static-data/%region%/v1.2/champion/%champId%";}
 
         @Override
-        public String getCriteria() { return "champData=image";}
+        public String getQueryParameter() { return "champData=image";}
     };
 
     public String getStart() {

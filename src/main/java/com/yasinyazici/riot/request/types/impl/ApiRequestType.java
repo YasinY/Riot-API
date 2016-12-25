@@ -15,18 +15,6 @@ public enum ApiRequestType implements RequestType {
             return "https://%region%.api.pvp.net/api/lol/";
         }
     },
-    GET_CHAMPION_LIST() {
-        @Override
-        public String getLink() {
-            return "%region%/v1.2/champion";
-        }
-    },
-    GET_CHAMPION_BY_ID() {
-        @Override
-        public String getLink() {
-            return "%region%/v1.2/champion/%id%";
-        }
-    },
     GET_SUMMONER_DATA_BY_NAMES() {
         @Override
         public String getLink() {
@@ -64,7 +52,7 @@ public enum ApiRequestType implements RequestType {
         }
 
         @Override
-        public String getCriteria() {return "&season=%season%";}
+        public String getQueryParameter() {return "&season=%season%";}
     },
     GET_SUMMARY_STATS_BY_SUMMONER_ID() {
         @Override

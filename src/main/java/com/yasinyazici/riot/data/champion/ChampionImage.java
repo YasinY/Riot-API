@@ -1,14 +1,14 @@
 package com.yasinyazici.riot.data.champion;
 
 import com.google.gson.annotations.SerializedName;
-import com.yasinyazici.riot.data.champion.impl.ChampionData;
+import com.yasinyazici.riot.data.champion.impl.ChampionImageData;
 
 /**
- * Created by Yasin on 18.12.2016
+ * Created by Yasin on 24.12.2016
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class ChampionStats {
+public class ChampionImage {
 
     private final int id;
 
@@ -18,15 +18,15 @@ public class ChampionStats {
 
     private final String key;
 
-    @SerializedName("info")
-    private final ChampionData championData;
+    @SerializedName("image")
+    private final ChampionImageData championImageData;
 
-    public ChampionStats(int id, String title, String name, String key, ChampionData championData) {
+    public ChampionImage(int id, String title, String name, String key, ChampionImageData championImageData) {
         this.id = id;
         this.title = title;
         this.name = name;
         this.key = key;
-        this.championData = championData;
+        this.championImageData = championImageData;
     }
 
     public int getId() {
@@ -45,7 +45,7 @@ public class ChampionStats {
         return key;
     }
 
-    public ChampionData getChampionData() {
-        return championData;
+    public ChampionImageData getChampionImageData() {
+        return championImageData;
     }
 }

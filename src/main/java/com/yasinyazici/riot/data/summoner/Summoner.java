@@ -49,7 +49,7 @@ public class Summoner extends LeagueAPI {
         requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId(), season.getSeasonName());
         return new ChampionStatsRankedParser(requestCreator.create().getResponseMessage()).get();
     }
-    public LeagueEntry getLeagueEntry() throws Exception {
+    public LeagueEntry getLeagueEntry(String queue) throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId());
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).getFirstLeagueEntry();

@@ -7,7 +7,7 @@ package com.yasinyazici.riot.data.championmastery;
  */
 public class ChampionMastery {
 
-    private long championId;
+    private final long championId;
 
     private int championLevel;
 
@@ -21,7 +21,7 @@ public class ChampionMastery {
 
     private long lastPlayTime;
 
-    private long playerId;
+    private final long playerId;
 
     public ChampionMastery(long championId, int championLevel, int championPoints, long championPointsSinceLastLevel, long championPointsUntilNextLevel, boolean chestGranted, long lastPlayTime, long playerId) {
         this.championId = championId;

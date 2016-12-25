@@ -14,7 +14,6 @@ import java.lang.reflect.Type;
 public class ChampionStatsRankedParser extends JsonDataParser<ChampionStatsRanked> {
     public ChampionStatsRankedParser(String json) {
         super(json);
-        System.out.println(json);
     }
 
     @Override

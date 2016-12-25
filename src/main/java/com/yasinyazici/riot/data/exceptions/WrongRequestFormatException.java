@@ -6,7 +6,14 @@ package com.yasinyazici.riot.data.exceptions;
  */
 public class WrongRequestFormatException extends Exception {
 
-    public WrongRequestFormatException(String message) {
+    private String[] neededVariables;
+
+    public WrongRequestFormatException(String message, String ... neededVariables) {
         super(message);
+        this.neededVariables = neededVariables;
+    }
+
+    public String[] getNeededVariables() {
+        return neededVariables;
     }
 }

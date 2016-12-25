@@ -5,8 +5,9 @@ package com.yasinyazici.riot.data.champion.impl;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class ChampionStatsInfo {
+public class ChampionData {
 
+    //ANOTHER CHAMPION STATS OBJECT HERE
     private int defense;
 
     private int magic;
@@ -15,7 +16,7 @@ public class ChampionStatsInfo {
 
     private int attack;
 
-    public ChampionStatsInfo(int defense, int magic, int difficulty, int attack) {
+    public ChampionData(int defense, int magic, int difficulty, int attack) {
         this.defense = defense;
         this.magic = magic;
         this.difficulty = difficulty;

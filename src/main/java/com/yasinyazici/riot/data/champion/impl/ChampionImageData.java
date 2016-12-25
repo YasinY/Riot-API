@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class ChampionImage {
+public class ChampionImageData {
 
     private String full;
 
@@ -25,7 +25,7 @@ public class ChampionImage {
 
     private int y;
 
-    public ChampionImage(String full, String group, String sprite, int height, int width, int x, int y) {
+    public ChampionImageData(String full, String group, String sprite, int height, int width, int x, int y) {
         this.full = full;
         this.group = group;
         this.sprite = sprite;

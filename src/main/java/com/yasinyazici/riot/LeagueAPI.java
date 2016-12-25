@@ -1,6 +1,10 @@
 package com.yasinyazici.riot;
 
-import com.yasinyazici.riot.data.champion.impl.ChampionImage;
+import com.yasinyazici.riot.data.champion.ChampionImage;
+import com.yasinyazici.riot.data.champion.impl.ChampionImageData;
+import com.yasinyazici.riot.data.exceptions.DataException;
+import com.yasinyazici.riot.data.exceptions.ReplyException;
+import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
 import com.yasinyazici.riot.data.champion.ChampionStats;
@@ -17,6 +21,7 @@ import com.yasinyazici.riot.request.types.impl.GlobalRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
 import com.yasinyazici.riot.request.web.RequestCreator;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,84 +35,87 @@ public class LeagueAPI {
 
     protected RequestCreator requestCreator;
 
-
     public LeagueAPI() {
         requestCreator = new RequestCreator();
     }
 
-    public synchronized String[] getGameVersions(String region) throws Exception {
+    public synchronized String[] getGameVersions(String region) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_GAME_VERSIONS);
         requestCreator.getRequestProperty().setParameters(region);
         return new GameVersionParser(requestCreator.create().getResponseMessage()).get();
     }
-    public synchronized String getLatestGameVersion(String region) throws Exception {
+    public synchronized String getLatestGameVersion(String region) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_GAME_VERSIONS);
         requestCreator.getRequestProperty().setParameters(region);
         return new GameVersionParser(requestCreator.create().getResponseMessage()).get()[0];
     }
 
-    public synchronized ChampionMastery getChampionMastery(String region, long summonerId, long championId) throws Exception {
+    public synchronized ChampionMastery getChampionMastery(String region, long summonerId, long championId) throws PropertyNotFound, DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CHAMPION_MASTERY);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId, championId);
         return new ChampionMasteryParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public synchronized List<ChampionMastery> getChampionMasteries(String region, long summonerId) throws Exception {
+    public synchronized List<ChampionMastery> getChampionMasteries(String region, long summonerId) throws PropertyNotFound, DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_ALL_CHAMPION_MASTERIES);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
         return new ChampionMasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
-    public synchronized Summoner getSummoner(String region, String summonerName) throws Exception {
+    public synchronized Summoner getSummoner(String region, String summonerName) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerName);
         return new Summoner(region, new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).getFirstSummoner());
     }
 
-    public synchronized List<Summoner> getSummoners(String region, String... summonerNames) throws Exception {
+    public synchronized List<Summoner> getSummoners(String region, String... summonerNames) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES);
         requestCreator.getRequestProperty().setParameters(region, summonerNames);
         return new SummonerPropertiesParser(requestCreator.create().getResponseMessage()).get().entrySet().stream().map(p -> new Summoner(region, p.getValue())).collect(Collectors.toList());
     }
 
-    public synchronized ChampionStats getChampionInfo(String region, long championId) throws Exception {
+    public synchronized ChampionStats getChampionInfo(String region, long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_CHAMPION_INFO_BY_CHAMPION_ID);
         requestCreator.getRequestProperty().setParameters(region, championId);
         return new ChampionInfoParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public synchronized ChampionImage getChampionImage(String region, long championId) throws Exception {
+    public synchronized ChampionImage getChampionImage(String region, long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_CHAMPION_IMAGE_BY_CHAMPION_ID);
         requestCreator.getRequestProperty().setParameters(region, championId);
         return new ChampionImageParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public synchronized CurrentGameInfo getActiveGame(String region, long summonerId) throws Exception {
+    public synchronized String getImageUrl(String region, long championId) throws ReplyException, DataException, IOException, WrongRequestFormatException {
+        return "http://ddragon.leagueoflegends.com/cdn/" + getLatestGameVersion(region) + "/img/champion/" + getChampionImage(region, championId).getChampionImageData().getFull();
+    }
+
+    public synchronized CurrentGameInfo getActiveGame(String region, long summonerId) throws PropertyNotFound, DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(RegionalRequestType.GET_CURRENT_GAME);
         requestCreator.getRequestProperty().setParameters(region, getPlatformId(region), summonerId);
         return new CurrentGameInfoParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public synchronized ChampionStatsRanked getChampionStatsRanked(String region, long summonerId, Season season) throws Exception {
+    public synchronized ChampionStatsRanked getChampionStatsRanked(String region, long summonerId, Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId, season.getSeasonName());
         return new ChampionStatsRankedParser(requestCreator.create().getResponseMessage()).get();
     }
-    public synchronized Map<String, List<LeagueEntry>> getLeagueEntries(String region, long  summonerId) throws Exception {
+    public synchronized Map<String, List<LeagueEntry>> getLeagueEntries(String region, long  summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).get();
     }
-    public synchronized LeagueEntry getLeagueEntry(String region, long summonerId) throws Exception {
+    public synchronized LeagueEntry getLeagueEntry(String region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).getFirstLeagueEntry();
     }
-    public synchronized Masteries getMasteries(String region, long summonerId) throws Exception {
+    public synchronized Masteries getMasteries(String region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new MasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
-    public synchronized Runes getRunes(String region, long summonerId) throws Exception {
+    public synchronized Runes getRunes(String region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new RunesParser(requestCreator.create().getResponseMessage()).get();

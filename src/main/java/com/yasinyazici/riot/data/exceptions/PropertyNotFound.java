@@ -7,5 +7,5 @@ package com.yasinyazici.riot.data.exceptions;
  */
 public class PropertyNotFound extends Exception {
 
-    public PropertyNotFound(String message) {super(message);};
+    public PropertyNotFound(String message) {super(message);}
 }

@@ -1,7 +1,7 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
-import com.yasinyazici.riot.data.champion.impl.ChampionImage;
+import com.yasinyazici.riot.data.champion.ChampionImage;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 
 import java.lang.reflect.Type;
