@@ -4,7 +4,6 @@ import com.yasinyazici.riot.LeagueAPI;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.game.Season;
-import com.yasinyazici.riot.data.summoner.masteries.Masteries;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
@@ -33,11 +32,6 @@ public class Summoner extends LeagueAPI {
         return new ChampionMasteryParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public Masteries getMasteries() throws Exception {
-        requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS);
-        requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId());
-        return new MasteriesParser(requestCreator.create().getResponseMessage()).get();
-    }
     public Runes getRunes() throws Exception {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId());

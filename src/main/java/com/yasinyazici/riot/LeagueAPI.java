@@ -1,10 +1,10 @@
 package com.yasinyazici.riot;
 
 import com.yasinyazici.riot.data.champion.ChampionImage;
-import com.yasinyazici.riot.data.champion.impl.ChampionImageData;
 import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
+import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
 import com.yasinyazici.riot.data.champion.ChampionStats;
@@ -12,7 +12,6 @@ import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.summoner.Summoner;
-import com.yasinyazici.riot.data.summoner.masteries.Masteries;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 import com.yasinyazici.riot.data.summoner.runes.Runes;
@@ -110,7 +109,7 @@ public class LeagueAPI {
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).getFirstLeagueEntry();
     }
-    public synchronized Masteries getMasteries(String region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized Map<String, MasteryPages> getMasteryPages(String region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new MasteriesParser(requestCreator.create().getResponseMessage()).get();

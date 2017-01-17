@@ -1,28 +1,30 @@
 package com.yasinyazici.riot.parsers.impl;
 
+import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
 import com.yasinyazici.riot.parsers.JsonDataParser;
-import com.yasinyazici.riot.data.summoner.masteries.Masteries;
 
 import java.lang.reflect.Type;
+import java.util.Map;
 
 /**
- * Created by Yasin on 14.12.2016
+ * Created by Yasin on 17.01.2017
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class MasteriesParser extends JsonDataParser<Masteries> {
-
+public class MasteriesParser extends JsonDataParser<Map<String, MasteryPages>> {
     public MasteriesParser(String json) {
         super(json);
+        System.out.println(json);
     }
 
     @Override
-    public Masteries get() {
-        return null;
+    public Map<String, MasteryPages> get() {
+        return transform();
     }
 
     @Override
     protected Type getType() {
-        return null;
+        return new TypeToken<Map<String, MasteryPages>>(){}.getType();
     }
 }

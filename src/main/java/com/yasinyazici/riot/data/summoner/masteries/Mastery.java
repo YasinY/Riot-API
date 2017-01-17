@@ -1,10 +1,26 @@
 package com.yasinyazici.riot.data.summoner.masteries;
 
 /**
- * Created by Yasin on 14.12.2016
+ * Created by Yasin on 17.01.2017
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
- * //TODO DO THIS
  */
 public class Mastery {
+
+    private int id;
+
+    private int rank;
+
+    public Mastery(int id, int rank) {
+        this.id = id;
+        this.rank = rank;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getRank() {
+        return rank;
+    }
 }
