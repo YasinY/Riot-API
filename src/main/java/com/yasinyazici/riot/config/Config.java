@@ -7,7 +7,7 @@ package com.yasinyazici.riot.config;
  */
 public class Config {
 
-    public static APIKey API_KEY = new APIKey("RGAPI-efb86cac-af5b-44cb-908b-826e53a52cd9");
+    public static APIKey API_KEY = new APIKey("xx");
 
 
 }
