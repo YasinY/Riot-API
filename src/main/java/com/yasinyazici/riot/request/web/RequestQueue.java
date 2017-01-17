@@ -5,5 +5,6 @@ package com.yasinyazici.riot.request.web;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
+//TODO do this
 public class RequestQueue {
 }
