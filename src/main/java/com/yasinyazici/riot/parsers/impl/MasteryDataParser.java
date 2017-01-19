@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 
 /**
- * Created by Yasin on 19.01.2017.
+ * Created by Yasin on 19.01.2017
+ * E-mail: yasin_programmer@hotmail.com
+ * Github: YasinY
  */
 public class MasteryDataParser extends JsonDataParser<MasteryData> {
 
@@ -19,13 +21,7 @@ public class MasteryDataParser extends JsonDataParser<MasteryData> {
 
     @Override
     public MasteryData get() {
-        try {
-            System.out.println(transform(Config.MASTERIES).getId());
-            return transform(Config.MASTERIES);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return transform();
     }
 
     @Override

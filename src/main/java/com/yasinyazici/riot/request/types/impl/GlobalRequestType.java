@@ -22,6 +22,8 @@ public enum GlobalRequestType implements RequestType {
         public String getLink() {
             return "static-data/%region%/v1.2/mastery/%id%";
         }
+        @Override
+        public String getQueryParameter() { return "masteryData=masteryTree"; }
     },
     GET_CHAMPION_INFO_BY_CHAMPION_ID() {
         @Override
