@@ -17,6 +17,12 @@ public enum GlobalRequestType implements RequestType {
         @Override
         public String getLink() { return "static-data/%region%/v1.2/versions"; }
     },
+    GET_MASTERY_DATA_BY_ID() {
+        @Override
+        public String getLink() {
+            return "static-data/%region%/v1.2/mastery/%id%";
+        }
+    },
     GET_CHAMPION_INFO_BY_CHAMPION_ID() {
         @Override
         public String getLink() { return "static-data/%region%/v1.2/champion/%champId%";}

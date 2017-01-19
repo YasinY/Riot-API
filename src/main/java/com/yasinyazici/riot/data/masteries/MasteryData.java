@@ -7,7 +7,7 @@ import java.util.List;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class Mastery {
+public class MasteryData {
 
     private List<String> description;
 
@@ -19,7 +19,7 @@ public class Mastery {
 
     private int ranks;
 
-    public Mastery(List<String> description, int id, String masteryTree, String name, int ranks) {
+    public MasteryData(List<String> description, int id, String masteryTree, String name, int ranks) {
         this.description = description;
         this.id = id;
         this.masteryTree = masteryTree;

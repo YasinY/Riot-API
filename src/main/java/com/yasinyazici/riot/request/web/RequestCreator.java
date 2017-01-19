@@ -6,6 +6,7 @@ import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by Yasin on 18/02/2016.

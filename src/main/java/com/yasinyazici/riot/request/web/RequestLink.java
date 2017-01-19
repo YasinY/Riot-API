@@ -40,6 +40,7 @@ public class RequestLink {
         String modifiedLink = this.baseLink;
         String[] neededVariables = new RequestFormat(modifiedLink).getVariables(); // The variables needed
         Object[] givenVariables = requestProperty.getParameters();
+        System.out.println("Needed variables : " + Arrays.toString(neededVariables) + ", given: " + Arrays.toString(givenVariables));
         int variablesLength = neededVariables.length;
         if (givenVariables.length != variablesLength) {
             throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed.", neededVariables);

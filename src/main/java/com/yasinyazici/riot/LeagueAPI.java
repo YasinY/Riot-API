@@ -4,6 +4,7 @@ import com.yasinyazici.riot.data.champion.ChampionImage;
 import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
+import com.yasinyazici.riot.data.masteries.MasteryData;
 import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
@@ -118,6 +119,12 @@ public class LeagueAPI {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new RunesParser(requestCreator.create().getResponseMessage()).get();
+    }
+
+    public synchronized MasteryData getMasteryData(String region, int masteryId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_MASTERY_DATA_BY_ID);
+        requestCreator.getRequestProperty().setParameters(region, masteryId);
+        return new MasteryDataParser(requestCreator.create().getResponseMessage()).get();
     }
 
 

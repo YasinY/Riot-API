@@ -35,10 +35,11 @@ public class Request {
 
     RequestReply makeRequest() throws IOException, ReplyException, DataException {
         HttpURLConnection connection = (HttpURLConnection) new URL(requestLink).openConnection();
-        //System.out.println(connection.getHeaderField(3));
+        //System.out.println(connection.getHeaderField(0));
         int responseCode = connection.getResponseCode();
         if(responseCode != 200) {
             Response response = Response.verifyResponse(responseCode);
+            System.out.println("OH no! " + requestLink);
             throw new ReplyException(response.getMessage(), responseCode);
         }
         requestContent = new RequestContent(connection.getInputStream());

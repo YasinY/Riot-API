@@ -1,7 +1,5 @@
 package com.yasinyazici.riot.data.summoner.masteries;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Set;
 
 /**

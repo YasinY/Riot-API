@@ -10,10 +10,6 @@ import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 public interface RequestType {
     String getLink();
 
-    default String getMultipleVariableSupport() {
-        return "";
-    }
-
     default Type getType() {
         return ApiRequestType.class.isAssignableFrom(this.getClass()) ? Type.API_CALL : Type.GLOBAL;
     }
