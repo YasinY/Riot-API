@@ -20,9 +20,15 @@ public class Main {
     public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException {
         LeagueAPI leagueAPI = new LeagueAPI();
         Summoner summoner = leagueAPI.getSummoner("euw", "jungle ís life");
-        MasteryData data = leagueAPI.getMasteryData("euw", 6331);
-        //Map<String, MasteryPages> masteryPages = leagueAPI.getMasteryPages("euw", summoner.getSummonerProperties().getId());
-
+        Map<String, MasteryPages> masteryPages = leagueAPI.getMasteryPages("euw", summoner.getSummonerProperties().getId());
+        masteryPages.forEach((x, y) -> y.getMasteryPages().forEach(masteryPage -> masteryPage.getMasteries().forEach(mastery -> {
+            try {
+                MasteryData masteryData = leagueAPI.getMasteryData("euw", mastery.getId());
+                System.out.println("Mastery: " + masteryData.getName() + ", points: " + mastery.getRank());
+            } catch (DataException | WrongRequestFormatException | IOException | ReplyException e) {
+                e.printStackTrace();
+            }
+        })));
 
     }
 }

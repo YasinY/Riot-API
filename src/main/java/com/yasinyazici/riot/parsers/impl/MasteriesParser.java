@@ -1,10 +1,13 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 
+import javax.swing.filechooser.FileSystemView;
 import java.lang.reflect.Type;
+import java.nio.file.Paths;
 import java.util.Map;
 
 /**
@@ -15,7 +18,6 @@ import java.util.Map;
 public class MasteriesParser extends JsonDataParser<Map<String, MasteryPages>> {
     public MasteriesParser(String json) {
         super(json);
-        System.out.println(json);
     }
 
     @Override
@@ -25,6 +27,7 @@ public class MasteriesParser extends JsonDataParser<Map<String, MasteryPages>> {
 
     @Override
     protected Type getType() {
-        return new TypeToken<Map<String, MasteryPages>>(){}.getType();
+        return new TypeToken<Map<String, MasteryPages>>() {
+        }.getType();
     }
 }

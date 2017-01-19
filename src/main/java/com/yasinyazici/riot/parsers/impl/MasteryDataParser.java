@@ -1,9 +1,11 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.masteries.MasteryData;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 
 /**
@@ -13,16 +15,23 @@ public class MasteryDataParser extends JsonDataParser<MasteryData> {
 
     public MasteryDataParser(String json) {
         super(json);
-        System.out.println("Parsing data: " + json);
     }
 
     @Override
     public MasteryData get() {
-        return transform();
+        try {
+            System.out.println(transform(Config.MASTERIES).getId());
+            return transform(Config.MASTERIES);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     protected Type getType() {
         return new TypeToken<MasteryData>(){}.getType();
     }
+
+
 }
