@@ -5,6 +5,7 @@ import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.data.masteries.MasteryData;
+import com.yasinyazici.riot.data.staticdata.StaticResources;
 import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
@@ -33,11 +34,15 @@ import java.util.stream.Collectors;
  */
 public class LeagueAPI {
 
-    protected RequestCreator requestCreator;
+    protected RequestCreator requestCreator = new RequestCreator();
+
+    private StaticResources staticResources = new StaticResources();
 
     public LeagueAPI() {
-        requestCreator = new RequestCreator();
+        this.staticResources = new StaticResources();
+        this.requestCreator = new RequestCreator();
     }
+
 
     public synchronized String[] getGameVersions(String region) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_GAME_VERSIONS);
@@ -121,10 +126,8 @@ public class LeagueAPI {
         return new RunesParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public synchronized MasteryData getMasteryData(String region, int masteryId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        requestCreator.getRequestProperty().setRequestType(GlobalRequestType.GET_MASTERY_DATA_BY_ID);
-        requestCreator.getRequestProperty().setParameters(region, masteryId);
-        return new MasteryDataParser(requestCreator.create().getResponseMessage()).get();
+    public synchronized MasteryData getMasteryData(int masteryId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        return staticResources.getMasteryData(masteryId);
     }
 
 
@@ -155,5 +158,9 @@ public class LeagueAPI {
             default:
                 throw new PropertyNotFound("Property not found");
         }
+    }
+
+    public StaticResources getStaticResources() {
+        return staticResources;
     }
 }

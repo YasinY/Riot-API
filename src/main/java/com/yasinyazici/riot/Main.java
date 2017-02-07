@@ -27,7 +27,7 @@ public class Main {
             System.out.println(" ------------- " + masteryPage.getName() + " ------------- ");
             masteryPage.getMasteries().forEach(mastery -> {
                 try {
-                    MasteryData masteryData = leagueAPI.getMasteryData("euw", mastery.getId());
+                    MasteryData masteryData = leagueAPI.getMasteryData(mastery.getId());
                     System.out.println("Mastery: " + masteryData.getName() + ", points: " + mastery.getRank() + " (" + masteryData.getMasteryTree() + ")");
                 } catch (DataException | WrongRequestFormatException | IOException | ReplyException e) {
                     e.printStackTrace();

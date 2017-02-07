@@ -13,7 +13,7 @@ public class Config {
 
     public static String PROJECT_ROOT_DIR = System.getProperty("user.dir");
 
-    public static String RESOURCES = System.getProperty("user.dir") + "/resources/";
+    public static String RESOURCES = PROJECT_ROOT_DIR + "/resources/";
 
     public static File MASTERIES = new File(RESOURCES + "/masteries.json");
 

@@ -1,10 +1,13 @@
 {
-  "data": {
     "6121": {
       "ranks": 1,
       "id": 6121,
-      "sanitizedDescription": ["Your first basic attack against a champion deals an additional 10 +1 per level damage (6 second cooldown)"],
-      "description": ["Your first basic attack against a champion deals an additional 10 +1 per level damage (6 second cooldown)"],
+      "sanitizedDescription": [
+        "Your first basic attack against a champion deals an additional 10 +1 per level damage (6 second cooldown)"
+      ],
+      "description": [
+        "Your first basic attack against a champion deals an additional 10 +1 per level damage (6 second cooldown)"
+      ],
       "name": "Fresh Blood",
       "image": {
         "w": 48,
@@ -21,8 +24,12 @@
     "6261": {
       "ranks": 1,
       "id": 6261,
-      "sanitizedDescription": ["Every 4 seconds in combat, your next attack against an enemy champion deals damage equal to 3% of your max Health and heals you for 1.5% of your max Health (halved for ranged champions, deals magic damage)"],
-      "description": ["Every 4 seconds in combat, your next attack against an enemy champion deals damage equal to 3% of your max Health and heals you for 1.5% of your max Health (halved for ranged champions, deals magic damage)"],
+      "sanitizedDescription": [
+        "Every 4 seconds in combat, your next attack against an enemy champion deals damage equal to 3% of your max Health and heals you for 1.5% of your max Health (halved for ranged champions, deals magic damage)"
+      ],
+      "description": [
+        "Every 4 seconds in combat, your next attack against an enemy champion deals damage equal to 3% of your max Health and heals you for 1.5% of your max Health (halved for ranged champions, deals magic damage)"
+      ],
       "name": "Grasp of the Undying",
       "image": {
         "w": 48,
@@ -39,8 +46,12 @@
     "6122": {
       "ranks": 1,
       "id": 6122,
-      "sanitizedDescription": ["Killing a unit restores 20 Health (30 second cooldown)"],
-      "description": ["Killing a unit restores 20 Health (30 second cooldown)"],
+      "sanitizedDescription": [
+        "Killing a unit restores 20 Health (30 second cooldown)"
+      ],
+      "description": [
+        "Killing a unit restores 20 Health (30 second cooldown)"
+      ],
       "name": "Feast",
       "image": {
         "w": 48,
@@ -57,8 +68,12 @@
     "6123": {
       "ranks": 1,
       "id": 6123,
-      "sanitizedDescription": ["Damaging enemy champions causes them to take 3% more damage from your allies"],
-      "description": ["Damaging enemy champions causes them to take 3% more damage from your allies"],
+      "sanitizedDescription": [
+        "Damaging enemy champions causes them to take 3% more damage from your allies"
+      ],
+      "description": [
+        "Damaging enemy champions causes them to take 3% more damage from your allies"
+      ],
       "name": "Expose Weakness",
       "image": {
         "w": 48,
@@ -75,8 +90,12 @@
     "6141": {
       "ranks": 1,
       "id": 6141,
-      "sanitizedDescription": ["Deal 1.5% increased damage for each unique enemy champion you have killed"],
-      "description": ["Deal 1.5% increased damage for each unique enemy champion you have killed"],
+      "sanitizedDescription": [
+        "Deal 1.5% increased damage for each unique enemy champion you have killed"
+      ],
+      "description": [
+        "Deal 1.5% increased damage for each unique enemy champion you have killed"
+      ],
       "name": "Bounty Hunter",
       "image": {
         "w": 48,
@@ -93,8 +112,12 @@
     "6142": {
       "ranks": 1,
       "id": 6142,
-      "sanitizedDescription": ["Deal 5% additional damage, take 2.5% additional damage."],
-      "description": ["Deal 5% additional damage, take 2.5% additional damage."],
+      "sanitizedDescription": [
+        "Deal 5% additional damage, take 2.5% additional damage."
+      ],
+      "description": [
+        "Deal 5% additional damage, take 2.5% additional damage."
+      ],
       "name": "Double Edged Sword",
       "image": {
         "w": 48,
@@ -111,8 +134,12 @@
     "6162": {
       "ranks": 1,
       "id": 6162,
-      "sanitizedDescription": ["Hitting champions with basic attacks generates a Fervor stack (2 for melee attacks). Stacks of Fervor last 6 seconds (max 8 stacks)and increase your AD by 1-8 for each stack."],
-      "description": ["Hitting champions with basic attacks generates a Fervor stack (2 for melee attacks). Stacks of Fervor last 6 seconds (max 8 stacks)and increase your AD by 1-8 for each stack."],
+      "sanitizedDescription": [
+        "Hitting champions with basic attacks generates a Fervor stack (2 for melee attacks). Stacks of Fervor last 6 seconds (max 8 stacks)and increase your AD by 1-8 for each stack."
+      ],
+      "description": [
+        "Hitting champions with basic attacks generates a Fervor stack (2 for melee attacks). Stacks of Fervor last 6 seconds (max 8 stacks)and increase your AD by 1-8 for each stack."
+      ],
       "name": "Fervor of Battle",
       "image": {
         "w": 48,
@@ -129,8 +156,12 @@
     "6143": {
       "ranks": 1,
       "id": 6143,
-      "sanitizedDescription": ["Gain up to 5% increased damage over 5 seconds when in combat with enemy Champions"],
-      "description": ["Gain up to 5% increased damage over 5 seconds when in combat with enemy Champions"],
+      "sanitizedDescription": [
+        "Gain up to 5% increased damage over 5 seconds when in combat with enemy Champions"
+      ],
+      "description": [
+        "Gain up to 5% increased damage over 5 seconds when in combat with enemy Champions"
+      ],
       "name": "Battle Trance",
       "image": {
         "w": 48,
@@ -147,8 +178,12 @@
     "6161": {
       "ranks": 1,
       "id": 6161,
-      "sanitizedDescription": ["Gain increasingly more Life Steal based on your missing health against champions (up to 20%). Against minions gain 50% benefit (25% for ranged champions)."],
-      "description": ["Gain increasingly more Life Steal based on your missing health against champions (up to 20%). Against minions gain 50% benefit (25% for ranged champions)."],
+      "sanitizedDescription": [
+        "Gain increasingly more Life Steal based on your missing health against champions (up to 20%). Against minions gain 50% benefit (25% for ranged champions)."
+      ],
+      "description": [
+        "Gain increasingly more Life Steal based on your missing health against champions (up to 20%). Against minions gain 50% benefit (25% for ranged champions)."
+      ],
       "name": "Warlord's Bloodlust",
       "image": {
         "w": 48,
@@ -165,8 +200,12 @@
     "6323": {
       "ranks": 1,
       "id": 6323,
-      "sanitizedDescription": ["Deal 2% increased damage to champions when no allied champions are nearby"],
-      "description": ["Deal 2% increased damage to champions when no allied champions are nearby"],
+      "sanitizedDescription": [
+        "Deal 2% increased damage to champions when no allied champions are nearby"
+      ],
+      "description": [
+        "Deal 2% increased damage to champions when no allied champions are nearby"
+      ],
       "name": "Assassin",
       "image": {
         "w": 48,
@@ -183,8 +222,12 @@
     "6341": {
       "ranks": 1,
       "id": 6341,
-      "sanitizedDescription": ["Stepping into brush causes your next damaging attack or ability to deal 3% of your target's current health as bonus magic damage (9s Cooldown)"],
-      "description": ["Stepping into brush causes your next damaging attack or ability to deal 3% of your target's current health as bonus magic damage (9s Cooldown)"],
+      "sanitizedDescription": [
+        "Stepping into brush causes your next damaging attack or ability to deal 3% of your target's current health as bonus magic damage (9s Cooldown)"
+      ],
+      "description": [
+        "Stepping into brush causes your next damaging attack or ability to deal 3% of your target's current health as bonus magic damage (9s Cooldown)"
+      ],
       "name": "Greenfather's Gift",
       "image": {
         "w": 48,
@@ -201,8 +244,12 @@
     "6164": {
       "ranks": 1,
       "id": 6164,
-      "sanitizedDescription": ["Your damaging abilities cause enemy champions to take magic damage over 4 seconds. Damage: 8 + 60% Bonus Attack Damage and 25% Ability Power Deathfire Touch's duration is reduced for: - Area of Effect: 2 second duration. - Damage over Time: 1 second duration."],
-      "description": ["Your damaging abilities cause enemy champions to take magic damage over 4 seconds.<br><br>Damage: 8 + 60% Bonus Attack Damage and 25% Ability Power<br><br>Deathfire Touch's duration is reduced for:<br>     - Area of Effect: 2 second duration. <br>     - Damage over Time: 1 second duration."],
+      "sanitizedDescription": [
+        "Your damaging abilities cause enemy champions to take magic damage over 4 seconds. Damage: 8 + 60% Bonus Attack Damage and 25% Ability Power Deathfire Touch's duration is reduced for: - Area of Effect: 2 second duration. - Damage over Time: 1 second duration."
+      ],
+      "description": [
+        "Your damaging abilities cause enemy champions to take magic damage over 4 seconds.<br><br>Damage: 8 + 60% Bonus Attack Damage and 25% Ability Power<br><br>Deathfire Touch's duration is reduced for:<br>     - Area of Effect: 2 second duration. <br>     - Damage over Time: 1 second duration."
+      ],
       "name": "Deathfire Touch",
       "image": {
         "w": 48,
@@ -219,8 +266,12 @@
     "6342": {
       "ranks": 1,
       "id": 6342,
-      "sanitizedDescription": ["Gain 1 gold for each nearby minion killed by an ally. Gain 3 gold (10 if melee) when hitting an enemy champion with a basic attack (5 second cooldown)"],
-      "description": ["Gain 1 gold for each nearby minion killed by an ally. <br><br>Gain 3 gold (10 if melee) when hitting an enemy champion with a basic attack (5 second cooldown)"],
+      "sanitizedDescription": [
+        "Gain 1 gold for each nearby minion killed by an ally. Gain 3 gold (10 if melee) when hitting an enemy champion with a basic attack (5 second cooldown)"
+      ],
+      "description": [
+        "Gain 1 gold for each nearby minion killed by an ally. <br><br>Gain 3 gold (10 if melee) when hitting an enemy champion with a basic attack (5 second cooldown)"
+      ],
       "name": "Bandit",
       "image": {
         "w": 48,
@@ -237,8 +288,12 @@
     "6241": {
       "ranks": 1,
       "id": 6241,
-      "sanitizedDescription": ["Reduces the cooldown of Summoner Spells by 15%"],
-      "description": ["Reduces the cooldown of Summoner Spells by 15%"],
+      "sanitizedDescription": [
+        "Reduces the cooldown of Summoner Spells by 15%"
+      ],
+      "description": [
+        "Reduces the cooldown of Summoner Spells by 15%"
+      ],
       "name": "Insight",
       "image": {
         "w": 48,
@@ -255,8 +310,12 @@
     "6321": {
       "ranks": 1,
       "id": 6321,
-      "sanitizedDescription": ["Buffs from neutral monsters last 15% longer"],
-      "description": ["Buffs from neutral monsters last 15% longer"],
+      "sanitizedDescription": [
+        "Buffs from neutral monsters last 15% longer"
+      ],
+      "description": [
+        "Buffs from neutral monsters last 15% longer"
+      ],
       "name": "Runic Affinity",
       "image": {
         "w": 48,
@@ -273,8 +332,12 @@
     "6242": {
       "ranks": 1,
       "id": 6242,
-      "sanitizedDescription": ["+50% Base Health Regen, increased to +200% when below 25% Health"],
-      "description": ["+50% Base Health Regen, increased to +200% when below 25% Health"],
+      "sanitizedDescription": [
+        "+50% Base Health Regen, increased to +200% when below 25% Health"
+      ],
+      "description": [
+        "+50% Base Health Regen, increased to +200% when below 25% Health"
+      ],
       "name": "Perseverance",
       "image": {
         "w": 48,
@@ -291,8 +354,12 @@
     "6322": {
       "ranks": 1,
       "id": 6322,
-      "sanitizedDescription": ["Your Potions and Elixirs last 10% longer. Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use"],
-      "description": ["Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use"],
+      "sanitizedDescription": [
+        "Your Potions and Elixirs last 10% longer. Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use"
+      ],
+      "description": [
+        "Your Potions and Elixirs last 10% longer.<br><br>Your Health Potions are replaced with Biscuits that restore 15 Health and Mana instantly on use"
+      ],
       "name": "Secret Stash",
       "image": {
         "w": 48,
@@ -309,8 +376,12 @@
     "6243": {
       "ranks": 1,
       "id": 6243,
-      "sanitizedDescription": ["Gain 10% +2 per level bonus Armor and Magic Resist when damaged by an enemy champion for 2 seconds (9s Cooldown)"],
-      "description": ["Gain 10% +2 per level bonus Armor and Magic Resist when damaged by an enemy champion for 2 seconds (9s Cooldown)"],
+      "sanitizedDescription": [
+        "Gain 10% +2 per level bonus Armor and Magic Resist when damaged by an enemy champion for 2 seconds (9s Cooldown)"
+      ],
+      "description": [
+        "Gain 10% +2 per level bonus Armor and Magic Resist when damaged by an enemy champion for 2 seconds (9s Cooldown)"
+      ],
       "name": "Fearless",
       "image": {
         "w": 48,
@@ -327,8 +398,12 @@
     "6262": {
       "ranks": 1,
       "id": 6262,
-      "sanitizedDescription": ["Gain a shield for 10 +10 per level + 5% of your maximum health for each nearby enemy champion for 4 seconds after hitting an enemy champion with a stun, taunt, snare, or knock up(45 - 30 second cooldown based on level)."],
-      "description": ["Gain a shield for 10 +10 per level + 5%  of your maximum health for each nearby enemy champion for 4 seconds after hitting an enemy champion with a stun, taunt, snare, or knock up(45 - 30 second cooldown based on level)."],
+      "sanitizedDescription": [
+        "Gain a shield for 10 +10 per level + 5% of your maximum health for each nearby enemy champion for 4 seconds after hitting an enemy champion with a stun, taunt, snare, or knock up(45 - 30 second cooldown based on level)."
+      ],
+      "description": [
+        "Gain a shield for 10 +10 per level + 5%  of your maximum health for each nearby enemy champion for 4 seconds after hitting an enemy champion with a stun, taunt, snare, or knock up(45 - 30 second cooldown based on level)."
+      ],
       "name": "Courage of the Colossus",
       "image": {
         "w": 48,
@@ -345,8 +420,12 @@
     "6263": {
       "ranks": 1,
       "id": 6263,
-      "sanitizedDescription": ["+4% Damage Reduction. 6% of the damage from enemy champions taken by the nearest allied champion is dealt to you instead. Damage is not redirected if you are below 5% of your maximum health."],
-      "description": ["+4% Damage Reduction. 6% of the damage from enemy champions taken by the nearest allied champion is dealt to you instead. Damage is not redirected if you are below 5% of your maximum health."],
+      "sanitizedDescription": [
+        "+4% Damage Reduction. 6% of the damage from enemy champions taken by the nearest allied champion is dealt to you instead. Damage is not redirected if you are below 5% of your maximum health."
+      ],
+      "description": [
+        "+4% Damage Reduction. 6% of the damage from enemy champions taken by the nearest allied champion is dealt to you instead. Damage is not redirected if you are below 5% of your maximum health."
+      ],
       "name": "Bond of Stone",
       "image": {
         "w": 48,
@@ -363,8 +442,12 @@
     "6343": {
       "ranks": 1,
       "id": 6343,
-      "sanitizedDescription": ["Champion kills and assists restore 5% of your missing Health and Mana"],
-      "description": ["Champion kills and assists restore 5% of your missing Health and Mana"],
+      "sanitizedDescription": [
+        "Champion kills and assists restore 5% of your missing Health and Mana"
+      ],
+      "description": [
+        "Champion kills and assists restore 5% of your missing Health and Mana"
+      ],
       "name": "Dangerous Game",
       "image": {
         "w": 48,
@@ -921,8 +1004,12 @@
     "6221": {
       "ranks": 1,
       "id": 6221,
-      "sanitizedDescription": ["+15 Movement Speed in Brush and River"],
-      "description": ["+15 Movement Speed in Brush and River"],
+      "sanitizedDescription": [
+        "+15 Movement Speed in Brush and River"
+      ],
+      "description": [
+        "+15 Movement Speed in Brush and River"
+      ],
       "name": "Explorer",
       "image": {
         "w": 48,
@@ -939,8 +1026,12 @@
     "6362": {
       "ranks": 1,
       "id": 6362,
-      "sanitizedDescription": ["Your 3rd attack or damaging spell against the same enemy champion calls down a lightning strike, dealing magic damage in the area. Damage: 10 per level, plus 30% of your Bonus Attack Damage, and 10% of your Ability Power (25-15 second cooldown, based on level)."],
-      "description": ["Your 3rd attack or damaging spell against the same enemy champion calls down a lightning strike, dealing magic damage in the area. <br><br>Damage: 10 per level, plus 30% of your Bonus Attack Damage, and 10% of your Ability Power (25-15 second cooldown, based on level)."],
+      "sanitizedDescription": [
+        "Your 3rd attack or damaging spell against the same enemy champion calls down a lightning strike, dealing magic damage in the area. Damage: 10 per level, plus 30% of your Bonus Attack Damage, and 10% of your Ability Power (25-15 second cooldown, based on level)."
+      ],
+      "description": [
+        "Your 3rd attack or damaging spell against the same enemy champion calls down a lightning strike, dealing magic damage in the area. <br><br>Damage: 10 per level, plus 30% of your Bonus Attack Damage, and 10% of your Ability Power (25-15 second cooldown, based on level)."
+      ],
       "name": "Thunderlord's Decree",
       "image": {
         "w": 48,
@@ -957,8 +1048,12 @@
     "6361": {
       "ranks": 1,
       "id": 6361,
-      "sanitizedDescription": ["Dealing 30% of a champion's max Health within 2.5 seconds grants you 40% Movement Speed and 75% Slow Resistance for 3 seconds (10 second cooldown)."],
-      "description": ["Dealing 30% of a champion's max Health within 2.5 seconds grants you 40% Movement Speed and 75% Slow Resistance for 3 seconds (10 second cooldown)."],
+      "sanitizedDescription": [
+        "Dealing 30% of a champion's max Health within 2.5 seconds grants you 40% Movement Speed and 75% Slow Resistance for 3 seconds (10 second cooldown)."
+      ],
+      "description": [
+        "Dealing 30% of a champion's max Health within 2.5 seconds grants you 40% Movement Speed and 75% Slow Resistance for 3 seconds (10 second cooldown)."
+      ],
       "name": "Stormraider's Surge",
       "image": {
         "w": 48,
@@ -975,8 +1070,12 @@
     "6363": {
       "ranks": 1,
       "id": 6363,
-      "sanitizedDescription": ["Your heals and shields are 10% stronger. Additionally, your shields and heals on other allies increase their armor by 5-22 (based on level) and their magic resistance by half that amount for 3 seconds."],
-      "description": ["Your heals and shields are 10% stronger. Additionally, your shields and heals on other allies increase their armor by 5-22 (based on level) and their magic resistance by half that amount for 3 seconds."],
+      "sanitizedDescription": [
+        "Your heals and shields are 10% stronger. Additionally, your shields and heals on other allies increase their armor by 5-22 (based on level) and their magic resistance by half that amount for 3 seconds."
+      ],
+      "description": [
+        "Your heals and shields are 10% stronger. Additionally, your shields and heals on other allies increase their armor by 5-22 (based on level) and their magic resistance by half that amount for 3 seconds."
+      ],
       "name": "Windspeaker's Blessing",
       "image": {
         "w": 48,
@@ -993,8 +1092,12 @@
     "6223": {
       "ranks": 1,
       "id": 6223,
-      "sanitizedDescription": ["You take 2 less damage from champion and neutral monster basic attacks"],
-      "description": ["You take 2 less damage from champion and neutral monster basic attacks"],
+      "sanitizedDescription": [
+        "You take 2 less damage from champion and neutral monster basic attacks"
+      ],
+      "description": [
+        "You take 2 less damage from champion and neutral monster basic attacks"
+      ],
       "name": "Tough Skin",
       "image": {
         "w": 48,
@@ -1011,8 +1114,12 @@
     "6222": {
       "ranks": 1,
       "id": 6222,
-      "sanitizedDescription": ["Gain 8 Armor and Magic Resistance when near an allied tower"],
-      "description": ["Gain 8 Armor and Magic Resistance when near an allied tower"],
+      "sanitizedDescription": [
+        "Gain 8 Armor and Magic Resistance when near an allied tower"
+      ],
+      "description": [
+        "Gain 8 Armor and Magic Resistance when near an allied tower"
+      ],
       "name": "Siegemaster",
       "image": {
         "w": 48,
@@ -1026,5 +1133,4 @@
       "prereq": "0",
       "masteryTree": "Resolve"
     }
-  }
 }

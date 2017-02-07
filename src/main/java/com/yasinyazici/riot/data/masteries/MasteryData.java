@@ -1,5 +1,7 @@
 package com.yasinyazici.riot.data.masteries;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -9,13 +11,13 @@ import java.util.List;
  */
 public class MasteryData {
 
-    private List<String> description;
-
     private int id;
 
-    private String masteryTree;
-
     private String name;
+
+    private List<String> description;
+
+    private String masteryTree;
 
     private int ranks;
 

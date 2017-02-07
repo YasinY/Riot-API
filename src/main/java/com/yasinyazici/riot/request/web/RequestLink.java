@@ -9,6 +9,7 @@ import com.yasinyazici.riot.request.web.RequestProperty;
 
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * Created by Yasin on 23.12.2016
@@ -54,8 +55,7 @@ public class RequestLink {
         //System.out.println("Replace data: " + fullLink);
         return modifiedLink;
     }
-
-    a
+    
     private String formatDisplay(String[] prefix) {
         return Arrays.toString(prefix).replace("%", "").replace("%%", "");
     }
