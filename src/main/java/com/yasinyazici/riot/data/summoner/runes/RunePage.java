@@ -13,11 +13,11 @@ public class RunePage {
 
     private Rune[] slots;
 
-    // Marks: Rune slot 1 - 9
+    // Marks: RuneData slot 1 - 9
 
-    // Seals: Rune slot 10 - 18
+    // Seals: RuneData slot 10 - 18
 
-    // Glyphs: Rune slot 19 - 27
+    // Glyphs: RuneData slot 19 - 27
 
     // Quints: 28 - 30
 

@@ -29,6 +29,7 @@ public class Main {
                 try {
                     MasteryData masteryData = leagueAPI.getMasteryData(mastery.getId());
                     System.out.println("Mastery: " + masteryData.getName() + ", points: " + mastery.getRank() + " (" + masteryData.getMasteryTree() + ")");
+                    System.out.println("Runedata: " + leagueAPI.getRune(8003).getName());
                 } catch (DataException | WrongRequestFormatException | IOException | ReplyException e) {
                     e.printStackTrace();
                 }

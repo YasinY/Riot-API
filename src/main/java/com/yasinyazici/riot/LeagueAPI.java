@@ -5,6 +5,7 @@ import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.data.masteries.MasteryData;
+import com.yasinyazici.riot.data.runes.RuneData;
 import com.yasinyazici.riot.data.staticdata.StaticResources;
 import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
 import com.yasinyazici.riot.parsers.impl.*;
@@ -128,6 +129,9 @@ public class LeagueAPI {
 
     public synchronized MasteryData getMasteryData(int masteryId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return staticResources.getMasteryData(masteryId);
+    }
+    public synchronized RuneData getRune(int runeId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        return staticResources.getRuneData(runeId);
     }
 
 

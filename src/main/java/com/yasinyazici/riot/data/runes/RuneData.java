@@ -7,8 +7,10 @@ import com.google.gson.annotations.SerializedName;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class Rune {
+public class RuneData {
 
+
+    private String name;
     @SerializedName("plaintext")
     private String plainText;
 
@@ -18,12 +20,15 @@ public class Rune {
 
     private int stacks;
 
-    public Rune(String plainText, String description, int id, int stacks) {
+    public RuneData(String name, String plainText, String description, int id, int stacks) {
+        this.name = name;
         this.plainText = plainText;
         this.description = description;
         this.id = id;
         this.stacks = stacks;
     }
+
+    public String getName() { return name;}
 
     public String getPlainText() {
         return plainText;

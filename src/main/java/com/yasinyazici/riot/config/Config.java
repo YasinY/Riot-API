@@ -17,4 +17,6 @@ public class Config {
 
     public static File MASTERIES = new File(RESOURCES + "/masteries.json");
 
+    public static File RUNES = new File(RESOURCES + "/runes.json");
+
 }

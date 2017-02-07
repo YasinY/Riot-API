@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.masteries.MasteryData;
+import com.yasinyazici.riot.data.runes.RuneData;
+import com.yasinyazici.riot.data.summoner.runes.Rune;
 
 import java.util.Map;
 
@@ -16,18 +18,24 @@ import java.util.Map;
  */
 public class StaticResources {
 
-    private Map<Integer, MasteryData> masteryList;
+    private Map<Integer, MasteryData> masteryDataMap;
+
+    private Map<Integer, RuneData> runeDataMap;
 
    public StaticResources() {
        Gson gson = new Gson();
        try {
-           masteryList = gson.fromJson(Files.toString(Config.MASTERIES, Charsets.UTF_8), new TypeToken<Map<Integer, MasteryData>>() {}.getType());
+           masteryDataMap = gson.fromJson(Files.toString(Config.MASTERIES, Charsets.UTF_8), new TypeToken<Map<Integer, MasteryData>>() {}.getType());
+           runeDataMap = gson.fromJson(Files.toString(Config.RUNES, Charsets.UTF_8), new TypeToken<Map<Integer, RuneData>>(){}.getType());
        } catch(Exception e) {
            e.printStackTrace();
        }
    }
 
     public MasteryData getMasteryData(int masteryId) {
-        return masteryList.values().stream().filter(p -> p.getId() == masteryId).findFirst().orElse(null);
+        return masteryDataMap.values().stream().filter(p -> p.getId() == masteryId).findFirst().orElse(null);
+    }
+    public RuneData getRuneData(int runeId) {
+        return runeDataMap.values().stream().filter(p -> p.getId() == runeId).findFirst().orElse(null);
     }
 }
