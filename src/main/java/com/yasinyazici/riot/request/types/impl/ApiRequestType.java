@@ -15,12 +15,6 @@ public enum ApiRequestType implements RequestType {
             return "https://%region%.api.pvp.net/api/lol/";
         }
     },
-    GET_RUNE_DATA_BY_ID() {
-        @Override
-        public String getLink() {
-            return "static-data/%region%/v1.2/rune/%id%";
-        }
-    },
     GET_SUMMONER_DATA_BY_NAMES() {
         @Override
         public String getLink() {

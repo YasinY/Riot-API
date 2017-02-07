@@ -17,7 +17,7 @@ import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
-import com.yasinyazici.riot.data.summoner.runes.Runes;
+import com.yasinyazici.riot.data.summoner.runes.RunePages;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 import com.yasinyazici.riot.request.types.impl.GlobalRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
@@ -116,12 +116,12 @@ public class LeagueAPI {
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new LeagueEntryParser(requestCreator.create().getResponseMessage()).getFirstLeagueEntry();
     }
-    public synchronized Map<String, MasteryPages> getMasteryPages(String region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized Map<String, MasteryPages> getMasteryPages(String region, long ... summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new MasteriesParser(requestCreator.create().getResponseMessage()).get();
     }
-    public synchronized Runes getRunes(String region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized Map<String, RunePages> getRunes(String region, long ... summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerId);
         return new RunesParser(requestCreator.create().getResponseMessage()).get();

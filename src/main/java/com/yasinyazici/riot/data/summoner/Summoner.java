@@ -1,14 +1,20 @@
 package com.yasinyazici.riot.data.summoner;
 
 import com.yasinyazici.riot.LeagueAPI;
+import com.yasinyazici.riot.data.exceptions.DataException;
+import com.yasinyazici.riot.data.exceptions.ReplyException;
+import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
-import com.yasinyazici.riot.data.summoner.runes.Runes;
+import com.yasinyazici.riot.data.summoner.runes.RunePages;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
+
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by Yasin on 08.12.2016
@@ -32,7 +38,7 @@ public class Summoner extends LeagueAPI {
         return new ChampionMasteryParser(requestCreator.create().getResponseMessage()).get();
     }
 
-    public Runes getRunes() throws Exception {
+    public Map<String, RunePages> getRunes() throws DataException, WrongRequestFormatException, ReplyException, IOException {
         requestCreator.getRequestProperty().setRequestType(ApiRequestType.GET_SUMMONER_RUNES_BY_ID);
         requestCreator.getRequestProperty().setParameters(region, summonerProperties.getId());
         return new RunesParser(requestCreator.create().getResponseMessage()).get();

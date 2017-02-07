@@ -1,5 +1,9 @@
 package com.yasinyazici.riot.data.summoner.runes;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by Yasin on 08.12.2016.
  */
@@ -11,7 +15,7 @@ public class RunePage {
 
     private boolean current;
 
-    private Rune[] slots;
+    private List<Rune> slots;
 
     // Marks: RuneData slot 1 - 9
 
@@ -25,7 +29,7 @@ public class RunePage {
         this.id = id;
         this.name = name;
         this.current = current;
-        this.slots = slots;
+        this.slots = Arrays.asList(slots);
     }
 
     public long getId() {
@@ -44,11 +48,11 @@ public class RunePage {
             if(slots == null) {
                 System.out.println("Slots is null, no runes existing");
             }
-        return slots[index];
+        return slots.get(index);
     }
-    public Rune[] getSlots() {
+    public List<Rune> getSlots() {
         if(slots == null) {
-            return new Rune[] {}; //Empty
+            return Collections.emptyList();
         }
         return slots;
     }
