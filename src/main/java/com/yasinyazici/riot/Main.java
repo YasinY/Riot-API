@@ -24,7 +24,7 @@ public class Main {
         LeagueAPI leagueAPI = new LeagueAPI();
         Summoner summoner = leagueAPI.getSummoner("euw", "jungle ís life");
         long id = summoner.getSummonerProperties().getId();
-        Map<String, RunePages> runePages = summoner.getRunes();
+
 
     }
 }

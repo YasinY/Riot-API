@@ -16,7 +16,6 @@ public class RunesParser extends JsonDataParser<Map<String, RunePages>> {
 
     public RunesParser(String json) {
         super(json);
-        System.out.println(json);
     }
 
     @Override

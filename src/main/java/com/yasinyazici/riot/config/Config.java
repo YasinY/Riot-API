@@ -9,7 +9,7 @@ import java.io.File;
  */
 public class Config {
 
-    public static APIKey API_KEY = new APIKey("RGAPI-efb86cac-af5b-44cb-908b-826e53a52cd9");
+    public static APIKey API_KEY = new APIKey("RGAPI-01f40e72-5f98-48fd-a724-a786b4eea87e");
 
     public static String PROJECT_ROOT_DIR = System.getProperty("user.dir");
 
@@ -18,5 +18,7 @@ public class Config {
     public static File MASTERIES = new File(RESOURCES + "/masteries.json");
 
     public static File RUNES = new File(RESOURCES + "/runes.json");
+
+    public static File CHAMPION_DATA = new File(RESOURCES + "/champion_data.json");
 
 }

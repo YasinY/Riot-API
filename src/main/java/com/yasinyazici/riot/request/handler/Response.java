@@ -14,7 +14,7 @@ public enum Response {
     UNSUPPORTED_MEDIA_TYPE(415, "Unsupported param"),
     RATE_LIMIT_EXCEEDED(429, "Rate limit exceeded"),
     INTERNAL_SERVER_ERROR(500, "Internal server errors"),
-    SERVICE_UNAVAILABLE(503, "Service unavailable"),
+    SERVICE_UNAVAILABLE(503, "Service Unavailable - Connection retries limit exceeded"),
     OK(200, "OK"),
     CHAMPION_NOT_FOUND(204, "Champ mastery not found"),
     NONE(-1, "No connection established");
