@@ -2,7 +2,7 @@ package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
 import com.yasinyazici.riot.parsers.JsonDataParser;
-import com.yasinyazici.riot.data.activegame.CurrentGameInfo;
+import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
 
 import java.lang.reflect.Type;
 
@@ -14,6 +14,7 @@ import java.lang.reflect.Type;
 public class CurrentGameInfoParser extends JsonDataParser<CurrentGameInfo> {
     public CurrentGameInfoParser(String json) {
         super(json);
+        System.out.println(json);
     }
 
     @Override
@@ -23,6 +24,7 @@ public class CurrentGameInfoParser extends JsonDataParser<CurrentGameInfo> {
 
     @Override
     protected Type getType() {
-        return new TypeToken<CurrentGameInfo>() {}.getType();
+        return new TypeToken<CurrentGameInfo>() {
+        }.getType();
     }
 }

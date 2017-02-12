@@ -1,17 +1,14 @@
 package com.yasinyazici.riot;
 
 import com.yasinyazici.riot.data.exceptions.DataException;
+import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
-import com.yasinyazici.riot.data.masteries.MasteryData;
+import com.yasinyazici.riot.data.game.Season;
+import com.yasinyazici.riot.data.staticdata.Region;
 import com.yasinyazici.riot.data.summoner.Summoner;
-import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
-import com.yasinyazici.riot.data.summoner.runes.Rune;
-import com.yasinyazici.riot.data.summoner.runes.RunePages;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Yasin on 17.01.2017
@@ -20,10 +17,12 @@ import java.util.Map;
  */
 public class Main {
 
-    public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException {
+    public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException, PropertyNotFound {
         LeagueAPI leagueAPI = new LeagueAPI();
-        Summoner summoner = leagueAPI.getSummoner("euw", "jungle ís life");
-        long id = summoner.getSummonerProperties().getId();
+        Summoner summoner = leagueAPI.getSummoner(Region.EUW, "TcG Asuka Ninja");
+        summoner.getChampionStatsRanked(Season.SEASON_6);
+        System.out.println("TEST");
+
 
 
     }
