@@ -43,7 +43,7 @@ public class StaticResources {
         return runeDataMap.values().stream().filter(p -> p.getId() == runeId).findFirst().orElse(null);
     }
 
-    public ChampionImage getChampionData(int championId) {
+    public ChampionImage getChampionData(long championId) {
         return championDataMap.values().stream().filter(p -> p.getId() == championId).findFirst().orElse(null);
     }
 

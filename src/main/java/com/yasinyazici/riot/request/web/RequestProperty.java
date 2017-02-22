@@ -17,7 +17,7 @@ public class RequestProperty {
      * @param requestType   The type of request set by the {@link Enum<  ApiRequestType  >} to perform
      * @param parameters    Additional parameters which must equal the format of {@link ApiRequestType} given.
      */
-    public RequestProperty(RequestType requestType, String ... parameters) {
+    public RequestProperty(RequestType requestType, Object ... parameters) {
         if(requestType == null || parameters == null) {
             return;
         }

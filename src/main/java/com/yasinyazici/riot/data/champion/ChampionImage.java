@@ -10,7 +10,7 @@ import com.yasinyazici.riot.data.champion.impl.ChampionImageData;
  */
 public class ChampionImage {
 
-    private final int id;
+    private final long id;
 
     private final String title;
 
@@ -21,7 +21,7 @@ public class ChampionImage {
     @SerializedName("image")
     private final ChampionImageData championImageData;
 
-    public ChampionImage(int id, String title, String name, String key, ChampionImageData championImageData) {
+    public ChampionImage(long id, String title, String name, String key, ChampionImageData championImageData) {
         this.id = id;
         this.title = title;
         this.name = name;
@@ -29,7 +29,7 @@ public class ChampionImage {
         this.championImageData = championImageData;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
