@@ -124,10 +124,13 @@ public class LeagueAPI {
         return new RunesParser(requestCreator.create().getResponseMessage()).get();
     }
 
+    public synchronized ChampionImage getChampionData(int championId) {
+        return staticResources.getChampionData(championId);
+    }
     public synchronized MasteryData getMasteryData(int masteryId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return staticResources.getMasteryData(masteryId);
     }
-    public synchronized RuneData getRune(int runeId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized RuneData getRuneData(int runeId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return staticResources.getRuneData(runeId);
     }
 

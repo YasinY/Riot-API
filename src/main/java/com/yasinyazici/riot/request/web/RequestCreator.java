@@ -35,6 +35,7 @@ public class RequestCreator {
      *
      * @return requestProperty The instance of RequestProperty to return
      * @link RequestProperty contains properties essential for requests to make
+     *
      */
     public RequestProperty getRequestProperty() {
         return requestProperty;
