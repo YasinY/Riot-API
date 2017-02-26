@@ -1,20 +1,19 @@
 package com.yasinyazici.riot.data.summoner;
 
-import com.yasinyazici.riot.LeagueAPI;
+import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
 import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
-import com.yasinyazici.riot.parsers.impl.*;
-import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.game.Season;
+import com.yasinyazici.riot.data.staticdata.Region;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 import com.yasinyazici.riot.data.summoner.runes.RunePages;
+import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
-import com.yasinyazici.riot.data.staticdata.Region;
 import com.yasinyazici.riot.request.web.RequestCreator;
 import com.yasinyazici.riot.request.web.RequestProperty;
 

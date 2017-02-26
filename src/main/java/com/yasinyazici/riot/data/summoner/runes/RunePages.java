@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Yasin on 08.12.2016.
+ * Created by Yasin on 08.12.2016
+ * E-mail: yasin_programmer@hotmail.com
+ * Github: YasinY
  */
 public class RunePages {
 

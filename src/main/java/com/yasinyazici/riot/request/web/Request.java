@@ -39,7 +39,7 @@ public class Request {
         int responseCode = connection.getResponseCode();
         if(responseCode != 200) {
             Response response = Response.verifyResponse(responseCode);
-            System.out.println("OH no! " + requestLink);
+            System.out.println("Throwing exception! " + requestLink);
             throw new ReplyException(response.getMessage(), responseCode);
         }
         requestContent = new RequestContent(connection.getInputStream());

@@ -15,6 +15,10 @@ import java.io.IOException;
  * @apiNote See {@link RequestFormat} as reference of how the usage of parameters corresponding to {@link ApiRequestType} should be
  */
 public class RequestCreator {
+
+    public static RequestReply createDebugRequest(RequestProperty requestProperty) throws IOException, WrongRequestFormatException, DataException, ReplyException {
+        return new Request(new RequestLink(requestProperty)).makeRequest();
+    }
     public static String create(RequestProperty requestProperty) throws IOException, WrongRequestFormatException, DataException, ReplyException {
         return new Request(new RequestLink(requestProperty)).makeRequest().getResponseMessage();
     }
