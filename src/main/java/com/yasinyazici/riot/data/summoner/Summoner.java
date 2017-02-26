@@ -48,7 +48,7 @@ public class Summoner {
         this.revisionDate = revisionDate;
     }
 
-    public ChampionMastery getChampionMastery(int championId) throws Exception {
+    public ChampionMastery getChampionMastery(int championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new ChampionMasteryParser(RequestCreator.create(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), id, championId))).get();
     }
 
