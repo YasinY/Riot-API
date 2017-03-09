@@ -61,23 +61,25 @@ public class ChampionStats {
         return totalDamageDealt;
     }
 
-    public double getWinrate() {
+    public double getWinRate() {
         return Math.floor(100.0 * (totalSessionsPlayed - totalSessionsLost) / totalSessionsPlayed);
     }
-    public Double getAverageKDA() {
+
+    public double getAverageKDA() {
         return Math.floor(totalChampionKills + totalAssists) / (totalDeathsPerSession == 0 ? 1 : totalDeathsPerSession);
     }
+
     public double getAverageCreepScore() {
         return (totalMinionKills) / totalSessionsPlayed;
     }
 
     public String displayWinrate() {
-        return new DecimalFormat("##").format(getWinrate()) + "%";
+        return new DecimalFormat("##").format(getWinRate()) + "%";
     }
+
     public String displayAverageKDA() {
         return new DecimalFormat("##.##").format(getAverageKDA()) + ":1";
     }
-
 
     public String displayAverageCreepScore() {
         return new DecimalFormat("##").format(getAverageCreepScore());

@@ -7,8 +7,10 @@ import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
+import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.staticdata.Region;
 import com.yasinyazici.riot.data.summoner.Summoner;
+import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 
 import java.io.IOException;
 
@@ -21,18 +23,18 @@ public class Main {
 
     public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException, PropertyNotFound {
         LeagueAPI leagueAPI = new LeagueAPI();
-        Summoner summoner = leagueAPI.getSummoner(Region.EUW, "noragecritpls");
-        ChampionMastery championMastery = summoner.getChampionMastery(245);
-        summoner.getActiveGame().getParticipants().stream().forEach(p -> {
-            try {
-                ChampionImage championImage = leagueAPI.getChampionData(p.getChampionId());
-                System.out.println("Summoner: " + p.getSummonerName() + ", Champion played: " + championImage.getName() + "");
-                System.out.println(leagueAPI.getChampionMastery(summoner.getRegion(), p.getSummonerId(), p.getChampionId()).getChampionPoints());
-                Thread.sleep(3000);
-            } catch (PropertyNotFound | DataException | WrongRequestFormatException | ReplyException | IOException | InterruptedException propertyNotFound) {
-                propertyNotFound.printStackTrace();
-            }
+        Summoner summoner = leagueAPI.getSummoner(Region.EUW, "montanabiack88");
+        ChampionStatsRanked championStatsRanked = leagueAPI.getChampionStatsRanked(Region.EUW, summoner.getId(), Season.SEASON_6);
+        championStatsRanked.getChampionStatsSummary().stream().forEach(championStatsSummary ->  {
+            ChampionImage championImage = leagueAPI.getChampionData(championStatsSummary.getId());
+            System.out.println("Champion: **" + championImage.getName() + "**");
+            System.out.println("WR: " + championStatsSummary.getChampionStatsList().displayWinrate());
+            System.out.println("Average CS: " + championStatsSummary.getChampionStatsList().getAverageCreepScore());
+            System.out.println("Average KDA: " + championStatsSummary.getChampionStatsList().displayAverageKDA());
+            System.out.println("Total kills: " + championStatsSummary.getChampionStatsList().getTotalChampionKills());
+            System.out.println("Total sessions played: " + championStatsSummary.getChampionStatsList().getTotalSessionsPlayed());
         });
+
 
     }
 }
