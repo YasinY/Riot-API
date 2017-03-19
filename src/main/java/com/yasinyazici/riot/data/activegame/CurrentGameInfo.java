@@ -3,6 +3,7 @@ package com.yasinyazici.riot.data.activegame;
 import com.yasinyazici.riot.data.activegame.data.BannedChampion;
 import com.yasinyazici.riot.data.activegame.data.CurrentGameParticipant;
 import com.yasinyazici.riot.data.activegame.data.Observer;
+import com.yasinyazici.riot.data.exceptions.DataException;
 
 import java.util.List;
 
@@ -88,9 +89,9 @@ public class CurrentGameInfo {
         return participants;
     }
 
-    public BannedChampion getBannedChampion(int index) {
+    public BannedChampion getBannedChampion(int index) throws DataException {
         if(bannedChampions.size() == 0) {
-            System.out.println("No banned champions available");
+            throw new DataException("No banned champion available");
         }
         return bannedChampions.get(index);
     }

@@ -5,6 +5,7 @@ import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 
 import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,4 +31,5 @@ public class SummonerParser extends JsonDataParser<Map<String, Summoner>> {
     public Summoner getFirstEntry() {
         return transform().entrySet().iterator().next().getValue();
     }
+    
 }

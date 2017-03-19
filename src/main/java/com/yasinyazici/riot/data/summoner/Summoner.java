@@ -18,6 +18,7 @@ import com.yasinyazici.riot.request.web.RequestCreator;
 import com.yasinyazici.riot.request.web.RequestProperty;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,8 +60,8 @@ public class Summoner {
     public ChampionStatsRanked getChampionStatsRanked(Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new ChampionStatsRankedParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), id, season.getSeasonName()))).get();
     }
-    public LeagueEntry getFirstLeagueEntry() throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new LeagueEntryParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).getFirstLeagueEntry();
+    public Map<String, List<LeagueEntry>> getLeagueEntry() throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        return new LeagueEntryParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).get();
     }
 
     public synchronized CurrentGameInfo getActiveGame() throws PropertyNotFound, DataException, WrongRequestFormatException, ReplyException, IOException {

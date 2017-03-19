@@ -1,5 +1,7 @@
 package com.yasinyazici.riot.data.summoner.runes;
 
+import com.yasinyazici.riot.data.exceptions.DataException;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -44,9 +46,9 @@ public class RunePage {
         return current;
     }
 
-    public Rune getSlot(int index) {
+    public Rune getSlot(int index) throws DataException {
             if(slots == null) {
-                System.out.println("Slots is null, no runes existing");
+               throw new DataException("No rune availables");
             }
         return slots.get(index);
     }

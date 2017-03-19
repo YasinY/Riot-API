@@ -14,7 +14,6 @@ import java.lang.reflect.Type;
 public class CurrentGameInfoParser extends JsonDataParser<CurrentGameInfo> {
     public CurrentGameInfoParser(String json) {
         super(json);
-        System.out.println(json);
     }
 
     @Override

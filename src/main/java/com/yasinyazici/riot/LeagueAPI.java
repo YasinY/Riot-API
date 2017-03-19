@@ -28,7 +28,6 @@ import com.yasinyazici.riot.request.web.RequestProperty;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Created by Yasin on 17.12.2016
@@ -53,14 +52,27 @@ public class LeagueAPI {
     public synchronized List<ChampionMastery> getChampionMasteries(Region region, long summonerId) throws PropertyNotFound, DataException, WrongRequestFormatException, ReplyException, IOException {
        return new ChampionMasteriesParser(RequestCreator.create(new RequestProperty(RegionalRequestType.GET_ALL_CHAMPION_MASTERIES, region.getShortCode(), region.getPlatformId(), summonerId))).get();
     }
+
+    /**
+     *
+     * @param region
+     * @param summonerName
+     * @return
+     * @throws DataException
+     * @throws WrongRequestFormatException
+     * @throws ReplyException
+     * @throws IOException
+     */
     public synchronized Summoner getSummoner(Region region, String summonerName) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         Summoner summoner = new SummonerParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES, region.getShortCode(), summonerName))).getFirstEntry();
         summoner.setRegion(region);
         return summoner;
     }
 
-    public synchronized List<Summoner> getSummoners(Region region, String... summonerNames) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new SummonerParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES, region.getShortCode(), summonerNames))).get().entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
+    public synchronized Map<String, Summoner> getSummoners(Region region, String... summonerNames) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        Map<String, Summoner> summoners = new SummonerParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES, region.getShortCode(), summonerNames))).get();
+        summoners.entrySet().forEach(entry -> entry.getValue().setRegion(region));
+        return summoners;
     }
 
     public synchronized ChampionStats getChampionInfo(Region region, long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
