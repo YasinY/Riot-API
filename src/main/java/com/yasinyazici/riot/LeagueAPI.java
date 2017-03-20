@@ -64,6 +64,9 @@ public class LeagueAPI {
      * @throws IOException
      */
     public synchronized Summoner getSummoner(Region region, String summonerName) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        if(summonerName.length() == 0) {
+            throw new DataException("Summoner name can't be nothing");
+        }
         Summoner summoner = new SummonerParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES, region.getShortCode(), summonerName))).getFirstEntry();
         summoner.setRegion(region);
         return summoner;
