@@ -20,55 +20,47 @@ public class RequestLink {
 
     private RequestProperty requestProperty;
 
-    private String baseLink;
-    private final String link;
-    private final String[] neededVariables;
 
+    /**
+     * <p>Creates a new {@link RequestLink} instance</p>
+     * @param requestProperty the request property to assign the request to
+     * @throws WrongRequestFormatException TODO
+     * @throws MalformedURLException
+     */
     public RequestLink(RequestProperty requestProperty) throws WrongRequestFormatException, MalformedURLException {
         this.requestProperty = requestProperty;
-        this.baseLink = generateLink();
-        this.neededVariables = new RequestFormat(baseLink).getVariables(); //Generate link is the original url
-        this.link = replaceData();
     }
 
+    /**
+     * <p>Puts together the link so it's ready to get modified by the method {@link RequestLink#getModifiedLink()}</p>
+     *
+     * @return the link to modify
+     */
     private String generateLink() {
         RequestType requestType = requestProperty.getRequestType();
-        //System.out.println(requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getQueryParameter());
         return requestType.getStart() + requestType.getLink() + "?api_key=" + Config.API_KEY.getApiKey() + "&" + requestType.getQueryParameter();
     }
 
-    private String replaceData() throws WrongRequestFormatException {
-        String modifiedLink = this.baseLink;
+    /**
+     * <p>Modifies the link so it's ready to get used as request</p>
+     *
+     * @return a modified version of {@link #RequestLink(RequestProperty)#getModifiedLink()}
+     * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of placeholders identified
+     */
+    public String getModifiedLink() throws WrongRequestFormatException {
+        String modifiedLink = generateLink();
         String[] neededVariables = new RequestFormat(modifiedLink).getVariables(); // The variables needed
         Object[] givenVariables = requestProperty.getParameters();
-        //System.out.println("Needed variables : " + Arrays.toString(neededVariables) + ", given: " + Arrays.toString(givenVariables));
         int variablesLength = neededVariables.length;
         if (givenVariables.length != variablesLength) {
             throw new WrongRequestFormatException("The amount of parameters do not equal the amount needed.", neededVariables);
         }
-        //System.out.println("To be replaced : " + fullLink);
         for (int i = 0; i < variablesLength; i++) {
             String neededVariable = neededVariables[i];
             Object givenVariable = givenVariables[i];
             modifiedLink = modifiedLink.replace(neededVariable, givenVariable instanceof String[] ? String.join(",", Arrays.asList((String[]) givenVariable)) : String.valueOf(givenVariables[i])).replace(" ", "");
         }
-        //System.out.println("Replace data: " + fullLink);
         return modifiedLink;
     }
-    
-    private String formatDisplay(String[] prefix) {
-        return Arrays.toString(prefix).replace("%", "").replace("%%", "");
-    }
 
-    public final String getLink() {
-        return link;
-    }
-    public String[] getNeededVariables() {
-        return neededVariables;
-    }
-
-
-    public RequestProperty getRequestProperty() {
-        return requestProperty;
-    }
 }

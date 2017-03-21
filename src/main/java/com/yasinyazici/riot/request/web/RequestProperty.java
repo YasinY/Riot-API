@@ -11,19 +11,22 @@ public class RequestProperty {
     private RequestType requestType;
 
     private Object[] parameters;
+
     /**
      * <p>Creates a new {@link RequestProperty} instance</p>
      *
-     * @param requestType   The type of request set by the {@link Enum<  ApiRequestType  >} to perform
-     * @param parameters    Additional parameters which must equal the format of {@link ApiRequestType} given.
+     * @param requestType The type of request set by the Enumeration {@link ApiRequestType} to perform
+     * @param parameters  Additional parameters which must equal the format of {@link ApiRequestType} given.
+     * @see ApiRequestType
      */
-    public RequestProperty(RequestType requestType, Object ... parameters) {
-        if(requestType == null || parameters == null) {
+    public RequestProperty(RequestType requestType, Object... parameters) {
+        if (requestType == null || parameters == null) {
             return;
         }
         this.requestType = requestType;
         this.parameters = parameters;
     }
+
     /**
      * <p>Returning the request type given upon the creation of a new {@link RequestCreator} instance</p>
      *
@@ -43,21 +46,5 @@ public class RequestProperty {
      */
     public Object[] getParameters() {
         return parameters;
-    }
-
-    /**
-     * Sets the request type
-     * @param requestType The request type to set
-     */
-    public void setRequestType(RequestType requestType) {
-        this.requestType = requestType;
-    }
-
-    /**
-     * Sets the parameters
-     * @param parameters The parameters to set
-     */
-    public void setParameters(Object ... parameters) {
-        this.parameters = parameters;
     }
 }

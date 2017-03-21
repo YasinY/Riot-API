@@ -8,7 +8,10 @@ import com.yasinyazici.riot.request.types.impl.ApiRequestType;
  * Github: YasinY
  */
 public interface RequestType {
+
     String getLink();
+
+    String getStart();
 
     default Type getType() {
         return ApiRequestType.class.isAssignableFrom(this.getClass()) ? Type.API_CALL : Type.GLOBAL;
@@ -16,6 +19,4 @@ public interface RequestType {
     default String getQueryParameter() {
         return "";
     }
-
-    String getStart();
 }

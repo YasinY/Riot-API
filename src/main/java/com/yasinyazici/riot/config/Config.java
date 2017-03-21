@@ -11,14 +11,14 @@ public class Config {
 
     public static APIKey API_KEY = new APIKey("RGAPI-01f40e72-5f98-48fd-a724-a786b4eea87e");
 
-    public static String PROJECT_ROOT_DIR = System.getProperty("user.dir");
+    public static final String PROJECT_ROOT_DIR = Config.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 
-    public static String RESOURCES = PROJECT_ROOT_DIR + "/resources/";
+    public static final String RESOURCES = PROJECT_ROOT_DIR + "/resources/";
 
-    public static File MASTERIES = new File(RESOURCES + "/masteries.json");
+    public static final File MASTERIES = new File(RESOURCES + "masteries.json");
 
-    public static File RUNES = new File(RESOURCES + "/runes.json");
+    public static final File RUNES = new File(RESOURCES + "runes.json");
 
-    public static File CHAMPION_DATA = new File(RESOURCES + "/champion_data.json");
+    public static final File CHAMPION_DATA = new File(RESOURCES + "champion_data.json");
 
 }

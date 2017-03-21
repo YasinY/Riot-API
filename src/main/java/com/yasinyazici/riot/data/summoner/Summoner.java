@@ -10,7 +10,7 @@ import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.staticdata.Region;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
-import com.yasinyazici.riot.data.summoner.runes.RunePages;
+import com.yasinyazici.riot.data.summoner.runes.Runes;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
@@ -50,22 +50,22 @@ public class Summoner {
     }
 
     public ChampionMastery getChampionMastery(int championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionMasteryParser(RequestCreator.create(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), id, championId))).get();
+        return new ChampionMasteryParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), id, championId))).get();
     }
 
-    public Map<String, RunePages> getRunes() throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new RunesParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), id))).get();
+    public Map<String, Runes> getRunes() throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        return new RunesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), id))).get();
     }
 
     public ChampionStatsRanked getChampionStatsRanked(Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionStatsRankedParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), id, season.getSeasonName()))).get();
+        return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), id, season.getSeasonName()))).get();
     }
     public Map<String, List<LeagueEntry>> getLeagueEntry() throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new LeagueEntryParser(RequestCreator.create(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).get();
+        return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).get();
     }
 
     public synchronized CurrentGameInfo getActiveGame() throws PropertyNotFound, DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new CurrentGameInfoParser(RequestCreator.create(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), id))).get();
+        return new CurrentGameInfoParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), id))).get();
     }
 
 

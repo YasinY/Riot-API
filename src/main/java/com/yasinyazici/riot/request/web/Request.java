@@ -3,6 +3,7 @@ package com.yasinyazici.riot.request.web;
 import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
+import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.request.handler.Response;
 
 import java.io.IOException;
@@ -17,39 +18,40 @@ import java.net.URL;
  */
 public class Request {
 
-    private String requestLink;
-
-    private RequestContent requestContent;
+    private RequestLink requestLink;
 
     /**
      * <p>Creates a new {@link Request} instance</p>
      *
-     * @param requestLink The url to connect to
+     * @param requestLink the url to connect to
      */
-    Request(RequestLink requestLink) throws MalformedURLException {
+    public Request(RequestLink requestLink) {
         if (requestLink == null) {
             return;
         }
-        this.requestLink = requestLink.getLink();
+        this.requestLink = requestLink;
     }
 
-    RequestReply makeRequest() throws IOException, ReplyException, DataException {
-        HttpURLConnection connection = (HttpURLConnection) new URL(requestLink).openConnection();
-        //System.out.println(connection.getHeaderField(0));
+    /**
+     * Establishes a connection by using a String used as link modified by {@link RequestLink#getModifiedLink()} and reacts corresponding to the response code
+     * @return a new {@link RequestReply} representing the reply of the connection
+     * @throws IOException TODO here
+     * @throws ReplyException
+     * @throws DataException
+     * @throws WrongRequestFormatException
+     */
+    public RequestReply makeRequest() throws IOException, ReplyException, DataException, WrongRequestFormatException {
+        HttpURLConnection connection = (HttpURLConnection) new URL(requestLink.getModifiedLink()).openConnection();
         int responseCode = connection.getResponseCode();
         if(responseCode != 200) {
             Response response = Response.verifyResponse(responseCode);
             throw new ReplyException(response.getMessage(), responseCode);
         }
-        requestContent = new RequestContent(connection.getInputStream());
-        String content = requestContent.getContent();
+        String content = new RequestContent(connection.getInputStream()).getContent();
         return new RequestReply(responseCode, content);
     }
 
-    public RequestContent getRequestContent() throws PropertyNotFound {
-        if (requestContent == null) {
-            throw new PropertyNotFound("Request content could not be grabbed");
-        }
-        return requestContent;
+    public RequestLink getRequestLink() {
+        return requestLink;
     }
 }

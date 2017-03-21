@@ -10,13 +10,13 @@ import java.util.List;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class RunePages {
+public class Runes {
 
     private long summonerId;
     @SerializedName("pages")
     private List<RunePage> runePages; // 0 - 19  (20 pages)
 
-    public RunePages(long summonerId, RunePage ... pages) {
+    public Runes(long summonerId, RunePage ... pages) {
         if(summonerId == 0 || pages == null) {
             return;
         }

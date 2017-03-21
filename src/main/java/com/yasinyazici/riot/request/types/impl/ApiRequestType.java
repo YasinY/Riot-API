@@ -5,7 +5,6 @@ import com.yasinyazici.riot.request.types.Type;
 
 /**
  * Created by Yasin on 10/02/2016.
- * //TODO MAKE %% TAGS DECLARE THAT MULTIPLE SUMMONERIDS/SUMMONERNAMES CAN BE GIVEN
  * REQUESTS for https://www.%region%.pvp.net/api/lol
  */
 public enum ApiRequestType implements RequestType {

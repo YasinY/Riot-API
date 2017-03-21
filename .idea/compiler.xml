@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Riot API Client" />
+        <module name="end-riot-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Riot API Client" target="1.8" />
+      <module name="end-riot-client" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

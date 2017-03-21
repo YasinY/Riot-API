@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Yasin on 08.12.2016.
  * TODO: Support multiple summoners in a row
  */
-public class SummonerPropertiesParser extends JsonDataParser<Map<String, SummonerProperties>> {
+public class ummonerPropertiesParser extends JsonDataParser<Map<String, SummonerProperties>> {
 
     public SummonerPropertiesParser(String json) {
         super(json);
