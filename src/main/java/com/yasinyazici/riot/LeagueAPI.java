@@ -8,6 +8,7 @@ import com.yasinyazici.riot.data.masteries.MasteryData;
 import com.yasinyazici.riot.data.runes.RuneData;
 import com.yasinyazici.riot.data.staticdata.StaticResources;
 import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
+import com.yasinyazici.riot.data.summoner.ranked.league.QueueType;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
 import com.yasinyazici.riot.data.champion.ChampionStats;
@@ -100,6 +101,9 @@ public class LeagueAPI {
     }
     public synchronized Map<String, List<LeagueEntry>> getLeagueEntries(Region region, long  summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), summonerId))).get();
+    }
+    public synchronized LeagueEntry getLeagueEntry(Region region, long summonerId, QueueType queueType) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), summonerId))).getLeagueEntryByQueueType(queueType);
     }
     public synchronized LeagueEntry getLeagueEntry(Region region, long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), summonerId))).getFirstLeagueEntry();

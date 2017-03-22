@@ -30,9 +30,9 @@ public class StaticResources {
    public StaticResources() {
        Gson gson = new Gson();
        try {
-           masteryDataMap = gson.fromJson(Files.toString(Config.MASTERIES, Charsets.UTF_8), new TypeToken<Map<Integer, MasteryData>>() {}.getType());
-           runeDataMap = gson.fromJson(Files.toString(Config.RUNES, Charsets.UTF_8), new TypeToken<Map<Integer, RuneData>>(){}.getType());
-           championDataMap = gson.fromJson(Files.toString(Config.CHAMPION_DATA, Charsets.UTF_8), new TypeToken<Map<String, ChampionImage>>(){}.getType());
+           masteryDataMap = gson.fromJson(new InputStreamReader(Config.MASTERIES), new TypeToken<Map<Integer, MasteryData>>() {}.getType());
+           runeDataMap = gson.fromJson(new InputStreamReader(Config.RUNES), new TypeToken<Map<Integer, RuneData>>(){}.getType());
+           championDataMap = gson.fromJson(new InputStreamReader(Config.CHAMPION_DATA), new TypeToken<Map<String, ChampionImage>>(){}.getType());
        } catch(Exception e) {
            e.printStackTrace();
        }
