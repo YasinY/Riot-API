@@ -8,10 +8,11 @@ import com.yasinyazici.riot.data.masteries.MasteryData;
 import com.yasinyazici.riot.data.runes.RuneData;
 import com.yasinyazici.riot.data.staticdata.StaticResources;
 import com.yasinyazici.riot.data.summoner.masteries.MasteryPages;
+import com.yasinyazici.riot.data.summoner.ranked.ChampionStats;
 import com.yasinyazici.riot.data.summoner.ranked.league.QueueType;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
-import com.yasinyazici.riot.data.champion.ChampionStats;
+import com.yasinyazici.riot.data.champion.ChampionStatsStatic;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.game.Season;
@@ -80,7 +81,7 @@ public class LeagueAPI {
         return summoners;
     }
 
-    public synchronized ChampionStats getChampionStats(Region region, long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized ChampionStatsStatic getChampionStats(Region region, long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new ChampionInfoParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_CHAMPION_INFO_BY_CHAMPION_ID, region.getShortCode(), championId))).get();
     }
 
@@ -98,6 +99,9 @@ public class LeagueAPI {
 
     public synchronized ChampionStatsRanked getChampionStatsRanked(Region region, long summonerId, Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
        return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), summonerId, season.getSeasonName()))).get();
+    }
+    public synchronized ChampionStats getChampionStatsRanked(Region region, long summonerId, long championId, Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+        return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), summonerId, season.getSeasonName()))).getStatsForChampion(championId);
     }
     public synchronized Map<String, List<LeagueEntry>> getLeagueEntries(Region region, long  summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), summonerId))).get();

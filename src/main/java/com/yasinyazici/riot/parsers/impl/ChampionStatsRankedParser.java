@@ -1,6 +1,8 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.data.summoner.ranked.ChampionStats;
+import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsSummary;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 
@@ -24,5 +26,14 @@ public class ChampionStatsRankedParser extends JsonDataParser<ChampionStatsRanke
     @Override
     protected Type getType() {
         return new TypeToken<ChampionStatsRanked>(){}.getType();
+    }
+
+    public ChampionStats getStatsForChampion(long championId) {
+        for (ChampionStatsSummary championStatsSummary : transform().getChampionStatsSummary()) {
+            if(championId == championStatsSummary.getId()) {
+                return championStatsSummary.getChampionStats();
+            }
+        }
+        return null;
     }
 }

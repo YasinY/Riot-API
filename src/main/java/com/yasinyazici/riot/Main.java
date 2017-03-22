@@ -5,8 +5,10 @@ import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
+import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.staticdata.Region;
 import com.yasinyazici.riot.data.summoner.Summoner;
+import com.yasinyazici.riot.data.summoner.ranked.ChampionStats;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 import com.yasinyazici.riot.data.summoner.ranked.league.QueueType;
 
@@ -27,8 +29,11 @@ public class Main {
     public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException, PropertyNotFound, InterruptedException, URISyntaxException {
         LeagueAPI leagueAPI = new LeagueAPI();
         Summoner summoner = leagueAPI.getSummoner(Region.EUW, "jungle ís life");
-        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry(Region.EUW, summoner.getId(), QueueType.RANKED_FLEX_SR);
+        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry(Region.EUW, summoner.getId(), QueueType.RANKED_SOLO_5x5);
+        System.out.println(leagueEntry.getEntries().size());
         System.out.println(leagueEntry.getTier());
+        ChampionStats championStats = leagueAPI.getChampionStatsRanked(Region.EUW, summoner.getId(), 88888, Season.SEASON_7);
+        System.out.println(championStats.getAverageCreepScore());
 //        Map<String, Summoner> summonerList = leagueAPI.getSummoners(Region.EUW, "jungle ís life", "irelia is life", "PurPurr");
 //        summonerList.forEach((name, summoner) -> {
 //            try {

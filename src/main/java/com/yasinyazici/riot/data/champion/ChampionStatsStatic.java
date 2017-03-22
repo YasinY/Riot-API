@@ -8,7 +8,7 @@ import com.yasinyazici.riot.data.champion.impl.ChampionData;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class ChampionStats {
+public class ChampionStatsStatic {
 
     private final int id;
 
@@ -21,7 +21,7 @@ public class ChampionStats {
     @SerializedName("info")
     private final ChampionData championData;
 
-    public ChampionStats(int id, String title, String name, String key, ChampionData championData) {
+    public ChampionStatsStatic(int id, String title, String name, String key, ChampionData championData) {
         this.id = id;
         this.title = title;
         this.name = name;

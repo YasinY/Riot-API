@@ -20,7 +20,7 @@ public class ChampionStatsSummary {
         return id;
     }
 
-    public ChampionStats getChampionStatsList() {
+    public ChampionStats getChampionStats() {
         return stats;
     }
 }
