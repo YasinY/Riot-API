@@ -38,7 +38,7 @@ import java.util.Map;
  */
 public class LeagueAPI {
 
-    private StaticResources staticResources = new StaticResources(); //TODO SUMMONER CHAMPION LOCAL RESOURCE ACCESS ~~~
+    private StaticResources staticResources = new StaticResources();
 
     public synchronized String[] getGameVersions(Region region) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new GameVersionParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_GAME_VERSIONS, region.getShortCode()))).get();
@@ -55,17 +55,6 @@ public class LeagueAPI {
        return new ChampionMasteriesParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_ALL_CHAMPION_MASTERIES, region.getShortCode(), region.getPlatformId(), summonerId))).get();
     }
 
-
-    /**
-     *
-     * @param region
-     * @param summonerName
-     * @return
-     * @throws DataException
-     * @throws WrongRequestFormatException
-     * @throws ReplyException
-     * @throws IOException
-     */
     public synchronized Summoner getSummoner(Region region, String summonerName) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         if(summonerName.length() == 0) {
             throw new DataException("Summoner name can't be nothing");

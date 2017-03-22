@@ -1,16 +1,12 @@
 package com.yasinyazici.riot.data.staticdata;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yasinyazici.riot.config.Config;
 import com.yasinyazici.riot.data.champion.ChampionImage;
 import com.yasinyazici.riot.data.masteries.MasteryData;
 import com.yasinyazici.riot.data.runes.RuneData;
-import com.yasinyazici.riot.data.summoner.runes.Rune;
 
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Map;
 
