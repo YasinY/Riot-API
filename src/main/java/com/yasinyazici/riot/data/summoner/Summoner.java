@@ -30,11 +30,11 @@ public class Summoner {
 
     private Region region;
 
-    private final int id;
+    private final long id;
 
     private final String name;
 
-    private final int profileIconId;
+    private final long profileIconId;
 
     private final int summonerLevel;
 
@@ -73,7 +73,7 @@ public class Summoner {
         return region;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -81,7 +81,7 @@ public class Summoner {
         return name;
     }
 
-    public int getProfileIconId() {
+    public long getProfileIconId() {
         return profileIconId;
     }
 
