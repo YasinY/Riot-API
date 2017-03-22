@@ -1,6 +1,10 @@
 package com.yasinyazici.riot;
 
 import com.yasinyazici.riot.config.Config;
+import com.yasinyazici.riot.data.champion.ChampionImage;
+import com.yasinyazici.riot.data.championmastery.ChampionMastery;
+import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
+import com.yasinyazici.riot.data.currentgame.data.CurrentGameParticipant;
 import com.yasinyazici.riot.data.exceptions.DataException;
 import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
@@ -28,29 +32,29 @@ public class Main {
 
     public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException, PropertyNotFound, InterruptedException, URISyntaxException {
         LeagueAPI leagueAPI = new LeagueAPI();
-        Summoner summoner = leagueAPI.getSummoner(Region.EUW, "jungle ís life");
-        LeagueEntry leagueEntry = leagueAPI.getLeagueEntry(Region.EUW, summoner.getId(), QueueType.RANKED_SOLO_5x5);
-        System.out.println(leagueEntry.getEntries().size());
-        System.out.println(leagueEntry.getTier());
-        ChampionStats championStats = leagueAPI.getChampionStatsRanked(Region.EUW, summoner.getId(), 88888, Season.SEASON_7);
-        System.out.println(championStats.getAverageCreepScore());
-//        Map<String, Summoner> summonerList = leagueAPI.getSummoners(Region.EUW, "jungle ís life", "irelia is life", "PurPurr");
-//        summonerList.forEach((name, summoner) -> {
-//            try {
-//                System.out.println(summoner.getName());
-//                summoner.getLeagueEntry().forEach((x,y ) -> {
-//                    y.forEach(leagueEntry -> System.out.println(leagueEntry.getName()));
-//                });
-//            } catch (DataException e) {
-//                e.printStackTrace();
-//            } catch (WrongRequestFormatException e) {
-//                e.printStackTrace();
-//            } catch (ReplyException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        });
+        Region parsedRegion = Region.EUW;
+        Summoner summoner = leagueAPI.getSummoner(parsedRegion, "Azerlus");
+        CurrentGameInfo currentGameInfo = summoner.getActiveGame(); // 1 req
+        Map<String, Summoner> summoners = leagueAPI.getSummoners(Region.EUW, currentGameInfo.getParticipants().stream().filter(p -> p.getSummonerName()).collect());
+        for(Map.Entry<String, Summoner> entry = summoners.entrySet()) {
+            list.add(entry.getValue().getName()); // <---
+        }
+        for (CurrentGameParticipant currentGameParticipant : currentGameInfo.getParticipants()) {
+            LeagueEntry entry = leagueAPI.getLeagueEntry(parsedRegion, currentGameParticipant.getSummonerId(), QueueType.RANKED_SOLO_5x5); // 2 req
+            String rank = entry.getTier() + " " + entry.getEntries().get(0).getDivision();
+            long championId = currentGameParticipant.getChampionId();
+            if (championId != 0) {
+                ChampionImage championData = leagueAPI.getChampionData(championId);
+                System.out.println("Champion id: " + championId);
+                if (championData != null) {
+                    String imageUrl = leagueAPI.getImageUrl(parsedRegion, championId); // 3
+                    ChampionMastery championMastery = leagueAPI.getChampionMastery(parsedRegion, summoner.getId(), championId); // 4
+                    ChampionStats championStats = leagueAPI.getChampionStatsRanked(parsedRegion, summoner.getId(), championId, Season.SEASON_7); // 5
+                    System.out.println(rank);
+                    // ChampionData currentChampionPlayed = new ChampionData(championData.getName(), imageUrl, championMastery.getChampionPoints(), championMastery.getChampionLevel(), championStats.getAverageCreepScore(), championStats.displayAverageKDA(), championStats.displayWinrate(), championStats.getTotalSessionsPlayed());
+                    //participants.add(new Participant(currentGameParticipant, rank, null));
+                }
+            }
+        }
     }
 }

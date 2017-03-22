@@ -29,6 +29,7 @@ public class RequestCreator {
         return new Request(new RequestLink(requestProperty)).makeRequest();
     }
     public static String createRequest(RequestProperty requestProperty) throws IOException, WrongRequestFormatException, DataException, ReplyException {
+        System.out.println("Creating request " + requestProperty.getRequestType().getLink());
         return new Request(new RequestLink(requestProperty)).makeRequest().getResponseMessage();
     }
 }
