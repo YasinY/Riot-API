@@ -3,7 +3,7 @@ package com.yasinyazici.riot.data.summoner;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
 import com.yasinyazici.riot.data.exceptions.DataException;
-import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
+import com.yasinyazici.riot.data.exceptions.PropertyNotFoundException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.data.game.Season;
@@ -64,7 +64,7 @@ public class Summoner {
         return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).get();
     }
 
-    public synchronized CurrentGameInfo getActiveGame() throws PropertyNotFound, DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized CurrentGameInfo getActiveGame() throws PropertyNotFoundException, DataException, WrongRequestFormatException, ReplyException, IOException {
         return new CurrentGameInfoParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), id))).get();
     }
 

@@ -2,6 +2,8 @@ package com.yasinyazici.riot.config;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * Created by Yasin on 07.12.2016
@@ -19,5 +21,7 @@ public class Config {
     public static final InputStream RUNES = ClassLoader.getSystemClassLoader().getResourceAsStream("runes.json");
 
     public static final InputStream CHAMPION_DATA =  ClassLoader.getSystemClassLoader().getResourceAsStream("champion_data.json");
+
+    public static final URL VERSION_FILE = ClassLoader.getSystemClassLoader().getResource("game_version.txt");
 
 }

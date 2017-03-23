@@ -5,7 +5,7 @@ package com.yasinyazici.riot.data.exceptions;
  * E-mail: yasin_programmer@hotmail.com
  * Github: YasinY
  */
-public class PropertyNotFound extends Exception {
+public class PropertyNotFoundException extends Exception {
 
-    public PropertyNotFound(String message) {super(message);}
+    public PropertyNotFoundException(String message) {super(message);}
 }

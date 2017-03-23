@@ -1,14 +1,13 @@
 package com.yasinyazici.riot.request.web;
 
 import com.yasinyazici.riot.data.exceptions.DataException;
-import com.yasinyazici.riot.data.exceptions.PropertyNotFound;
+import com.yasinyazici.riot.data.exceptions.PropertyNotFoundException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.request.handler.Response;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -40,15 +39,17 @@ public class Request {
      * @throws DataException
      * @throws WrongRequestFormatException
      */
-    public RequestReply makeRequest() throws IOException, ReplyException, DataException, WrongRequestFormatException {
+    public RequestReply makeRequest() throws IOException, ReplyException, DataException, WrongRequestFormatException, PropertyNotFoundException {
         HttpURLConnection connection = (HttpURLConnection) new URL(requestLink.getModifiedLink()).openConnection();
         int responseCode = connection.getResponseCode();
-        if(responseCode != 200) {
-            Response response = Response.verifyResponse(responseCode);
+        Response response = Response.verifyResponse(responseCode);
+        if(responseCode == Response.CHAMPION_NOT_FOUND.getResponseCode()) {
+            throw new PropertyNotFoundException("Champion mastery not found");
+        }
+        if(responseCode != Response.OK.getResponseCode()) {
             throw new ReplyException(response.getMessage(), responseCode);
         }
-        String content = new RequestContent(connection.getInputStream()).getContent();
-        return new RequestReply(responseCode, content);
+        return new RequestReply(responseCode, new RequestContent(connection.getInputStream()).getContent());
     }
 
     public RequestLink getRequestLink() {
