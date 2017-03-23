@@ -1,9 +1,8 @@
 package com.yasinyazici.riot.data.game;
 
 /**
- * Created by Yasin on 21.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Displays all the Seasons league of legends has so far (or offers data about)</p>
+ * @author Yasin
  */
 public enum Season {
     SEASON_7("SEASON2017"),
@@ -14,12 +13,23 @@ public enum Season {
     SEASON_2("SEASON2012"),
     SEASON_1("SEASON2011");
 
+    /**
+     * Represents the season parameter used for filtering for the official REST-API of Riot
+     */
     private String seasonName;
 
+    /**
+     * Creates a new {@link Season} element
+     * @param seasonName sets season name/parameter
+     */
     Season(String seasonName) {
         this.seasonName = seasonName;
     }
 
+    /**
+     * Gets the name of the season
+     * @return the season name
+     */
     public String getSeasonName() {
         return seasonName;
     }

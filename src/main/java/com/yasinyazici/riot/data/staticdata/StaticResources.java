@@ -11,41 +11,72 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 /**
- * Created by Yasin on 07.02.2017
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Offers static resources to the api (mainly to avoid redundant calls to the official REST-API of Riot</p>
+ *
+ * @author Yasin
  */
 public class StaticResources {
 
+    /**
+     * A map loaded up with mastery data upon construction of {@link StaticResources}
+     */
     private Map<Integer, MasteryData> masteryDataMap;
 
+    /**
+     * A map loaded with rune data upon construction of {@link StaticResources}
+     */
     private Map<Integer, RuneData> runeDataMap;
 
+    /**
+     * A map loaded with champion data upon construction of {@link StaticResources}
+     */
     private Map<String, ChampionImage> championDataMap;
 
-   public StaticResources() {
-       Gson gson = new Gson();
-       try {
-           masteryDataMap = gson.fromJson(new InputStreamReader(Config.MASTERIES), new TypeToken<Map<Integer, MasteryData>>() {}.getType());
-           runeDataMap = gson.fromJson(new InputStreamReader(Config.RUNES), new TypeToken<Map<Integer, RuneData>>(){}.getType());
-           championDataMap = gson.fromJson(new InputStreamReader(Config.CHAMPION_DATA), new TypeToken<Map<String, ChampionImage>>(){}.getType());
-       } catch(Exception e) {
-           e.printStackTrace();
-       }
-   }
+    /**
+     * Creates a new {@link StaticResources} instance
+     */
+    public StaticResources() {
+        Gson gson = new Gson();
+        try {
+            masteryDataMap = gson.fromJson(new InputStreamReader(Config.MASTERIES), new TypeToken<Map<Integer, MasteryData>>() {
+            }.getType());
+            runeDataMap = gson.fromJson(new InputStreamReader(Config.RUNES), new TypeToken<Map<Integer, RuneData>>() {
+            }.getType());
+            championDataMap = gson.fromJson(new InputStreamReader(Config.CHAMPION_DATA), new TypeToken<Map<String, ChampionImage>>() {
+            }.getType());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     * <p>Gets mastery data filtered by mastery id</p>
+     *
+     * @param masteryId the mastery id to retrieve locally
+     * @return a {@link MasteryData} element representing the mastery if found, otherwise returns null
+     */
     public MasteryData getMasteryData(int masteryId) {
         return masteryDataMap.values().stream().filter(p -> p.getId() == masteryId).findFirst().orElse(null);
     }
+
+    /**
+     * <p>Gets rune data filtered by rune id</p>
+     *
+     * @param runeId the rune id to retrieve locally
+     * @return a {@link RuneData} element representing the mastery if found, otherwise returns null
+     */
     public RuneData getRuneData(int runeId) {
         return runeDataMap.values().stream().filter(p -> p.getId() == runeId).findFirst().orElse(null);
     }
 
+    /**
+     * <p>Gets champion data filtered by champion id</p>
+     *
+     * @param championId the champion id to retrieve locally
+     * @return a {@link ChampionImage} element representing a Champion if found, otherwise returns null
+     */
     public ChampionImage getChampionData(long championId) {
         return championDataMap.values().stream().filter(p -> p.getId() == championId).findFirst().orElse(null);
     }
 
-    public Map<String, ChampionImage> getChampionDataMap() {
-        return championDataMap;
-    }
 }

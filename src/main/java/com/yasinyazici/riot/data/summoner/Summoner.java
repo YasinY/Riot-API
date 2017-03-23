@@ -3,14 +3,13 @@ package com.yasinyazici.riot.data.summoner;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
 import com.yasinyazici.riot.data.exceptions.DataException;
-import com.yasinyazici.riot.data.exceptions.PropertyNotFoundException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.data.game.Season;
 import com.yasinyazici.riot.data.staticdata.Region;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
-import com.yasinyazici.riot.data.summoner.runes.Runes;
+import com.yasinyazici.riot.data.summoner.runes.RunePages;
 import com.yasinyazici.riot.parsers.impl.*;
 import com.yasinyazici.riot.request.types.impl.ApiRequestType;
 import com.yasinyazici.riot.request.types.impl.RegionalRequestType;
@@ -53,7 +52,7 @@ public class Summoner {
         return new ChampionMasteryParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), id, championId))).get();
     }
 
-    public Map<String, Runes> getRunes() throws DataException, WrongRequestFormatException, ReplyException, IOException {
+    public Map<String, RunePages> getRunes() throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new RunesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), id))).get();
     }
 
@@ -64,7 +63,7 @@ public class Summoner {
         return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).get();
     }
 
-    public synchronized CurrentGameInfo getActiveGame() throws PropertyNotFoundException, DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized CurrentGameInfo getActiveGame() throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new CurrentGameInfoParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), id))).get();
     }
 

@@ -5,7 +5,6 @@ import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
 import com.yasinyazici.riot.data.currentgame.data.CurrentGameParticipant;
 import com.yasinyazici.riot.data.exceptions.DataException;
-import com.yasinyazici.riot.data.exceptions.PropertyNotFoundException;
 import com.yasinyazici.riot.data.exceptions.ReplyException;
 import com.yasinyazici.riot.data.exceptions.WrongRequestFormatException;
 import com.yasinyazici.riot.data.game.Season;
@@ -25,7 +24,7 @@ import java.net.URISyntaxException;
 
 public class Main {
 
-    public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException, PropertyNotFoundException, InterruptedException, URISyntaxException {
+    public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException, InterruptedException, URISyntaxException {
         LeagueAPI leagueAPI = new LeagueAPI(Region.EUW);
         Summoner summoner = leagueAPI.getSummoner( "Azerlus");
         CurrentGameInfo currentGameInfo = summoner.getActiveGame(); // First request

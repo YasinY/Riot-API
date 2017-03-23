@@ -4,9 +4,7 @@ import java.util.stream.Stream;
 
 /**
  * <p>This class is responsible for the identification of the location in which requests are being made</p>
- * @author Yasin on 08.02.2017
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * @author Yasin
  */
 public enum Region {
     EUW("EUW1"),
@@ -22,6 +20,9 @@ public enum Region {
     BR("BR1"),
     NONE("NONE");
 
+    /**
+     * Represents the platform id used to identify regions for specific requests
+     */
     private String platformId;
 
     /**

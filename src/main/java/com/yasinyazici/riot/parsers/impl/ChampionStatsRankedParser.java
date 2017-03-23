@@ -29,11 +29,6 @@ public class ChampionStatsRankedParser extends JsonDataParser<ChampionStatsRanke
     }
 
     public ChampionStats getStatsForChampion(long championId) {
-        for (ChampionStatsSummary championStatsSummary : transform().getChampionStatsSummary()) {
-            if(championId == championStatsSummary.getId()) {
-                return championStatsSummary.getChampionStats();
-            }
-        }
-        return null;
+        return transform().getChampionStatsSummary().stream().filter(championStatsSummary -> championId == championStatsSummary.getId()).findAny().orElse(null).getChampionStats();
     }
 }

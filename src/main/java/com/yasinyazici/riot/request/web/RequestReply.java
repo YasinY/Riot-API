@@ -1,9 +1,13 @@
 package com.yasinyazici.riot.request.web;
 
+import com.yasinyazici.riot.request.handler.Response;
+
 /**
- * Created by Yasin on 08.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Represents the actual reply of the REST-API offered by riot. <!-- --> The answer usually always consists of a response code, but not always the correct response message. <!-- -->
+ * see {@link Request#makeRequest()} as reference for further info</p>
+ *
+ * @author Yasin Yazici
+ * @see Request
  */
 public class RequestReply {
 
@@ -13,9 +17,10 @@ public class RequestReply {
 
     /**
      * Creates a new {@link RequestReply} instance
-     * @param responseCode the response code returning from the connection
+     *
+     * @param responseCode    the response code returning from the connection
      * @param responseMessage the response message returning from the connection
-     * @see com.yasinyazici.riot.request.handler.Response
+     * @see Response
      */
     public RequestReply(int responseCode, String responseMessage) {
         this.responseCode = responseCode;
@@ -24,6 +29,7 @@ public class RequestReply {
 
     /**
      * <p>Gets the response code</p>
+     *
      * @return responseCode the response code of the connection to return
      */
     public int getResponseCode() {
@@ -32,6 +38,7 @@ public class RequestReply {
 
     /**
      * <p>Gets the response message</p>
+     *
      * @return responseMessage the response message of the connection to return
      */
     public String getResponseMessage() {

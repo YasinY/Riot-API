@@ -1,8 +1,12 @@
 package com.yasinyazici.riot.data.exceptions;
 
 
+import com.yasinyazici.riot.request.web.Request;
+import com.yasinyazici.riot.request.web.RequestLink;
+
 /**
- * Created by Yasin on 18/02/2016.
+ * <p>Thrown when the parameters given do not equal the amount identified by the {@link RequestLink#getModifiedLink()}</p>
+ * @author Yasin
  */
 public class WrongRequestFormatException extends Exception {
 

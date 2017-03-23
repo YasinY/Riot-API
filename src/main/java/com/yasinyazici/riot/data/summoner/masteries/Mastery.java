@@ -7,19 +7,38 @@ package com.yasinyazici.riot.data.summoner.masteries;
  */
 public class Mastery {
 
-    private int id;
+    /**
+     * The id of the mastery
+     */
+    private long id;
 
+    /**
+     * The points on the rank it got assigned
+     */
     private int rank;
 
-    public Mastery(int id, int rank) {
+    /**
+     * Creates a new {@link com.yasinyazici.riot.data.currentgame.data.Mastery} instance
+     * @param id sets the mastery id
+     * @param rank sets the rank
+     */
+    public Mastery(long id, int rank) {
         this.id = id;
         this.rank = rank;
     }
 
-    public int getId() {
+    /**
+     * Gets the mastery id
+     * @return the mastery id
+     */
+    public long getId() {
         return id;
     }
 
+    /**
+     * Gets the rank
+     * @return the rank
+     */
     public int getRank() {
         return rank;
     }
