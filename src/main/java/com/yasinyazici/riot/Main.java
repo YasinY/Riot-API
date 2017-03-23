@@ -26,7 +26,7 @@ public class Main {
 
     public static void main(String[] args) throws ReplyException, DataException, IOException, WrongRequestFormatException, InterruptedException, URISyntaxException {
         LeagueAPI leagueAPI = new LeagueAPI(Region.EUW);
-        Summoner summoner = leagueAPI.getSummoner( "Azerlus");
+        Summoner summoner = leagueAPI.getSummoner( "fliertje");
         CurrentGameInfo currentGameInfo = summoner.getActiveGame(); // First request
         for (CurrentGameParticipant currentGameParticipant : currentGameInfo.getParticipants()) {
             LeagueEntry entry = leagueAPI.getLeagueEntry( currentGameParticipant.getSummonerId(), QueueType.RANKED_SOLO_5x5); // Second

@@ -321,6 +321,7 @@ public class LeagueAPI {
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      * @see #getChampionStatsRanked(long, Season) for reference on what {@link RequestType} is being used
+     * //TODO UPDATE!!!
      */
     public synchronized ChampionStats getChampionStatsRanked(long summonerId, long championId, Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return getChampionStatsRanked(summonerId, season).getChampionStatsSummary().stream().filter(championStatsSummary -> championId == championStatsSummary.getId()).findAny().orElse(null).getChampionStats();
