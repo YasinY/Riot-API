@@ -19,21 +19,21 @@ public class Config {
     /**
      * Location of the Masteries
      */
-    public static final InputStream MASTERIES = ClassLoader.getSystemClassLoader().getResourceAsStream("masteries.json");
+    public static final InputStream MASTERIES = getInputStreamFor("masteries.json");
 
     /**
      * Location of the Runes
      */
-    public static final InputStream RUNES = ClassLoader.getSystemClassLoader().getResourceAsStream("runes.json");
+    public static final InputStream RUNES = getInputStreamFor("runes.json");
 
     /**
      * Location of the champion data
      */
-    public static final InputStream CHAMPION_DATA = ClassLoader.getSystemClassLoader().getResourceAsStream("champion_data.json");
+    public static final InputStream CHAMPION_DATA = getInputStreamFor("champion_data.json");
 
-    /**
-     * Location of the version file
-     */
-    public static final URL VERSION_FILE = ClassLoader.getSystemClassLoader().getResource("game_version.txt");
+
+    public static InputStream getInputStreamFor(String fileName) {
+        return ClassLoader.getSystemClassLoader().getResourceAsStream(fileName);
+    }
 
 }
