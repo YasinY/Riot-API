@@ -1,7 +1,10 @@
 package com.yasinyazici.riot;
 
+import com.sun.scenario.effect.ImageData;
 import com.yasinyazici.riot.data.champion.ChampionImage;
 import com.yasinyazici.riot.data.champion.ChampionStatsStatic;
+import com.yasinyazici.riot.data.champion.impl.ChampionData;
+import com.yasinyazici.riot.data.champion.impl.ChampionImageData;
 import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.currentgame.CurrentGameInfo;
 import com.yasinyazici.riot.data.exceptions.DataException;
@@ -52,6 +55,11 @@ public class LeagueAPI {
     private Region region;
 
     /**
+     * The game version league of legends currently is versioned with
+     */
+    private String gameVersion;
+
+    /**
      * <p>Creates a new {@link LeagueAPI} instance</p>
      *
      * @param region the region to forward the requests (made within the class) to
@@ -61,6 +69,17 @@ public class LeagueAPI {
      */
     public LeagueAPI(Region region) {
         this.region = region;
+        setGameVersion();
+    }
+
+    private void setGameVersion() {
+        try {
+            this.gameVersion = getLatestGameVersion();
+        } catch (DataException | WrongRequestFormatException | ReplyException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -184,7 +203,7 @@ public class LeagueAPI {
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
-    public synchronized ChampionImage getChampionImage(long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
+    public synchronized ChampionImage getChampionData(long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new ChampionImageParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_CHAMPION_IMAGE_BY_CHAMPION_ID, region.getShortCode(), championId))).get();
     }
 
@@ -199,7 +218,21 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized String getImageUrl(long championId) throws ReplyException, DataException, IOException, WrongRequestFormatException {
-        return "http://ddragon.leagueoflegends.com/cdn/" + getLatestGameVersion() + "/img/champion/" + getChampionData(championId).getChampionImageData().getFull();
+        return "http://ddragon.leagueoflegends.com/cdn/" + gameVersion + "/img/champion/" + getChampionData(championId).getChampionImageData().getFull();
+    }
+
+    /**
+     * <p>Puts together animage url for a champion from the given champion data. <!-- --> Hence {@link ChampionImageData} is given as parameter, it's not guaranteed that the data is correct and/or working
+     * as it can be even a custom instance being passed.</p>
+     *
+     * @return a new {@link String} containing the generated url
+     * @throws DataException               thrown when the Data is invalid
+     * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
+     * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
+     * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
+     */
+    public synchronized String getImageUrl(ChampionImage championData) throws ReplyException, DataException, IOException, WrongRequestFormatException {
+        return "http://ddragon.leagueoflegends.com/cdn/" + gameVersion + "/img/champion/" + championData.getChampionImageData().getFull();
     }
 
     /**
@@ -311,15 +344,6 @@ public class LeagueAPI {
         return new RunesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), summonerIds))).get();
     }
 
-    /**
-     * <p>Locally loads champion data (containing image data) to spare requests to the official Riot REST-API</p>
-     *
-     * @param championId the champion id to look the data after
-     * @return a new {@link ChampionImage} instance representing all fields of the champion found (by champion id)
-     */
-    public synchronized ChampionImage getChampionData(long championId) {
-        return staticResources.getChampionData(championId);
-    }
 
     /**
      * <p>Locally loads mastery data to spare requests to the official Riot REST-API</p>
@@ -339,5 +363,9 @@ public class LeagueAPI {
      */
     public synchronized RuneData getRuneData(int runeId) {
         return staticResources.getRuneData(runeId);
+    }
+
+    public String getGameVersion() {
+        return gameVersion;
     }
 }

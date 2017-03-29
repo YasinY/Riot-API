@@ -17,6 +17,7 @@ import java.util.Map;
  */
 public class StaticResources {
 
+
     /**
      * A map loaded up with mastery data upon construction of {@link StaticResources}
      */
@@ -28,11 +29,6 @@ public class StaticResources {
     private Map<Integer, RuneData> runeDataMap;
 
     /**
-     * A map loaded with champion data upon construction of {@link StaticResources}
-     */
-    private Map<String, ChampionImage> championDataMap;
-
-    /**
      * Creates a new {@link StaticResources} instance
      */
     public StaticResources() {
@@ -42,8 +38,7 @@ public class StaticResources {
             }.getType());
             runeDataMap = gson.fromJson(new InputStreamReader(Config.RUNES), new TypeToken<Map<Integer, RuneData>>() {
             }.getType());
-            championDataMap = gson.fromJson(new InputStreamReader(Config.CHAMPION_DATA), new TypeToken<Map<String, ChampionImage>>() {
-            }.getType());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,7 +51,7 @@ public class StaticResources {
      * @return a {@link MasteryData} element representing the mastery if found, otherwise returns null
      */
     public MasteryData getMasteryData(int masteryId) {
-        return masteryDataMap.values().stream().filter(p -> p.getId() == masteryId).findFirst().orElse(null);
+        return masteryDataMap.values().stream().filter(p -> p.getId() == masteryId).findAny().orElse(null);
     }
 
     /**
@@ -66,17 +61,8 @@ public class StaticResources {
      * @return a {@link RuneData} element representing the mastery if found, otherwise returns null
      */
     public RuneData getRuneData(int runeId) {
-        return runeDataMap.values().stream().filter(p -> p.getId() == runeId).findFirst().orElse(null);
+        return runeDataMap.values().stream().filter(p -> p.getId() == runeId).findAny().orElse(null);
     }
 
-    /**
-     * <p>Gets champion data filtered by champion id</p>
-     *
-     * @param championId the champion id to retrieve locally
-     * @return a {@link ChampionImage} element representing a Champion if found, otherwise returns null
-     */
-    public ChampionImage getChampionData(long championId) {
-        return championDataMap.values().stream().filter(p -> p.getId() == championId).findFirst().orElse(null);
-    }
 
 }
