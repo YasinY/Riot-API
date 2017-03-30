@@ -1,9 +1,8 @@
 package com.yasinyazici.riot.data.summoner.masteries;
 
 /**
- * Created by Yasin on 17.01.2017
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Represents a mastery stone used in League of Legends. <!-- --> Used for displaying a single mastery stone a summoner has set.</p>
+ * @author Yasin
  */
 public class Mastery {
 
@@ -18,7 +17,7 @@ public class Mastery {
     private int rank;
 
     /**
-     * Creates a new {@link com.yasinyazici.riot.data.currentgame.data.Mastery} instance
+     * Creates a new {@link Mastery} instance
      * @param id sets the mastery id
      * @param rank sets the rank
      */

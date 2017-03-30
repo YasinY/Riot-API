@@ -72,6 +72,9 @@ public class LeagueAPI {
         setGameVersion();
     }
 
+    /**
+     * <p>Sets the version of this API on the startup so there is no need to create a Request for grabbing the latest version and therefore spare requests.  </p>
+     */
     private void setGameVersion() {
         try {
             this.gameVersion = getLatestGameVersion();
@@ -86,7 +89,7 @@ public class LeagueAPI {
      * <p>Grabs the first {@link String} element of {@link #getGameVersions()} which is equally the newest game version of league of legends (the game)</p>
      *
      * @return a String parsed by {@link GameVersionParser#get()}
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -102,7 +105,7 @@ public class LeagueAPI {
      * Used as interface for {@link #getLatestGameVersion()} ()} and uses {@link GlobalRequestType#GET_GAME_VERSIONS} as reference for the {@link Request}</p>
      *
      * @return a multi-dimensional (2d) {@link String} array containing all game versions
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -118,7 +121,7 @@ public class LeagueAPI {
      * @param summonerId the summoner id to get the champion mastery for
      * @param championId the champion id to get the champion mastery for
      * @return a new {@link ChampionMastery} instance which got parsed by it's corresponding parser ({@link ChampionMasteryParser})
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -132,7 +135,7 @@ public class LeagueAPI {
      *
      * @param summonerId the summoner id (later accessed by {@link Summoner#getId()}) to get the champion masteries for
      * @return a new {@link ChampionMastery} instance in a {@link List} which got parsed by it's corresponding parser ({@link ChampionMasteriesParser})
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -146,7 +149,7 @@ public class LeagueAPI {
      *
      * @param summonerName the {@link Summoner} to look up
      * @return a new instance of {@link Summoner} if the data has been found
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -166,7 +169,7 @@ public class LeagueAPI {
      *
      * @param summonerNames the summoner names to look up
      * @return new {@link Map} instance, which offers both the Summoner name as {@link String} (key) and the {@link Summoner} itself (value) for accessing the data.
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -183,7 +186,7 @@ public class LeagueAPI {
      *
      * @param championId the champion id to get the data for
      * @return a new {@link ChampionStatsStatic} instance representing the data of the champion
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -198,7 +201,7 @@ public class LeagueAPI {
      *
      * @param championId the champion id to identify the champion the data is being requested for
      * @return a new {@link ChampionImage} instance representing champion data, including image data
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -212,7 +215,7 @@ public class LeagueAPI {
      *
      * @param championId the champion id to generate the url for
      * @return a new {@link String} containing the generated url
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -225,8 +228,9 @@ public class LeagueAPI {
      * <p>Puts together animage url for a champion from the given champion data. <!-- --> Hence {@link ChampionImageData} is given as parameter, it's not guaranteed that the data is correct and/or working
      * as it can be even a custom instance being passed.</p>
      *
+     * @param championData the champion data to generate a url for
      * @return a new {@link String} containing the generated url
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -241,7 +245,7 @@ public class LeagueAPI {
      *
      * @param summonerId the required summoner id to look if the summoner is in an active game
      * @return a new {@link CurrentGameInfo} instance if the summoner is ingame
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -258,7 +262,7 @@ public class LeagueAPI {
      * @param summonerId the summoner id to look the statistics up for
      * @param season     the season the summoner was in while playing the champions
      * @return a new {@link ChampionStatsRanked} representing all relevant statistics
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -274,7 +278,7 @@ public class LeagueAPI {
      * @param championId the champion id to filter the statistics for
      * @param season     the season the summoner was in while playing the champions
      * @return a new {@link ChampionStatsRanked} representing all relevant statistics
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -291,7 +295,7 @@ public class LeagueAPI {
      *
      * @param summonerId the summoner id used for identifying the summoner the league entries are being requested for
      * @return a new {@link Map} instance containing the summoner's name as key and a {@link List} of league entries
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -306,7 +310,8 @@ public class LeagueAPI {
      *
      * @param summonerId the summoner id to identify the summoner with and get the league entry for
      * @param queueType  the queue type to filter the league entry after
-     * @return a new {@link LeagueEntry instance}
+     * @return a new {@link LeagueEntry} instance representing the league the summoner is currently located in
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws DataException               thrown when the Data is invalid
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
@@ -321,7 +326,7 @@ public class LeagueAPI {
      *
      * @param summonerIds the summoner ids to identify the summoners with so the {@link MasteryPages} can be grabbed
      * @return a new {@link Map} containing each summoner name as {@link String} (Key) and {@link MasteryPages} (Value)
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -335,7 +340,7 @@ public class LeagueAPI {
      *
      * @param summonerIds the summoner ids to identify the summoners with so the {@link RunePages} can be grabbed
      * @return a new {@link Map} instance containing each summoner name as {@link String} (key) and {@link RunePages} (value)
-     * @throws DataException               thrown when the Data is invalid
+     * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
@@ -350,8 +355,13 @@ public class LeagueAPI {
      *
      * @param masteryId the mastery id to locally grab the data for
      * @return a new {@link MasteryData} instance representing the data of the mastery which has been found (by mastery id)
+     * @throws DataException thrown when the Data is invalid
      */
-    public synchronized MasteryData getMasteryData(int masteryId) {
+    public synchronized MasteryData getMasteryData(int masteryId) throws DataException {
+        MasteryData masteryData = staticResources.getMasteryData(masteryId);
+        if (masteryData == null) {
+            throw new DataException("Mastery data not found");
+        }
         return staticResources.getMasteryData(masteryId);
     }
 
@@ -360,9 +370,14 @@ public class LeagueAPI {
      *
      * @param runeId the rune id to get the rune data for
      * @return a new {@link RuneData} instance representing the data of the found rune (by rune id)
+     * @throws DataException thrown when the Data is invalid/not found
      */
-    public synchronized RuneData getRuneData(int runeId) {
-        return staticResources.getRuneData(runeId);
+    public synchronized RuneData getRuneData(int runeId) throws DataException {
+        RuneData runeData = staticResources.getRuneData(runeId);
+        if (runeData == null) {
+            throw new DataException("Rune data not found");
+        }
+        return runeData;
     }
 
     public String getGameVersion() {

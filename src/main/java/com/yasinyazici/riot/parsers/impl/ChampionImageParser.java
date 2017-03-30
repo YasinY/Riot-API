@@ -7,9 +7,9 @@ import com.yasinyazici.riot.parsers.JsonDataParser;
 import java.lang.reflect.Type;
 
 /**
- * Created by Yasin on 23.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Used to parse Champion Images, see {@link ChampionImage} as reference</p>
+ *
+ * @author Yasin
  */
 public class ChampionImageParser extends JsonDataParser<ChampionImage> {
     public ChampionImageParser(String json) {
@@ -18,11 +18,12 @@ public class ChampionImageParser extends JsonDataParser<ChampionImage> {
 
     @Override
     public ChampionImage get() {
-        return transform();
+        return parse();
     }
 
     @Override
     protected Type getType() {
-        return new TypeToken<ChampionImage>(){}.getType();
+        return new TypeToken<ChampionImage>() {
+        }.getType();
     }
 }

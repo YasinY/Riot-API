@@ -1,16 +1,17 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.summoner.Summoner;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 
 import java.lang.reflect.Type;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Yasin on 08.12.2016.
- * TODO: Support multiple summoners in a row
+ * <p>Used to parse multiple {@link Summoner}'s.</p>
+ *
+ * @author Yasin
  */
 public class SummonerParser extends JsonDataParser<Map<String, Summoner>> {
 
@@ -20,7 +21,7 @@ public class SummonerParser extends JsonDataParser<Map<String, Summoner>> {
 
     @Override
     public Map<String, Summoner> get() {
-        return transform();
+        return parse();
     }
 
     @Override
@@ -29,7 +30,7 @@ public class SummonerParser extends JsonDataParser<Map<String, Summoner>> {
     }
 
     public Summoner getFirstEntry() {
-        return transform().entrySet().iterator().next().getValue();
+        return parse().entrySet().iterator().next().getValue();
     }
     
 }

@@ -3,8 +3,9 @@ package com.yasinyazici.riot.utilities;
 import java.util.List;
 
 /**
- * Created by Yasin on 19/02/2016.
  * <p>Provides additional methods for simplifying and sparing redundant code, related to arrays.</p>
+ *
+ * @author Yasin
  */
 public class ArrayUtils {
 

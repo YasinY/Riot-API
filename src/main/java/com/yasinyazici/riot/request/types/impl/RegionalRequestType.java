@@ -3,10 +3,8 @@ package com.yasinyazici.riot.request.types.impl;
 import com.yasinyazici.riot.request.types.RequestType;
 
 /**
- * Created by Yasin on 17.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
- * REQUESTS for https://www.%region%.pvp.net/%link%
+ * <p>Represents a RequestType used to navigate a Request to <i>https://www.%region%.pvp.net/%link%</i></p>
+ * @author Yasin
  */
 public enum RegionalRequestType implements RequestType {
     START() {
@@ -23,11 +21,15 @@ public enum RegionalRequestType implements RequestType {
     },
     GET_CHAMPION_MASTERY() {
         @Override
-        public String getLink() { return "championmastery/location/%platformId%/player/%summonerId%/champion/%championId%";}
+        public String getLink() {
+            return "championmastery/location/%platformId%/player/%summonerId%/champion/%championId%";
+        }
     },
     GET_ALL_CHAMPION_MASTERIES() {
         @Override
-        public String getLink() { return "championmastery/location/%platformId%/player/%summonerId%/champions"; }
+        public String getLink() {
+            return "championmastery/location/%platformId%/player/%summonerId%/champions";
+        }
     };
 
     public String getStart() {

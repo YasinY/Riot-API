@@ -51,23 +51,48 @@ public enum QueueType {
     ASSASSINATE_5x5(600, "Blood Hunt");
 
 
+    /**
+     * The game queue config id
+     */
     private int id;
 
+    /**
+     * The name of the name (written out)
+     */
     private String name;
 
+    /**
+     * Creates a new {@link QueueType} enum instace
+     * @param id the game queue config id to set
+     * @param name the name (written out) to set
+     */
     QueueType(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    /**
+     * Gets the id of the queue type
+     * @return the id of the queue type
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Gets the name of the queue (written out for display)
+     * @return the name of the queue
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Allows for identification of a {@link QueueType} when the String given equals an enum name
+     * and returns corresponding to that condition.
+     * @param name the name to identify
+     * @return a {@link QueueType} instance if the name could be identified, null else
+     */
     public static QueueType identifyQueueType(String name) {
         return Stream.of(values()).filter(queueType -> queueType.name().toLowerCase().equalsIgnoreCase(name.toLowerCase())).findFirst().orElse(null);
     }

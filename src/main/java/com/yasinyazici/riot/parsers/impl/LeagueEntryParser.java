@@ -1,6 +1,7 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.summoner.ranked.league.QueueType;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
@@ -8,12 +9,11 @@ import com.yasinyazici.riot.data.summoner.ranked.league.LeagueEntry;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 /**
- * Created by Yasin on 19.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Used to parse a multiple {@link LeagueEntry}'s, see {@link LeagueEntry} as reference about what statistics are being displayed</p>
+ *
+ * @author Yasin
  */
 public class LeagueEntryParser extends JsonDataParser<Map<String, List<LeagueEntry>>> {
 
@@ -24,7 +24,7 @@ public class LeagueEntryParser extends JsonDataParser<Map<String, List<LeagueEnt
 
     @Override
     public Map<String, List<LeagueEntry>> get() {
-        return transform();
+        return parse();
     }
 
     @Override
@@ -34,11 +34,11 @@ public class LeagueEntryParser extends JsonDataParser<Map<String, List<LeagueEnt
     }
 
     public LeagueEntry getFirstLeagueEntry() {
-        return transform().entrySet().iterator().next().getValue().get(0);
+        return parse().entrySet().iterator().next().getValue().get(0);
     }
 
     public LeagueEntry getLeagueEntryByQueueType(QueueType queueType) {
-        for(Map.Entry<String, List<LeagueEntry>> entries : transform().entrySet()) {
+        for(Map.Entry<String, List<LeagueEntry>> entries : parse().entrySet()) {
             for (LeagueEntry leagueEntry : entries.getValue()) {
                 if(leagueEntry.getQueue().equalsIgnoreCase(queueType.name())) {
                     return leagueEntry;

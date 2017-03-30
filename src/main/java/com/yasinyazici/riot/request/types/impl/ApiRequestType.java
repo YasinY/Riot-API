@@ -4,8 +4,8 @@ import com.yasinyazici.riot.request.types.RequestType;
 import com.yasinyazici.riot.request.types.Type;
 
 /**
- * Created by Yasin on 10/02/2016.
- * REQUESTS for https://www.%region%.pvp.net/api/lol
+ * <p>Represents a RequestType used to navigate a Request to <i>https://www.%region%.pvp.net/api/lol</i></p>
+ *
  */
 public enum ApiRequestType implements RequestType {
     START() {

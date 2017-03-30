@@ -7,9 +7,8 @@ import com.yasinyazici.riot.data.champion.ChampionStatsStatic;
 import java.lang.reflect.Type;
 
 /**
- * Created by Yasin on 18.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Used to parse Champion Info, see {@link ChampionStatsStatic} as reference</p>
+ * @author Yasin
  */
 public class ChampionInfoParser extends JsonDataParser<ChampionStatsStatic> {
     public ChampionInfoParser(String json) {
@@ -18,7 +17,7 @@ public class ChampionInfoParser extends JsonDataParser<ChampionStatsStatic> {
 
     @Override
     public ChampionStatsStatic get() {
-        return transform();
+        return parse();
     }
 
     @Override

@@ -1,17 +1,18 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStats;
-import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsSummary;
+import com.yasinyazici.riot.data.summoner.ranked.league.QueueType;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 import com.yasinyazici.riot.data.summoner.ranked.ChampionStatsRanked;
 
 import java.lang.reflect.Type;
 
 /**
- * Created by Yasin on 21.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Used to parse the Champion Statistics in both ranked {@link QueueType#RANKED_FLEX_SR} and {@link QueueType#RANKED_SOLO_5x5}. <!-- -->See {@link ChampionMastery} as reference</p>
+ *
+ * @author Yasin
  */
 public class ChampionStatsRankedParser extends JsonDataParser<ChampionStatsRanked> {
     public ChampionStatsRankedParser(String json) {
@@ -20,7 +21,7 @@ public class ChampionStatsRankedParser extends JsonDataParser<ChampionStatsRanke
 
     @Override
     public ChampionStatsRanked get() {
-        return transform();
+        return parse();
     }
 
     @Override
@@ -29,6 +30,6 @@ public class ChampionStatsRankedParser extends JsonDataParser<ChampionStatsRanke
     }
 
     public ChampionStats getStatsForChampion(long championId) {
-        return transform().getChampionStatsSummary().stream().filter(championStatsSummary -> championId == championStatsSummary.getId()).findAny().orElse(null).getChampionStats();
+        return parse().getChampionStatsSummary().stream().filter(championStatsSummary -> championId == championStatsSummary.getId()).findAny().orElse(null).getChampionStats();
     }
 }

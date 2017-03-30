@@ -24,9 +24,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Yasin on 08.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Represents a single summoner and his properties</p>
+ *
+ * @author Yasin
  */
 public class Summoner {
 
@@ -44,12 +44,13 @@ public class Summoner {
 
     /**
      * Creates a new instance of {@link Summoner}
-     * @param region the region to place the summoner in
-     * @param id the id of the summoner
-     * @param name the name of the summoner
+     *
+     * @param region        the region to place the summoner in
+     * @param id            the id of the summoner
+     * @param name          the name of the summoner
      * @param profileIconId the id of the current profile icon the summoner has set
      * @param summonerLevel the latest known summoner level of the summoner
-     * @param revisionDate the date of revision of the summoner
+     * @param revisionDate  the date of revision of the summoner
      */
     public Summoner(Region region, int id, String name, int profileIconId, int summonerLevel, long revisionDate) {
         this.region = region;
@@ -91,7 +92,7 @@ public class Summoner {
      * <p>Get the performance/statistics of all champions the summoner (identified by the locally defined summoner id) owns, filtered by {@link Season}. <!-- -->
      * Uses {@link ApiRequestType#GET_CHAMPION_STATS_BY_SUMMONER_ID} as reference for the {@link Request}</p>
      *
-     * @param season     the season the summoner was in while playing the champions
+     * @param season the season the summoner was in while playing the champions
      * @return a new {@link ChampionStatsRanked} representing all relevant statistics
      * @throws DataException               thrown when the Data is invalid
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
@@ -101,6 +102,7 @@ public class Summoner {
     public ChampionStatsRanked getChampionStatsRanked(Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), id, season.getSeasonName()))).get();
     }
+
     /**
      * <p>Gets all kind of league entries (representing rank, state of league etc.) from a specified summoner (identified by summoner id locally defined). <!-- -->
      * Uses {@link ApiRequestType#GET_LEAGUE_ENTRY_BY_SUMMONER_ID} as reference for the {@link Request}</p>
@@ -114,11 +116,12 @@ public class Summoner {
     public Map<String, List<LeagueEntry>> getLeagueEntries() throws DataException, WrongRequestFormatException, ReplyException, IOException {
         return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).get();
     }
+
     /**
      * <p>Gets a {@link LeagueEntry} for a given {@link QueueType}, representing rank, state of league etc.<!-- --> from a specified summoner which gets identified by summoner id. <!-- -->
      * Uses {@link ApiRequestType#GET_LEAGUE_ENTRY_BY_SUMMONER_ID} as reference for the {@link Request}</p>
      *
-     * @param queueType  the queue type to filter the league entry after
+     * @param queueType the queue type to filter the league entry after
      * @return a new {@link LeagueEntry instance}
      * @throws DataException               thrown when the Data is invalid
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
@@ -147,6 +150,7 @@ public class Summoner {
 
     /**
      * Gets the region of the summoner
+     *
      * @return the region the summoner currently is located at
      */
     public Region getRegion() {
@@ -155,6 +159,7 @@ public class Summoner {
 
     /**
      * Gets the id of the summoner
+     *
      * @return the id the summoner has
      */
     public long getId() {
@@ -163,6 +168,7 @@ public class Summoner {
 
     /**
      * Gets the name of the summoner
+     *
      * @return the name of the summoner represented as String
      */
     public String getName() {
@@ -171,6 +177,7 @@ public class Summoner {
 
     /**
      * Gets the id of the icon the summoner has currently set
+     *
      * @return the profile icon id
      */
     public long getProfileIconId() {
@@ -179,6 +186,7 @@ public class Summoner {
 
     /**
      * Gets the level of the summoner
+     *
      * @return the summoner level
      */
     public int getSummonerLevel() {
@@ -187,6 +195,7 @@ public class Summoner {
 
     /**
      * Gets the revision date of the summoner
+     *
      * @return the revision date
      */
     public long getRevisionDate() {
@@ -195,6 +204,7 @@ public class Summoner {
 
     /**
      * Sets the region of the summoner so he can be identified
+     *
      * @param region the region to place the summoner in
      */
     public void setRegion(Region region) {

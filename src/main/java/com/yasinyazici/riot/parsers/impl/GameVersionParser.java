@@ -1,14 +1,15 @@
 package com.yasinyazici.riot.parsers.impl;
 
 import com.google.gson.reflect.TypeToken;
+import com.yasinyazici.riot.data.championmastery.ChampionMastery;
 import com.yasinyazici.riot.parsers.JsonDataParser;
 
 import java.lang.reflect.Type;
 
 /**
- * Created by Yasin on 18.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Used to parse the game versions of league of legends.</p>
+ *
+ * @author Yasin
  */
 public class GameVersionParser extends JsonDataParser<String[]> {
 
@@ -18,7 +19,7 @@ public class GameVersionParser extends JsonDataParser<String[]> {
 
     @Override
     public String[] get() {
-        return transform();
+        return parse();
     }
 
     @Override

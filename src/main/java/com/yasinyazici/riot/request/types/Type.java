@@ -1,12 +1,12 @@
 package com.yasinyazici.riot.request.types;
 
 /**
- * Created by Yasin on 17.12.2016
- * E-mail: yasin_programmer@hotmail.com
- * Github: YasinY
+ * <p>Request types</p>
+ * @author Yasin
  */
 public enum Type {
     GLOBAL,
+    REGIONAL,
     API_CALL,
     NONE
 }

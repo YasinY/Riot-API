@@ -10,14 +10,13 @@ import java.util.regex.Pattern;
 
 /**
  * <p>Identifies the placeholders of the {@link URL} given as parameter</p>
- *
  * @author Yasin
  */
 
 public class RequestFormat {
 
     /**
-     * The array containg all identified placeholders
+     * The array containing all identified placeholders
      */
     private ArrayList<String> requestFormatArray;
 
@@ -39,7 +38,7 @@ public class RequestFormat {
     /**
      * Gets the placeholders in the {@link String} <i>url</i>, filtering it by using a Pattern specified to only
      * filter out words which has a <i>%</i> in the starting position (first letter - 1) and end position (last latter + 1)
-     * adding each found word by the {@link Matcher} into an {@link ArrayList} which then gets
+     * adding each found word by the {@link Matcher} into an {@link ArrayList}, transforming the {@link ArrayList} to a {@link String[]} array
      *
      * @return a new 2d {@link String} transformed from A {@link List}
      */

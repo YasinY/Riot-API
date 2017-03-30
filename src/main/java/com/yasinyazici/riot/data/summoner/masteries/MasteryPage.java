@@ -5,7 +5,7 @@ import com.yasinyazici.riot.data.summoner.Summoner;
 import java.util.List;
 
 /**
- * <p>Represents a masterypage of a {@link Summoner}</p>
+ * <p>Represents a MasteryPage a beforehand specified {@link Summoner} has set.</p>
  **/
 public class MasteryPage {
 
@@ -20,7 +20,7 @@ public class MasteryPage {
     private long id;
 
     /**
-     * Contains a list with masteries
+     * Contains a list with all Mastery stones used in a single {@link MasteryPage}
      */
     private List<Mastery> masteries;
 
