@@ -17,10 +17,7 @@ public class CurrentGameInfoParser extends JsonDataParser<CurrentGameInfo> {
         super(json);
     }
 
-    @Override
-    public CurrentGameInfo get() {
-        return parse();
-    }
+
 
     @Override
     protected Type getType() {

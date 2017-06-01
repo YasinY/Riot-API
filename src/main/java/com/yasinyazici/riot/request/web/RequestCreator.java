@@ -43,7 +43,6 @@ public class RequestCreator {
      * @see JsonDataParser
      */
     public static String createRequest(RequestProperty requestProperty) throws IOException, WrongRequestFormatException, DataException, ReplyException {
-        System.out.println("Creating request " + new RequestLink(requestProperty).getModifiedLink());
         return new Request(new RequestLink(requestProperty)).makeRequest().getResponseMessage();
     }
 }

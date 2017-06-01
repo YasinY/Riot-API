@@ -16,10 +16,6 @@ public class ChampionImageParser extends JsonDataParser<ChampionImage> {
         super(json);
     }
 
-    @Override
-    public ChampionImage get() {
-        return parse();
-    }
 
     @Override
     protected Type getType() {

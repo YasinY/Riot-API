@@ -23,11 +23,6 @@ public class LeagueEntryParser extends JsonDataParser<Map<String, List<LeagueEnt
     }
 
     @Override
-    public Map<String, List<LeagueEntry>> get() {
-        return parse();
-    }
-
-    @Override
     protected Type getType() {
         return new TypeToken<Map<String, List<LeagueEntry>>>() {
         }.getType();

@@ -88,7 +88,7 @@ public class LeagueAPI {
     /**
      * <p>Grabs the first {@link String} element of {@link #getGameVersions()} which is equally the newest game version of league of legends (the game)</p>
      *
-     * @return a String parsed by {@link GameVersionParser#get()}
+     * @return a String parsed by {@link GameVersionParser#parse()}
      * @throws DataException               thrown when the Data is invalid/not found
      * @throws WrongRequestFormatException thrown when the parameters given do not equal the amount of parameters (placeholders) identified
      * @throws ReplyException              thrown when the Reply is different than {@link Response#OK}
@@ -112,7 +112,7 @@ public class LeagueAPI {
      */
     private synchronized String[] getGameVersions() throws
             DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new GameVersionParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_GAME_VERSIONS, region.getShortCode()))).get();
+        return new GameVersionParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_GAME_VERSIONS, region.getShortCode()))).parse();
     }
 
     /**
@@ -127,7 +127,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized ChampionMastery getChampionMastery(long summonerId, long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionMasteryParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), summonerId, championId))).get();
+        return new ChampionMasteryParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), summonerId, championId))).parse();
     }
 
     /**
@@ -141,7 +141,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized List<ChampionMastery> getChampionMasteries(long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionMasteriesParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_ALL_CHAMPION_MASTERIES, region.getShortCode(), region.getPlatformId(), summonerId))).get();
+        return new ChampionMasteriesParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_ALL_CHAMPION_MASTERIES, region.getShortCode(), region.getPlatformId(), summonerId))).parse();
     }
 
     /**
@@ -175,7 +175,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized Map<String, Summoner> getSummoners(String... summonerNames) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        Map<String, Summoner> summoners = new SummonerParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES, region.getShortCode(), summonerNames))).get();
+        Map<String, Summoner> summoners = new SummonerParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_DATA_BY_NAMES, region.getShortCode(), summonerNames))).parse();
         summoners.entrySet().forEach(entry -> entry.getValue().setRegion(region));
         return summoners;
     }
@@ -192,7 +192,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized ChampionStatsStatic getChampionStats(long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionInfoParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_CHAMPION_INFO_BY_CHAMPION_ID, region.getShortCode(), championId))).get();
+        return new ChampionInfoParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_CHAMPION_INFO_BY_CHAMPION_ID, region.getShortCode(), championId))).parse();
     }
 
     /**
@@ -207,7 +207,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized ChampionImage getChampionData(long championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionImageParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_CHAMPION_IMAGE_BY_CHAMPION_ID, region.getShortCode(), championId))).get();
+        return new ChampionImageParser(RequestCreator.createRequest(new RequestProperty(GlobalRequestType.GET_CHAMPION_IMAGE_BY_CHAMPION_ID, region.getShortCode(), championId))).parse();
     }
 
     /**
@@ -252,7 +252,7 @@ public class LeagueAPI {
      * @see CurrentGameInfo as reference for reviewing what kind of data is being represented
      */
     public synchronized CurrentGameInfo getActiveGame(long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new CurrentGameInfoParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), summonerId))).get();
+        return new CurrentGameInfoParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), summonerId))).parse();
     }
 
     /**
@@ -268,7 +268,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized ChampionStatsRanked getChampionStatsRanked(long summonerId, Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), summonerId, season.getSeasonName()))).get();
+        return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), summonerId, season.getSeasonName()))).parse();
     }
 
     /**
@@ -301,7 +301,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized Map<String, List<LeagueEntry>> getLeagueEntries(long summonerId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), summonerId))).get();
+        return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), summonerId))).parse();
     }
 
     /**
@@ -332,7 +332,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new MasteriesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS, region.getShortCode(), summonerIds))).get();
+        return new MasteriesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_MASTERIES_BY_IDS, region.getShortCode(), summonerIds))).parse();
     }
 
     /**
@@ -346,7 +346,7 @@ public class LeagueAPI {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public synchronized Map<String, RunePages> getRunes(long... summonerIds) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new RunesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), summonerIds))).get();
+        return new RunesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), summonerIds))).parse();
     }
 
 

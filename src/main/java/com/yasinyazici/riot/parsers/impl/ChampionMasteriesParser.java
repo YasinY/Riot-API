@@ -18,10 +18,6 @@ public class ChampionMasteriesParser extends JsonDataParser<List<ChampionMastery
         super(json);
     }
 
-    @Override
-    public List<ChampionMastery> get() {
-        return parse();
-    }
 
     @Override
     protected Type getType() {

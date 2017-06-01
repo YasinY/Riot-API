@@ -19,11 +19,6 @@ public class MasteriesParser extends JsonDataParser<Map<String, MasteryPages>> {
     }
 
     @Override
-    public Map<String, MasteryPages> get() {
-        return parse();
-    }
-
-    @Override
     protected Type getType() {
         return new TypeToken<Map<String, MasteryPages>>() {}.getType();
     }

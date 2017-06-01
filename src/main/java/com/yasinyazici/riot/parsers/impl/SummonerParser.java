@@ -19,10 +19,6 @@ public class SummonerParser extends JsonDataParser<Map<String, Summoner>> {
         super(json);
     }
 
-    @Override
-    public Map<String, Summoner> get() {
-        return parse();
-    }
 
     @Override
     protected Type getType() {

@@ -72,7 +72,7 @@ public class Summoner {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public ChampionMastery getChampionMastery(int championId) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionMasteryParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), id, championId))).get();
+        return new ChampionMasteryParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CHAMPION_MASTERY, region.getShortCode(), region.getPlatformId(), id, championId))).parse();
     }
 
     /**
@@ -85,7 +85,7 @@ public class Summoner {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public Map<String, RunePages> getRunes() throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new RunesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), id))).get();
+        return new RunesParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_SUMMONER_RUNES_BY_ID, region.getShortCode(), id))).parse();
     }
 
     /**
@@ -100,7 +100,7 @@ public class Summoner {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public ChampionStatsRanked getChampionStatsRanked(Season season) throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), id, season.getSeasonName()))).get();
+        return new ChampionStatsRankedParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_CHAMPION_STATS_BY_SUMMONER_ID, region.getShortCode(), id, season.getSeasonName()))).parse();
     }
 
     /**
@@ -114,7 +114,7 @@ public class Summoner {
      * @throws IOException                 thrown when there was an error in the procedure of establishing a connection with Riot's official REST-API
      */
     public Map<String, List<LeagueEntry>> getLeagueEntries() throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).get();
+        return new LeagueEntryParser(RequestCreator.createRequest(new RequestProperty(ApiRequestType.GET_LEAGUE_ENTRY_BY_SUMMONER_ID, region.getShortCode(), id))).parse();
     }
 
     /**
@@ -144,7 +144,7 @@ public class Summoner {
      * @see CurrentGameInfo as reference for reviewing what kind of data is being represented
      */
     public synchronized CurrentGameInfo getActiveGame() throws DataException, WrongRequestFormatException, ReplyException, IOException {
-        return new CurrentGameInfoParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), id))).get();
+        return new CurrentGameInfoParser(RequestCreator.createRequest(new RequestProperty(RegionalRequestType.GET_CURRENT_GAME, region.getShortCode(), region.getPlatformId(), id))).parse();
     }
 
 

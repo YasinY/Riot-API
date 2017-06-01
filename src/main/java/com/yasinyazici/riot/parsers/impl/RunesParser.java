@@ -20,10 +20,6 @@ public class RunesParser extends JsonDataParser<Map<String, RunePages>> {
         super(json);
     }
 
-    @Override
-    public Map<String, RunePages> get() {
-        return parse();
-    }
 
     @Override
     protected Type getType() {

@@ -39,7 +39,7 @@ public abstract class JsonDataParser<T> {
      * @param jsonString the json to parse an object from
      * @return a new object with the type specified as {@link T}
      */
-    protected T parse(String jsonString) {
+    public T parse(String jsonString) {
         return gson.fromJson(jsonString, getType());
     }
 
@@ -62,16 +62,10 @@ public abstract class JsonDataParser<T> {
      * Parses a json string which got defined upon construction of this class
      * @return a new object with the type specified as {@link T}
      */
-    protected T parse() {
+    public T parse() {
         return gson.fromJson(json, getType());
     }
 
-
-    /**
-     * Gets the object with the type of {@link T}
-     * @return a {@link T} object
-     */
-    public abstract T get();
 
     /**
      * Gets the type for the {@link Gson} parser

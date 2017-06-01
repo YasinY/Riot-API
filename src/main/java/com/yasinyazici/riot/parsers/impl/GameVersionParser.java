@@ -17,10 +17,6 @@ public class GameVersionParser extends JsonDataParser<String[]> {
         super(json);
     }
 
-    @Override
-    public String[] get() {
-        return parse();
-    }
 
     @Override
     protected Type getType() {

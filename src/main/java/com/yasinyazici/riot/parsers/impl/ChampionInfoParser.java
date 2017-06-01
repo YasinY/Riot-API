@@ -15,10 +15,6 @@ public class ChampionInfoParser extends JsonDataParser<ChampionStatsStatic> {
         super(json);
     }
 
-    @Override
-    public ChampionStatsStatic get() {
-        return parse();
-    }
 
     @Override
     protected Type getType() {

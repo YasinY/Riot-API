@@ -20,11 +20,6 @@ public class ChampionStatsRankedParser extends JsonDataParser<ChampionStatsRanke
     }
 
     @Override
-    public ChampionStatsRanked get() {
-        return parse();
-    }
-
-    @Override
     protected Type getType() {
         return new TypeToken<ChampionStatsRanked>(){}.getType();
     }
